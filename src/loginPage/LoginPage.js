@@ -15,6 +15,7 @@ import { useStyles } from "./loginPageStyles";
 import { LINK_REGISTER, LOGIN_NEOSOFT_TECHNOLOGIES } from "./Link";
 import LeftSideLogin from "./LeftSideLogin";
 import { useDispatch } from "react-redux";
+import axios from "axios";
 
 const LoginPage = (props) => {
   const dispatch = useDispatch();
@@ -28,76 +29,29 @@ const LoginPage = (props) => {
     showPassword: false,
   });
 
+
   const submitFormHandler = async (e) => {
     e.preventDefault();
-  //   const data = {
-  //     email: loginEmail,
-  //     password: loginPassword,
-  //   };
-  //   var config = {
-  //     method: "post",
-  //     url: '180.149.241.208:3022/login'      ,
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json",
-  //       // ...data.getHeaders()
-  //     },
-  //     data: data,
-  //   };
-  //   try {
-  //     const res = await axios(config);
-  //     const { email, name, profile, token } = res?.data?.UserLogin;
-  //     localStorage.setItem('email', email);
-  //     localStorage.setItem('name', name);
-  //     localStorage.setItem('profile', profile);
-  //     localStorage.setItem('token', token);
-  //     setFeedback(res.data.UserLogin.Feadbacks);
-  //     alert("Logged In Succesfully")
-  //     history.push("/feedback");
-  //   } catch(err) {
-  //       alert('Failed to login');
-  //   }
-    
+    const data = {
+      email: loginForm.loginEmail,
+      password: loginForm.loginPassword,
+    };
+    var config = {
+      method: "post",
+      url: 'https://neostore-api.herokuapp.com/api/auth/login',
+      data: data,
+    };
+
+    try {
+      const res = await axios(config);
+      alert("Logged In Succesfully")
+      history.push("/productmodule");
+    } catch(err) {
+        alert('Failed to login');
+    }
+    dispatch({ type: "LOGGED_IN", payload: true });
   };
 
-  //   dispatch({ type: "LOGGED_IN", payload: true });
-  //   history.push("/productmodule");
-  //   console.log(loginForm.loginEmail);
-  //   console.log(loginForm.loginPassword);
-  // };
-
-  // const submitFormHandler = async (e) => {
-  //   e.preventDefault();
-    // const data = {
-    //   email: loginEmail,
-    //   password: loginPassword,
-    // };
-    // var config = {
-    //   method: "post",
-    //   url: LOGIN_URL,
-    //   headers: {
-    //     Accept: "application/json",
-    //     "Content-Type": "application/json",
-    //     // ...data.getHeaders()
-    //   },
-    //   data: data,
-    // };
-
-  //   try {
-  //     const res = await axios(config);
-  //     const { email, name, profile, token } = res?.data?.UserLogin;
-  //     localStorage.setItem('email', email);
-  //     localStorage.setItem('name', name);
-  //     localStorage.setItem('profile', profile);
-  //     localStorage.setItem('token', token);
-  //     setFeedback(res.data.UserLogin.Feadbacks);
-  //     alert("Logged In Succesfully")
-  //     history.push("/feedback");
-  //   } catch(err) {
-  //       alert('Failed to login');
-  //   }
-    
-  // };
 
 
   const handleClickShowPassword = () => {
@@ -136,9 +90,7 @@ const LoginPage = (props) => {
                   }
                   endAdornment={
                     <InputAdornment position="end">
-                      <IconButton>
                         <EmailIcon />
-                      </IconButton>
                     </InputAdornment>
                   }
                 />

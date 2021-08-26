@@ -20,33 +20,56 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import { useStyles } from "./registrationStyles";
 import { REGISTER_HEADING, MAX_100_KEYWORD } from "./registrationUtils";
-const initialValues = {
-  firstName: "",
-  lastName: "",
-  registerEmail: "",
-  registerPassword: "",
-  registerConfirmPassword: "",
-  radio: "male",
-  mobileNumber: "",
-};
+import axios from "axios";
+import Snackbar from "../commons/snackbar/SnackBar";
+
 const RegistrationScreen = (props) => {
   const history = useHistory();
-  const [registrationFormDetails, setRegistrationFormDetails] =
-    useState(initialValues);
+  const [registrationFormDetails, setRegistrationFormDetails] = useState({
+    firstName: "",
+    lastName: "",
+    registerEmail: "",
+    registerPassword: "",
+    registerConfirmPassword: "",
+    radio: "male",
+    mobileNumber: "",
+  });
   const classes = useStyles(props);
   const [values, setValues] = useState({
     showPassword: false,
   });
+
   const handleRadioChange = (e) => {
     setRegistrationFormDetails({
       ...registrationFormDetails,
       radio: e.target.value,
     });
   };
-  const submitRegisterFormHandler = (e) => {
+  const submitRegisterFormHandler = async (e) => {
     e.preventDefault();
-    history.push("/login");
-    console.log("registrationFormDetails", registrationFormDetails);
+    var data = {
+      firstName: registrationFormDetails.firstName,
+      lastName: registrationFormDetails.lastName,
+      email: registrationFormDetails.registerEmail,
+      mobile: registrationFormDetails.mobileNumber,
+      gender: registrationFormDetails.radio,
+      password: registrationFormDetails.registerPassword,
+      confirm_password: registrationFormDetails.registerConfirmPassword,
+    };
+
+    var config = {
+      method: "post",
+      url: "https://neostore-api.herokuapp.com/api/auth/register",
+      data,
+    };
+
+    try {
+      var res = await axios(config);
+       alert("Successfully Registered");
+        history.push("/login");
+    } catch (error) {
+      alert("Failed to Register");
+    }
   };
 
   const handleClickShowPassword = () => {
@@ -84,9 +107,7 @@ const RegistrationScreen = (props) => {
               }
               endAdornment={
                 <InputAdornment position="end">
-                  <IconButton>
                     <TextFieldsIcon style={{ fontSize: "40px" }} />
-                  </IconButton>
                 </InputAdornment>
               }
             />
@@ -103,9 +124,7 @@ const RegistrationScreen = (props) => {
               }
               endAdornment={
                 <InputAdornment position="end">
-                  <IconButton>
-                    <TextFieldsIcon style={{ fontSize: "40px" }} />
-                  </IconButton>
+                    <TextFieldsIcon position="end" style={{ fontSize: "40px" }} />
                 </InputAdornment>
               }
             />
@@ -122,9 +141,7 @@ const RegistrationScreen = (props) => {
               variant="outlined"
               endAdornment={
                 <InputAdornment position="end">
-                  <IconButton>
                     <EmailIcon style={{ fontSize: "40px" }} />
-                  </IconButton>
                 </InputAdornment>
               }
             />
@@ -196,9 +213,7 @@ const RegistrationScreen = (props) => {
               inputProps={{ maxLength: 10 }}
               endAdornment={
                 <InputAdornment position="end">
-                  <IconButton>
                     <CallIcon style={{ fontSize: "40px" }} />
-                  </IconButton>
                 </InputAdornment>
               }
             />
