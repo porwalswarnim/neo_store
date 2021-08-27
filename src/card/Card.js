@@ -11,13 +11,15 @@ import {
 import { RatingStar } from "./Rating";
 import { useHistory } from "react-router-dom";
 import { useStyles } from "./cardStyles";
+import { useDispatch } from "react-redux";
 
 
 const MediaCard = ({ data }) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const history = useHistory();
-
  
+
   return (
     <Card className={classes.root} id="1">
       <CardActionArea>
@@ -50,6 +52,7 @@ const MediaCard = ({ data }) => {
           variant="contained"
           color="secondary"
           className={classes.cartButton}
+          onClick={() => dispatch({ type: 'ADD_TO_CART',payload:data })}
         >
           Add to Cart
         </Button>

@@ -29,7 +29,6 @@ const LoginPage = (props) => {
     showPassword: false,
   });
 
-
   const submitFormHandler = async (e) => {
     e.preventDefault();
     const data = {
@@ -38,21 +37,24 @@ const LoginPage = (props) => {
     };
     var config = {
       method: "post",
-      url: 'https://neostore-api.herokuapp.com/api/auth/login',
+      url: "https://neostore-api.herokuapp.com/api/auth/login",
       data: data,
     };
 
     try {
       const res = await axios(config);
-      alert("Logged In Succesfully")
+      const { id, firstName, lastName, email, mobile, token } = res?.data?.data;
+      localStorage.setItem("token", token);
+      alert("Logged In Succesfully");
+      dispatch({
+        type: "LOGGED_IN",
+        payload: { id, firstName, lastName, email, mobile },
+      });
       history.push("/productmodule");
-    } catch(err) {
-        alert('Failed to login');
+    } catch (err) {
+      alert("Failed to login");
     }
-    dispatch({ type: "LOGGED_IN", payload: true });
   };
-
-
 
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword });
@@ -90,7 +92,7 @@ const LoginPage = (props) => {
                   }
                   endAdornment={
                     <InputAdornment position="end">
-                        <EmailIcon />
+                      <EmailIcon />
                     </InputAdornment>
                   }
                 />

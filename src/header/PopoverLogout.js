@@ -32,6 +32,7 @@ const PopoverPopupStateLogout = (props) => {
     e.preventDefault();
     dispatch({type:"LOGGED_OUT",payload:false})
     history.push("/home")
+      localStorage.clear();
 
   };
   return (

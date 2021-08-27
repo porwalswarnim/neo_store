@@ -9,6 +9,7 @@ import ProfilePage from "./myaccount/profile";
 import AddAddress from "./myaccount/AddAddress";
 import AddNewAddress from "./myaccount/AddNewAddress";
 import EditAddress from "./myaccount/EditAddress";
+import PrivateRoute from "./PrivateRoute";
 import {
   BrowserRouter as Router,
   Redirect,
@@ -39,15 +40,15 @@ function App() {
       <Route exact path="/login" component={LoginPage} />
       <Route exact path="/registration" component={RegistrationScreen} />
       <Route exact path="/forgotpassword" component={ForgotScreen} />
-      <Route exact path="/productmodule" component={ProductModule} />
-      <Route exact path="/productdetailmodule" component={ProductDetailModule} />
-      <Route exact path="/ordermodule" component={OrderModule} />
-      <Route exact path="/changepassword" component={ChangePassword} />
-      <Route exact path="/profilepage" component={ProfilePage} />
-      <Route exact path="/addAddress" component={AddAddress} />
-      <Route exact path="/addNewAddress" component={AddNewAddress } />
-      <Route exact path="/editAddress" component={EditAddress } />
-      <Route exact path="/AddCartItems" component={AddCartItems} />
+      <PrivateRoute exact path="/productmodule" component={ProductModule} />
+      <PrivateRoute exact path="/productdetailmodule" component={ProductDetailModule} />
+      <PrivateRoute exact path="/ordermodule" component={OrderModule} />
+      <PrivateRoute exact path="/changepassword" component={ChangePassword} />
+      <PrivateRoute exact path="/profilepage" component={ProfilePage} />
+      <PrivateRoute exact path="/addAddress" component={AddAddress} />
+      <PrivateRoute exact path="/addNewAddress" component={AddNewAddress } />
+      <PrivateRoute exact path="/editAddress" component={EditAddress } />
+      <PrivateRoute exact path="/AddCartItems" component={AddCartItems} />
     </Router>
   );
 }

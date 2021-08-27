@@ -1,7 +1,7 @@
 import {LOGGED_IN, LOGGED_OUT, ADD_TO_CART} from '../../src/types'
 const initialState = {
   cardData: [],
-  isLoggedIn: false,
+  isLoggedIn: [],
   // Item:0,
 };
 
