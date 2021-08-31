@@ -1,9 +1,9 @@
 import React from "react";
-import { RatingStar } from "../card/Rating";
-import Grid from "@material-ui/core/Grid";
+import Rating from "@material-ui/lab/Rating";
+import { Grid, CardMedia, Box } from "@material-ui/core";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
 import FeatureDetails from "./Feature";
 import DescriptionShareDetails from "./shareSocialMediaButon";
@@ -11,9 +11,14 @@ import Button from "@material-ui/core/Button";
 import DescriptionDetails from "./Description";
 import { useStyles } from "./productDetailsStyles";
 import { SHARE_BUTTON_HEADING } from "./productUtils";
+import { useSelector } from "react-redux";
 
-const ProductDetailModule = () => {
+const ProductDetailModule = (props) => {
+  const listProducts = useSelector((state) => state.listProducts);
   const history = useHistory();
+  const { id } = useParams();
+  const listProduct = listProducts.filter((ele) => ele._id === id)[0];
+
   const classes = useStyles();
   return (
     <div>
@@ -25,17 +30,24 @@ const ProductDetailModule = () => {
             component="main"
             className={classes.leftProductDetailGrid}
           >
-            <Grid item xs={12} sm={4} md={12} className={classes.image}></Grid>
+            <Grid item xs={12} sm={4} md={12}>
+              <CardMedia
+                onClick={() => history.push("/productdetailmodule")}
+                className={classes.image}
+                image={listProduct.mainImage}
+              />
+            </Grid>
           </Grid>
-          <Grid container item column xs={12} component="main">
-            {[1, 2, 3].map((ele, i) => {
+          <Grid container item column xs={12} spacing={2} component="main">
+            {listProduct.subImages.map((ele, i) => {
               return (
-                <Grid
-                  item
-                  xs={3}
-                  className={classes.smallImage}
-                  style={{ marginLeft: "40px" }}
-                ></Grid>
+                <Grid item xs={4}>
+                  <CardMedia
+                    className={classes.smallImage}
+                    image={ele}
+                    style={{ marginLeft: "10px" }}
+                  />
+                </Grid>
               );
             })}
           </Grid>
@@ -51,22 +63,28 @@ const ProductDetailModule = () => {
               variant="h4"
               className={classes.furnitureNameCSS}
             >
-              Winchester Fabric Sofa
+              {listProduct.name}
             </Typography>
-            <RatingStar className={classes.ratingCSS} />
+            <Box component="fieldset" borderColor="transparent">
+              <Rating name="simple-controlled" value={listProduct.avgRating} />
+            </Box>
             <hr className={classes.hrCSS} />
             <Typography className={classes.priceCSS}>
               Price:
-              <span className={classes.priceAmountCSS}>$59999</span>
+              <span className={classes.priceAmountCSS}>
+                {listProduct.price}
+              </span>
             </Typography>
             <Typography style={{ fontSize: "30px" }}>
               Color:
-              <span className={classes.priceAmountCSS}>blue</span>
+              <span className={classes.priceAmountCSS}>
+                {listProduct.color.name}
+              </span>
             </Typography>
             <SHARE_BUTTON_HEADING />
             <DescriptionShareDetails />
             <Grid item container colomn style={{ marginTop: "30px" }}>
-              <Button variant="contained"  className={classes.addtoCartCSS}>
+              <Button variant="contained" className={classes.addtoCartCSS}>
                 Add to Cart
               </Button>
               <Button variant="contained" className={classes.rateProductCSS}>

@@ -9,7 +9,6 @@ import {
   CardMedia,
   Box,
 } from "@material-ui/core";
-import { RatingStar } from "./Rating";
 import { useHistory } from "react-router-dom";
 import { useStyles } from "./cardStyles";
 import { useDispatch } from "react-redux";
@@ -19,19 +18,18 @@ const MediaCard = ({ data }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
- 
 
   return (
-    <Card className={classes.root} id="1">
+    <Card className={classes.root} >
       <CardActionArea>
         <CardMedia
-          onClick={() => history.push("/productdetailmodule")}
+          onClick={() => history.push(`/productdetailmodule/${data.id}`)}
           className={classes.media}
           image={data.mainImage}
         />
         <CardContent>
           <Typography
-            onClick={() => history.push("/productdetailmodule")}
+          onClick={() => history.push(`/productdetailmodule/${data.id}`)}
             component="h1"
             variant="h5"
             className={classes.FurnitureName}
@@ -39,7 +37,7 @@ const MediaCard = ({ data }) => {
             {data.name}
           </Typography>
           <Typography
-            onClick={() => history.push("/productdetailmodule")}
+          onClick={() => history.push(`/productdetailmodule/${data.id}`)}
             component="h1"
             variant="h5"
             className={classes.FurnitureAmountName}
@@ -61,7 +59,6 @@ const MediaCard = ({ data }) => {
       <Box
 component="fieldset"
 
-// style={{ marginLeft: "30px" }}
 borderColor="transparent"
 >
 <Rating
