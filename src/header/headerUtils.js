@@ -3,5 +3,4 @@ export const POPOVER_CONSTANTS = [
   "/home",
   "/registration",
   "/forgotpassword",
-  "/productdetailmodule",
 ];

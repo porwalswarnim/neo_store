@@ -43,12 +43,12 @@ const LoginPage = (props) => {
 
     try {
       const res = await axios(config);
-      const { id, firstName, lastName, email, mobile, token } = res?.data?.data;
+      const { id, firstName, lastName, email, mobile, token, gender,createdAt } = res?.data?.data;
       localStorage.setItem("token", token);
       alert("Logged In Succesfully");
       dispatch({
         type: "LOGGED_IN",
-        payload: { id, firstName, lastName, email, mobile },
+        payload: { id, firstName, lastName, email, mobile, gender,createdAt },
       });
       history.push("/productmodule");
     } catch (err) {

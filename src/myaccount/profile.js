@@ -12,16 +12,18 @@ import {
   PROFILE_HEADING,
   PROFILE_LABEL_CONSTANTS,
 } from "./myacountUtils";
+import { useSelector } from "react-redux";
 
 const ProfilePage = (props) => {
+  const isLoggedIn = useSelector(state => state.isLoggedIn['0'])
   const classes = useStyles(props);
   const [formData, setFormData] = useState({
-    firstname: "Swarnim",
-    lastname: "Porwal",
-    gender: "male",
-    dateofbirth: "04/01/1999",
-    mobilenumber: "912742742",
-    Email: "swarnimporwal.com",
+    firstname: isLoggedIn.firstName,
+    lastname: isLoggedIn.lastName,
+    gender: isLoggedIn.gender,
+    dateofbirth: isLoggedIn.createdAt,
+    mobilenumber: isLoggedIn.mobile,
+    Email: isLoggedIn.email,
   });
   const [isEdit, setIsEdit] = useState(false);
 

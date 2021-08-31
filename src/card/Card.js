@@ -7,12 +7,13 @@ import {
   CardActions,
   CardContent,
   CardMedia,
+  Box,
 } from "@material-ui/core";
 import { RatingStar } from "./Rating";
 import { useHistory } from "react-router-dom";
 import { useStyles } from "./cardStyles";
 import { useDispatch } from "react-redux";
-
+import Rating from "@material-ui/lab/Rating";
 
 const MediaCard = ({ data }) => {
   const classes = useStyles();
@@ -26,7 +27,7 @@ const MediaCard = ({ data }) => {
         <CardMedia
           onClick={() => history.push("/productdetailmodule")}
           className={classes.media}
-          image={data.cover}
+          image={data.mainImage}
         />
         <CardContent>
           <Typography
@@ -43,7 +44,7 @@ const MediaCard = ({ data }) => {
             variant="h5"
             className={classes.FurnitureAmountName}
           >
-            {data.amount}
+            {data.price}
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -57,7 +58,19 @@ const MediaCard = ({ data }) => {
           Add to Cart
         </Button>
       </CardActions>
-      <RatingStar />
+      <Box
+component="fieldset"
+
+// style={{ marginLeft: "30px" }}
+borderColor="transparent"
+>
+<Rating
+  name="simple-controlled"
+  
+  value={data.avgRating}
+  
+/>
+</Box>
     </Card>
   );
 }

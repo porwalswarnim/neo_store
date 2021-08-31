@@ -1,21 +1,27 @@
-import {LOGGED_IN, LOGGED_OUT, ADD_TO_CART} from '../../src/types'
+import {
+  LOGGED_IN,
+  ADD_TO_CART,
+  LIST_PRODUCTS,
+} from "../../src/types";
+
 const initialState = {
   cardData: [],
   isLoggedIn: [],
-  // Item:0,
+  listProducts: [],
 };
 
 const reducer = (state = initialState, action) => {
+  console.log('action', action)
   switch (action.type) {
     case LOGGED_IN:
       return {
         ...state,
-        isLoggedIn: action.payload,
+        isLoggedIn: [action.payload],
       };
-    case LOGGED_OUT:
+    case LIST_PRODUCTS:
       return {
         ...state,
-        isLoggedIn: action.payload,
+        listProducts: [...action.payload],
       };
     case ADD_TO_CART:
       return {

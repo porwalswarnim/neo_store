@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Grid from "@material-ui/core/Grid";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
@@ -9,26 +9,35 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import TreeItem from "@material-ui/lab/TreeItem";
 import { useStyles } from "./productModuleStyles";
+import { useDispatch } from "react-redux";
 import { BOX_ALLPRODUCT } from "./productUtils";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import { LIST_PRODUCTS } from "../types";
 
 const ProductModule = () => {
+  const listProducts = useSelector(state => state.listProducts)
   const classes = useStyles();
-  const data = [
-    {
-      id: 1,
-      cover:'backgroundfurnitureimage.jpg',
-      name: "Furniture Name1",
-      amount: "$40000",
-      details:'by Swarnim',
-    },
-    {
-      id: 2,
-      cover:'backgroundlogin.jpg',
-      name: "Furniture Name2",
-      amount: "$30000",
-      details:'by Rajat',
-    },
-  ];
+  const dispatch = useDispatch();
+  var config = {
+    method: "get",
+    url: 'https://neostore-api.herokuapp.com/api/product',
+  };
+
+  useEffect(() => {
+    try {
+      (async () => {
+        const res = await axios(config);
+        const docs = res?.data?.data.docs;
+        dispatch({
+          type: LIST_PRODUCTS,
+          payload: docs,
+        });
+
+      })();
+    } catch (err) {
+    }
+  }, [])
   return (
     <div>
       <Header />
@@ -92,10 +101,10 @@ const ProductModule = () => {
         <Grid item xs={9}>
           <Grid className={classes.rightProductGrid}>
             <Grid container item xs={12} style={{ marginLeft: "20px" }}>
-              {data.map((ele, i) => {
+              {listProducts.map((ele, i) => {
                 return (
                   <Grid item xs={12} sm={4} key={i}>
-                    <MediaCard data={ele} />
+                    <MediaCard data={ele} key={ele.id} />
                   </Grid>
                 );
               })}

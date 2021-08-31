@@ -4,6 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import MediaCard from "../card/Card";
 import { useStyles } from "./homePageStyles";
+import { useSelector } from "react-redux";
 
 const data = [
   {
@@ -22,6 +23,7 @@ const data = [
   },
 ];
 const HomePage = (props) => {
+  const listProducts = useSelector(state => state.listProducts)
   const classes = useStyles(props);
   return (
     <div>
