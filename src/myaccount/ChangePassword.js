@@ -47,6 +47,7 @@ const ChangePassword = (props) => {
     try {
       var res = await axios(config);
       alert('Successfully Changed')
+      localStorage.clear();
        history.push("/login")
     }  catch(error){
       alert('Old Password is wrong')
