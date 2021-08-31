@@ -12,7 +12,8 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import { useStyles } from "./loginPageStyles";
-import { LINK_REGISTER, LOGIN_NEOSOFT_TECHNOLOGIES } from "./Link";
+import {  LOGIN_NEOSOFT_TECHNOLOGIES } from "./Link";
+import Link from "@material-ui/core/Link";
 import LeftSideLogin from "./LeftSideLogin";
 import { useDispatch } from "react-redux";
 import axios from "axios";
@@ -43,18 +44,50 @@ const LoginPage = (props) => {
 
     try {
       const res = await axios(config);
-      const { id, firstName, lastName, email, mobile, token, gender,createdAt } = res?.data?.data;
+      const {
+        id,
+        firstName,
+        lastName,
+        email,
+        mobile,
+        token,
+        gender,
+        createdAt,
+      } = res?.data?.data;
       localStorage.setItem("token", token);
       alert("Logged In Succesfully");
       dispatch({
         type: "LOGGED_IN",
-        payload: { id, firstName, lastName, email, mobile, gender,createdAt },
+        payload: { id, firstName, lastName, email, mobile, gender, createdAt },
       });
       history.push("/productmodule");
-    } catch (err) {
-      alert("Failed to login");
+    } catch (error) {
+      alert("Username or password is invalid");
     }
   };
+  // const forgotPasswordHandler = async (e) => {
+  //   e.preventDefault();
+   
+  //   var data = {
+  //     email: loginForm.loginEmail,
+  //   };
+  //   var config = {
+  //     method: "post",
+  //     url: "https://neostore-api.herokuapp.com/api/auth/forgot-password",
+  //     data,
+  //   };
+
+  //   try {
+  //     var res = await axios(config);
+  //     console.log(res)
+  //     alert('Successfully Changed')
+  //     localStorage.clear();
+  //     history.push("/forgotpassword")
+  //   }  catch(error){
+  //     alert('Old Password is wrong')
+  // }
+   
+  // };
 
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword });
@@ -139,7 +172,49 @@ const LoginPage = (props) => {
                 >
                   Sign In
                 </Button>
-                <LINK_REGISTER />
+                <Grid item container row>
+                <Grid item style={{ marginTop: "30px" }}>
+                    <Link
+                      onClick={() => history.push("/registration")}
+                      variant="body2"
+                      style={{
+                        color: "black",
+                        fontWeight: "bold",
+                        fontSize: "20px",
+                      }}
+                    >
+                      Register Now
+                    </Link>
+                  </Grid>
+                  <Grid
+                    item
+                    style={{
+                      marginTop: "30px",
+                      marginLeft: "10px",
+                      color: "black",
+                      fontWeight: "bold",
+                      fontSize: "20px",
+                    }}
+                  >
+                    {" "}
+                    |
+                  </Grid>
+                  <Grid item style={{ marginTop: "30px" }}>
+                    <Link
+                      onClick={() => history.push("/forgotpassword")}
+                      variant="body2"
+                      style={{
+                        marginTop: "20px",
+                        marginLeft: "10px",
+                        color: "black",
+                        fontWeight: "bold",
+                        fontSize: "20px",
+                      }}
+                    >
+                      Forgotten?
+                    </Link>
+                  </Grid>
+                  </Grid>
               </form>
             </div>
           </Grid>

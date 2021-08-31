@@ -17,14 +17,12 @@ const ChangePassword = (props) => {
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [error, setError] = useState('')
   const classes = useStyles(props);
   const [values, setValues] = useState({
     showPassword: false,
   });
   const submitRegisterFormHandler = async (e) => {
     e.preventDefault();
-    setError(null);
     if (newPassword !== confirmPassword) {
       alert("Passwords don't match");
   } else {
