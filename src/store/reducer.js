@@ -9,7 +9,7 @@ const initialState = {
   cardData: [],
   isLoggedIn: [],
   listProducts: [],
-  addAddressess:[],
+  addAddress:[],
 };
 
 const reducer = (state = initialState, action) => {
@@ -27,7 +27,7 @@ const reducer = (state = initialState, action) => {
     case ALL_ADDRESSES:
       return {
         ...state,
-        addAddressess: [...action.payload],
+        addAddress: [...action.payload],
       };
     case ADD_TO_CART:
       return {

@@ -15,7 +15,7 @@ import { useSelector } from "react-redux";
 import AddAddressBox from "./AddAddressBox";
 
 const AddAddress = (props) => {
-  const addAddressess = useSelector((state) => state.addAddressess);
+  const addAddress = useSelector((state) => state.addAddress);
   const history = useHistory();
   const classes = useStyles(props);
   const dispatch = useDispatch();
@@ -56,7 +56,7 @@ const AddAddress = (props) => {
         <Grid xs={9} className={classes.RightSideBarCSS}>
           <Box boxShadow={7} className={classes.boxCSS}>
             <ADDRESS_HEADING />
-            {addAddressess.map((ele, i) => {
+            {addAddress.map((ele, i) => {
               return <AddAddressBox fetchAddress={fetchAddress} data={ele} key={ele.id} />;
             })}
 

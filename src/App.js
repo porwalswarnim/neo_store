@@ -47,7 +47,7 @@ function App() {
       <PrivateRoute exact path="/profilepage" component={ProfilePage} />
       <PrivateRoute exact path="/addAddress" component={AddAddress} />
       <PrivateRoute exact path="/addNewAddress" component={AddNewAddress } />
-      <PrivateRoute exact path="/editAddress" component={EditAddress } />
+      <PrivateRoute exact path="/editAddress/:id" component={EditAddress } />
       <PrivateRoute exact path="/AddCartItems" component={AddCartItems} />
     </Router>
   );

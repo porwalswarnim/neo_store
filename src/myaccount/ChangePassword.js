@@ -11,21 +11,48 @@ import { Grid, Typography, Button } from "@material-ui/core";
 import LeftSideBar from "./LeftSideBar";
 import { useStyles } from "./changePasswordStyles";
 import { MYACCOUNT_HEADING, CHANGE_PASSWORD_HEADING } from "./myacountUtils";
-
+import axios from "axios";
 const ChangePassword = (props) => {
   const history = useHistory();
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState('')
   const classes = useStyles(props);
   const [values, setValues] = useState({
     showPassword: false,
   });
-  const submitRegisterFormHandler = (e) => {
+  const submitRegisterFormHandler = async (e) => {
     e.preventDefault();
-    console.log(oldPassword);
-    console.log(newPassword);
-    console.log(confirmPassword);
+    setError(null);
+    if (newPassword !== confirmPassword) {
+      alert("Passwords don't match");
+  } else {
+    var data = {
+      password: oldPassword,
+      newPassword: newPassword,
+    };
+    var config = {
+      method: "post",
+      url: "https://neostore-api.herokuapp.com/api/user/change-password",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization : localStorage.getItem("token")
+      },
+      data,
+
+    };
+
+    try {
+      var res = await axios(config);
+      alert('Successfully Changed')
+       history.push("/login")
+    }  catch(error){
+      alert('Old Password is wrong')
+  }
+  }
+   
   };
 
   const handleClickShowPassword = () => {
@@ -118,8 +145,8 @@ const ChangePassword = (props) => {
                 />
 
                 <Button
-                  onClick={() => history.push("/login")}
                   type="submit"
+                  
                   style={{
                     margin: "25px",
                     marginLeft: "300px",

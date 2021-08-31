@@ -40,7 +40,7 @@ const AddAddressBox = ({ data, fetchAddress }) => {
 
           <Button
             variant="contained"
-            onClick={() => history.push("/editAddress")}
+            onClick={() => history.push(`/editAddress/${data._id}`)}
             color="primary"
             className={classes.EditButtonCSS}
           >
