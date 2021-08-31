@@ -2,16 +2,17 @@ import {
   LOGGED_IN,
   ADD_TO_CART,
   LIST_PRODUCTS,
+  ALL_ADDRESSES,
 } from "../../src/types";
 
 const initialState = {
   cardData: [],
   isLoggedIn: [],
   listProducts: [],
+  addAddressess:[],
 };
 
 const reducer = (state = initialState, action) => {
-  console.log('action', action)
   switch (action.type) {
     case LOGGED_IN:
       return {
@@ -22,6 +23,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         listProducts: [...action.payload],
+      };
+    case ALL_ADDRESSES:
+      return {
+        ...state,
+        addAddressess: [...action.payload],
       };
     case ADD_TO_CART:
       return {

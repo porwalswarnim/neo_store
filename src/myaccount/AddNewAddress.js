@@ -13,7 +13,7 @@ import {
   ADD_NEW_ADDRESS_HEADING,
   MAX_100_HEADING,
 } from "./myacountUtils";
-
+import axios from "axios";
 const AddNewAddress = (props) => {
   const classes = useStyles(props);
   const history = useHistory();
@@ -26,15 +26,34 @@ const AddNewAddress = (props) => {
     country: "",
   });
 
-  const SaveAddressHandler = (e) => {
+  const SaveAddressHandler = async (e) => {
     e.preventDefault();
     history.push("/addAddress");
-    console.log(addNewAddress.address);
-    console.log(addNewAddress.pincode);
-    console.log(addNewAddress.city);
-    console.log(addNewAddress.state);
-    console.log(addNewAddress.country);
+    var data = {
+      addressLine: addNewAddress.address,
+    pincode: addNewAddress.pincode,
+    city: addNewAddress.city,
+    state: addNewAddress.state,
+    country: addNewAddress.country
+    };
+    var config = {
+      method: "post",
+      url: "https://neostore-api.herokuapp.com/api/user/address",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization : localStorage.getItem("token")
+      },
+      data,
+
+    };
+
+    try {
+      var res = await axios(config);
+    } catch (error) {
+    }
   };
+  
   return (
     <div>
       <Header />
@@ -98,7 +117,6 @@ const AddNewAddress = (props) => {
                     placeholder="City"
                     variant="outlined"
                     type="text"
-                    inputProps={{ maxLength: 10 }}
                   />
                   <OutlinedInput
                     className={classes.stateInputCSS}
@@ -111,7 +129,6 @@ const AddNewAddress = (props) => {
                     placeholder="State"
                     variant="outlined"
                     type="text"
-                    inputProps={{ maxLength: 10 }}
                   />
                 </Grid>
                 <Grid item container>
@@ -126,7 +143,6 @@ const AddNewAddress = (props) => {
                     placeholder="Country"
                     variant="outlined"
                     type="text"
-                    inputProps={{ maxLength: 10 }}
                   />
                 </Grid>
 

@@ -1,5 +1,4 @@
 import { Box, Grid, Typography, Button } from "@material-ui/core";
-import React from "react";
 import Footer from "../footer/Footer";
 import Header from "../header/Header";
 import { useHistory } from "react-router-dom";
@@ -8,10 +7,43 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import { useStyles } from "./addAddressStyles";
 import { MYACCOUNT_HEADING, ADDRESS_HEADING } from "./myacountUtils";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { ALL_ADDRESSES } from "../types";
+import { useSelector } from "react-redux";
+import AddAddressBox from "./AddAddressBox";
 
 const AddAddress = (props) => {
+  const addAddressess = useSelector((state) => state.addAddressess);
   const history = useHistory();
   const classes = useStyles(props);
+  const dispatch = useDispatch();
+  var config = {
+    method: "get",
+    url: "https://neostore-api.herokuapp.com/api/user/address",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: localStorage.getItem("token"),
+    },
+  };
+
+  const fetchAddress = async () => {
+    try {
+      const res = await axios(config);
+      console.log(res);
+      const data = res?.data?.data.address;
+      dispatch({
+        type: ALL_ADDRESSES,
+        payload: data,
+      });
+    } catch (err) {}
+  };
+
+  useEffect(() => {
+    fetchAddress();
+  }, []);
 
   return (
     <div>
@@ -24,36 +56,10 @@ const AddAddress = (props) => {
         <Grid xs={9} className={classes.RightSideBarCSS}>
           <Box boxShadow={7} className={classes.boxCSS}>
             <ADDRESS_HEADING />
-            <Box display="flex" p={1} boxShadow={7} className={classes.boxCSS}>
-              <Box p={1} flexGrow={1}>
-                <Typography className={classes.addressTypography}>
-                  Sudama Nagar
-                </Typography>
-                <Typography className={classes.addressTypography}>
-                  Indore - <span>452009</span>
-                </Typography>
-                <Typography className={classes.addressTypography}>
-                  India
-                </Typography>
+            {addAddressess.map((ele, i) => {
+              return <AddAddressBox fetchAddress={fetchAddress} data={ele} key={ele.id} />;
+            })}
 
-                <Button
-                  variant="contained"
-                  onClick={() => history.push("/editAddress")}
-                  color="primary"
-                  className={classes.EditButtonCSS}
-                >
-                  Edit
-                </Button>
-              </Box>
-              <Box p={1}>
-                <IconButton
-                  type="submit"
-                  // onClick={() => history.push("/editAddress")}
-                >
-                  <CloseIcon className={classes.closeIconCSS} />
-                </IconButton>
-              </Box>
-            </Box>
             <Button
               variant="contained"
               onClick={() => history.push("/addNewAddress")}
