@@ -5,7 +5,7 @@ import {
   REVIEW_ORDER_TYPOGRAPHY,
 } from "./addCartUtils";
 
-const ReviewOrderTotal = (props) => {
+const ReviewOrderTotal = ({data},props) => {
   const classes = useStyles(props);
   return (
     <Grid xs={12} item container row className={classes.MainGridItems}>
@@ -15,7 +15,7 @@ const ReviewOrderTotal = (props) => {
           <REVIEW_ORDER_LEFTSIDE_TYPOGRAPHY />
         </Grid>
         <Grid xs={3}>
-          <Typography className={classes.amountTypography}>10000</Typography>
+          <Typography className={classes.amountTypography}>data.grandTotal</Typography>
           <Typography
             component="h1"
             variant="h4"

@@ -5,11 +5,14 @@ import Typography from "@material-ui/core/Typography";
 import MediaCard from "../card/Card";
 import { useStyles } from "./homePageStyles";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const HomePage = (props) => {
   const listProducts = useSelector((state) => state.listProducts);
   const listProduct = listProducts.filter((ele) => ele.avgRating >= 4);
   const classes = useStyles(props);
+  const history = useHistory();
   return (
     <div>
       <Header />
@@ -19,7 +22,17 @@ const HomePage = (props) => {
         </Grid>
         <Grid>
           <Typography className={classes.heading}>Popular Products</Typography>
-          <Typography className={classes.viewAllCSS}>View All</Typography>
+          <Typography className={classes.viewAllCSS}>
+            <Link
+              onClick={() => history.push("/productmodule")}
+              variant="body2"
+              style={{
+                color: "black",
+              }}
+            >
+              View All
+            </Link>
+          </Typography>
         </Grid>
         <Grid container item xs={12} style={{ marginLeft: "40px" }}>
           {listProduct.map((ele, i) => {

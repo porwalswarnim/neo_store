@@ -13,12 +13,36 @@ import { useHistory } from "react-router-dom";
 import { useStyles } from "./cardStyles";
 import { useDispatch } from "react-redux";
 import Rating from "@material-ui/lab/Rating";
+import axios from "axios";
 
 const MediaCard = ({ data }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
+  const addToCartHandler = async () => {
+    var body = {
+      productId: data._id,
+    quantity: 1,
+    };
+    var config = {
+      method: "post",
+      url: "https://neostore-api.herokuapp.com/api/cart",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization : localStorage.getItem("token")
+      },
+      data:body,
 
+    };
+
+    try {
+      var res = await axios(config);
+      console.log('res',res)
+    } catch (error) {
+      console.log('error',error)
+    }
+  };
   return (
     <Card className={classes.root} >
       <CardActionArea>
@@ -51,7 +75,7 @@ const MediaCard = ({ data }) => {
           variant="contained"
           color="secondary"
           className={classes.cartButton}
-          onClick={() => dispatch({ type: 'ADD_TO_CART',payload:data })}
+          onClick={() => addToCartHandler()}
         >
           Add to Cart
         </Button>
