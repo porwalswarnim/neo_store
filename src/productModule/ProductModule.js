@@ -7,7 +7,7 @@ import Box from "@material-ui/core/Box";
 import TreeView from "@material-ui/lab/TreeView";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import TreeItem from "@material-ui/lab/TreeItem";
 import { useStyles } from "./productModuleStyles";
 import { useDispatch } from "react-redux";
@@ -18,6 +18,7 @@ import { LIST_PRODUCTS } from "../types";
 
 const ProductModule = () => {
   const listProducts = useSelector((state) => state.listProducts);
+  const { name, id } = useParams();
   const [categories, setCategories] = useState([]);
   const [colors, setColors] = useState([]);
   const classes = useStyles();
@@ -49,9 +50,15 @@ const ProductModule = () => {
     }
   };
   const getProducts = async () => {
+    let url = "";
+    if (id) {
+      url = `https://neostore-api.herokuapp.com/api/product?${name}=${id}`;
+    } else {
+      url = "https://neostore-api.herokuapp.com/api/product";
+    }
     const config = {
       method: "get",
-      url: "https://neostore-api.herokuapp.com/api/product",
+      url: url,
     };
     try {
       const res = await axios(config);
@@ -70,6 +77,11 @@ const ProductModule = () => {
     getCategories();
     getColors();
   }, []);
+
+  useEffect(() => {
+    getProducts();
+  }, [id]);
+
   return (
     <div>
       <Header />
@@ -96,7 +108,7 @@ const ProductModule = () => {
                           className={classes.treeItemCSS}
                           label={ele.name}
                           onClick={() =>
-                            history.push(`/productmodule/${ele._id}`)
+                            history.push(`/productmodule/category/${ele._id}`)
                           }
                         />
                       );
@@ -116,7 +128,7 @@ const ProductModule = () => {
                         className={classes.treeItemCSS}
                         label={ele.name}
                         onClick={() =>
-                          history.push(`/productmodule/${ele._id}`)
+                          history.push(`/productmodule/color/${ele._id}`)
                         }
                       />
                     );

@@ -42,7 +42,7 @@ function App() {
       <Route exact path="/registration" component={RegistrationScreen} />
       <Route exact path="/forgotpassword" component={ForgotScreen} />
       <PrivateRoute exact path="/productmodule" component={ProductModule} />
-      <PrivateRoute exact path="/productmodule/:id" component={ProductModule} />
+      <PrivateRoute exact path="/productmodule/:name/:id" component={ProductModule} />
       <PrivateRoute exact path="/productdetailmodule/:id" component={ProductDetailModule} />
       <PrivateRoute exact path="/ordermodule" component={OrderModule} />
       <PrivateRoute exact path="/changepassword" component={ChangePassword} />

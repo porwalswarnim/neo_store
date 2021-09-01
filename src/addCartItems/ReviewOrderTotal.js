@@ -17,7 +17,6 @@ const ReviewOrderTotal = ({ total }) => {
       >
         Review Order
       </Typography>
-      );
       <Grid xs={12} item container row className={classes.MainGridItems}>
         <Grid xs={9}>
           <div>
@@ -67,14 +66,14 @@ const ReviewOrderTotal = ({ total }) => {
             variant="h4"
             className={classes.amountTypography}
           >
-            {total*5/100}
+            {(total * 5) / 100}
           </Typography>
           <Typography
             component="h1"
             variant="h4"
             className={classes.amountTypography}
           >
-            {total+total*5/100}
+            {total + (total * 5) / 100}
           </Typography>
         </Grid>
         <Button
