@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
@@ -7,6 +7,7 @@ import Box from "@material-ui/core/Box";
 import TreeView from "@material-ui/lab/TreeView";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import { useHistory } from "react-router-dom";
 import TreeItem from "@material-ui/lab/TreeItem";
 import { useStyles } from "./productModuleStyles";
 import { useDispatch } from "react-redux";
@@ -16,35 +17,66 @@ import { useSelector } from "react-redux";
 import { LIST_PRODUCTS } from "../types";
 
 const ProductModule = () => {
-  const listProducts = useSelector(state => state.listProducts)
+  const listProducts = useSelector((state) => state.listProducts);
+  const [categories, setCategories] = useState([]);
+  const [colors, setColors] = useState([]);
   const classes = useStyles();
   const dispatch = useDispatch();
-  var config = {
-    method: "get",
-    url: 'https://neostore-api.herokuapp.com/api/product',
+  const history = useHistory();
+
+  const getCategories = async () => {
+    const config = {
+      method: "get",
+      url: "https://neostore-api.herokuapp.com/api/category",
+    };
+    try {
+      const res = await axios(config);
+      setCategories(res?.data?.data);
+    } catch (error) {
+      alert("failed");
+    }
+  };
+  const getColors = async () => {
+    const config = {
+      method: "get",
+      url: "https://neostore-api.herokuapp.com/api/color",
+    };
+    try {
+      const res = await axios(config);
+      setColors(res?.data?.data);
+    } catch (error) {
+      alert("failed");
+    }
+  };
+  const getProducts = async () => {
+    const config = {
+      method: "get",
+      url: "https://neostore-api.herokuapp.com/api/product",
+    };
+    try {
+      const res = await axios(config);
+      const docs = res?.data?.data.docs;
+      dispatch({
+        type: LIST_PRODUCTS,
+        payload: docs,
+      });
+    } catch (err) {
+      alert("failed");
+    }
   };
 
   useEffect(() => {
-    try {
-      (async () => {
-        const res = await axios(config);
-        const docs = res?.data?.data.docs;
-        dispatch({
-          type: LIST_PRODUCTS,
-          payload: docs,
-        });
-
-      })();
-    } catch (err) {
-    }
-  }, [])
+    getProducts();
+    getCategories();
+    getColors();
+  }, []);
   return (
     <div>
       <Header />
       <Grid item container className={classes.mainGrid} row xs={12}>
         <Grid item xs={3}>
           <Grid className={classes.leftProductGrid}>
-           <BOX_ALLPRODUCT/>
+            <BOX_ALLPRODUCT />
             <TreeView
               defaultCollapseIcon={<ExpandMoreIcon />}
               defaultExpandIcon={<ChevronRightIcon />}
@@ -55,21 +87,20 @@ const ProductModule = () => {
                   label="Categories"
                   classes={{ label: classes.label }}
                 >
-                  <TreeItem
-                    nodeId="2"
-                    className={classes.treeItemCSS}
-                    label="Bed"
-                  />
-                  <TreeItem
-                    nodeId="3"
-                    className={classes.treeItemCSS}
-                    label="Chair"
-                  />
-                  <TreeItem
-                    nodeId="4"
-                    className={classes.treeItemCSS}
-                    label="Sofa"
-                  />
+                  {categories
+                    // .filter((ele) => ele.imageUrl)
+                    .map((ele, i) => {
+                      return (
+                        <TreeItem
+                          nodeId={i}
+                          className={classes.treeItemCSS}
+                          label={ele.name}
+                          onClick={() =>
+                            history.push(`/productmodule/${ele._id}`)
+                          }
+                        />
+                      );
+                    })}
                 </TreeItem>
               </Box>
               <Box boxShadow={10} className={classes.boxCSS}>
@@ -78,21 +109,18 @@ const ProductModule = () => {
                   label="Colors"
                   classes={{ label: classes.label }}
                 >
-                  <TreeItem
-                    nodeId="6"
-                    className={classes.treeItemCSS}
-                    label="Red"
-                  />
-                  <TreeItem
-                    nodeId="7"
-                    className={classes.treeItemCSS}
-                    label="Black"
-                  />
-                  <TreeItem
-                    nodeId="8"
-                    className={classes.treeItemCSS}
-                    label="Yellow"
-                  />
+                  {colors.map((ele, i) => {
+                    return (
+                      <TreeItem
+                        nodeId={i}
+                        className={classes.treeItemCSS}
+                        label={ele.name}
+                        onClick={() =>
+                          history.push(`/productmodule/${ele._id}`)
+                        }
+                      />
+                    );
+                  })}
                 </TreeItem>
               </Box>
             </TreeView>

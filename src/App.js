@@ -27,6 +27,7 @@ function App() {
       <Link to="/registration"></Link>
       <Link to="/forgotpassword"></Link>
       <Link to="/productmodule"></Link>
+      <Link to="/productmodule/:id"></Link>
       <Link to="/productdetailmodule"></Link>
       <Link to="/ordermodule"></Link>
       <Link to="/changepassword"></Link>
@@ -41,6 +42,7 @@ function App() {
       <Route exact path="/registration" component={RegistrationScreen} />
       <Route exact path="/forgotpassword" component={ForgotScreen} />
       <PrivateRoute exact path="/productmodule" component={ProductModule} />
+      <PrivateRoute exact path="/productmodule/:id" component={ProductModule} />
       <PrivateRoute exact path="/productdetailmodule/:id" component={ProductDetailModule} />
       <PrivateRoute exact path="/ordermodule" component={OrderModule} />
       <PrivateRoute exact path="/changepassword" component={ChangePassword} />
