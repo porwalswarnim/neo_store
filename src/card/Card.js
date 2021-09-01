@@ -22,7 +22,7 @@ const MediaCard = ({ data }) => {
   const addToCartHandler = async () => {
     var body = {
       productId: data._id,
-    quantity: 1,
+      quantity: 1,
     };
     var config = {
       method: "post",
@@ -30,21 +30,17 @@ const MediaCard = ({ data }) => {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization : localStorage.getItem("token")
+        Authorization: localStorage.getItem("token"),
       },
-      data:body,
-
+      data: body,
     };
 
     try {
       var res = await axios(config);
-      console.log('res',res)
-    } catch (error) {
-      console.log('error',error)
-    }
+    } catch (error) {}
   };
   return (
-    <Card className={classes.root} >
+    <Card className={classes.root}>
       <CardActionArea>
         <CardMedia
           onClick={() => history.push(`/productdetailmodule/${data.id}`)}
@@ -53,7 +49,7 @@ const MediaCard = ({ data }) => {
         />
         <CardContent>
           <Typography
-          onClick={() => history.push(`/productdetailmodule/${data.id}`)}
+            onClick={() => history.push(`/productdetailmodule/${data.id}`)}
             component="h1"
             variant="h5"
             className={classes.FurnitureName}
@@ -61,7 +57,7 @@ const MediaCard = ({ data }) => {
             {data.name}
           </Typography>
           <Typography
-          onClick={() => history.push(`/productdetailmodule/${data.id}`)}
+            onClick={() => history.push(`/productdetailmodule/${data.id}`)}
             component="h1"
             variant="h5"
             className={classes.FurnitureAmountName}
@@ -80,20 +76,11 @@ const MediaCard = ({ data }) => {
           Add to Cart
         </Button>
       </CardActions>
-      <Box
-component="fieldset"
-
-borderColor="transparent"
->
-<Rating
-  name="simple-controlled"
-  
-  value={data.avgRating}
-  
-/>
-</Box>
+      <Box component="fieldset" borderColor="transparent">
+        <Rating name="simple-controlled" value={data.avgRating} />
+      </Box>
     </Card>
   );
-}
+};
 
 export default MediaCard;

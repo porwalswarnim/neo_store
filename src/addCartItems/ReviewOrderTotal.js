@@ -67,14 +67,14 @@ const ReviewOrderTotal = ({ total }) => {
             variant="h4"
             className={classes.amountTypography}
           >
-            500
+            {total*5/100}
           </Typography>
           <Typography
             component="h1"
             variant="h4"
             className={classes.amountTypography}
           >
-            10500
+            {total+total*5/100}
           </Typography>
         </Grid>
         <Button

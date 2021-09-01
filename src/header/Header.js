@@ -7,7 +7,6 @@ import {
   Paper,
   InputBase,
   IconButton,
-  Avatar,
 } from "@material-ui/core";
 import React from "react";
 import { useLocation } from "react-router-dom";
@@ -24,7 +23,7 @@ const Header = (props) => {
   const classes = useStyles(props);
   const history = useHistory();
   const location = useLocation();
-  const cardData = useSelector(state => state.cardData)
+  const { products = [] } = useSelector((state) => state.cardData);
   return (
     <AppBar position="fixed" className={classes.headerFeedback}>
       <Toolbar>
@@ -80,9 +79,10 @@ const Header = (props) => {
               className={classes.cartBox}
               startIcon={<ShoppingCartIcon />}
               onClick={() => history.push("/AddCartItems")}
-            > Cart &nbsp;
-                 {cardData.length === 0 ?  '' :cardData.length}
-              
+            >
+              {" "}
+              Cart &nbsp;
+              {products.length === 0 ? "" : products.length}
             </Button>
             {POPOVER_CONSTANTS.includes(location.pathname) ? (
               <PopoverPopupState />
