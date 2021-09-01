@@ -1,21 +1,67 @@
 import { Grid, Typography, Button } from "@material-ui/core";
 import { useStyles } from "./ReviewOrderStyles";
-import {
-  REVIEW_ORDER_LEFTSIDE_TYPOGRAPHY,
-  REVIEW_ORDER_TYPOGRAPHY,
-} from "./addCartUtils";
 
-const ReviewOrderTotal = ({data},props) => {
-  const classes = useStyles(props);
+const ReviewOrderTotal = ({ total }) => {
+  const classes = useStyles();
   return (
     <Grid xs={12} item container row className={classes.MainGridItems}>
-      <REVIEW_ORDER_TYPOGRAPHY />
+      <Typography
+        component="h1"
+        variant="h4"
+        style={{
+          marginTop: "20px ",
+          marginLeft: "30px",
+          fontSize: "40px",
+          fontWeight: "500",
+        }}
+      >
+        Review Order
+      </Typography>
+      );
       <Grid xs={12} item container row className={classes.MainGridItems}>
         <Grid xs={9}>
-          <REVIEW_ORDER_LEFTSIDE_TYPOGRAPHY />
+          <div>
+            <Typography
+              style={{
+                paddingLeft: "30px",
+                paddingTop: "20px",
+                paddingBottom: "20px",
+                fontSize: "25px",
+                borderBottom: "1px solid #71606026",
+              }}
+            >
+              Subtotal
+            </Typography>
+            <Typography
+              component="h1"
+              variant="h4"
+              style={{
+                paddingLeft: "30px",
+                paddingTop: "20px",
+                paddingBottom: "20px",
+                fontSize: "25px",
+                borderBottom: "1px solid #71606026",
+              }}
+            >
+              GST (5%)
+            </Typography>
+            <Typography
+              component="h1"
+              variant="h4"
+              style={{
+                paddingLeft: "30px",
+                paddingTop: "20px",
+                paddingBottom: "20px",
+                fontSize: "25px",
+                borderBottom: "1px solid #71606026",
+              }}
+            >
+              Order Total
+            </Typography>
+          </div>
         </Grid>
         <Grid xs={3}>
-          <Typography className={classes.amountTypography}>data.grandTotal</Typography>
+          <Typography className={classes.amountTypography}>{total}</Typography>
           <Typography
             component="h1"
             variant="h4"

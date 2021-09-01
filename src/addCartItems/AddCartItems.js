@@ -11,8 +11,11 @@ import { useEffect } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { ADD_TO_CART } from "../types";
+
 const AddCartItems = (props) => {
-  const cardData = useSelector((state) => state.cardData);
+  const { products = [], grandTotal = 0} = useSelector(
+    (state) => state.cardData
+  );
   const classes = useStyles(props);
   const dispatch = useDispatch();
   var config = {
@@ -25,34 +28,21 @@ const AddCartItems = (props) => {
     },
   };
 
-  // useEffect(() => {
-  //   try {
-  //     (async () => {
-  //       const res = await axios(config);
-  //       const cardData = res?.data?.data?.products;
-  //       console.log('cardData1',cardData)
-  //       dispatch({
-  //         type: ADD_TO_CART,
-  //         payload: cardData,
-  //       });
-  //     })();
-  //   } catch (err) {}
-  // }, []);
   const fetchItems = async () => {
     try {
       const res = await axios(config);
-      const cardData = res?.data?.data?.products;
-
-        dispatch({
-          type: ADD_TO_CART,
-          payload: cardData,
-        });
+      const cart = res?.data?.data
+      dispatch({
+        type: ADD_TO_CART,
+        payload: cart,
+      });
     } catch (err) {}
   };
 
   useEffect(() => {
     fetchItems();
   }, []);
+
   return (
     <Grid>
       <Header />
@@ -62,10 +52,10 @@ const AddCartItems = (props) => {
             <Box boxShadow={8}>
               <HeaderItems />
 
-              {cardData.map((ele, i) => {
+              {products.map((ele, i) => {
                 return (
                   <Box style={{ marginTop: "10px" }} boxShadow={5}>
-                    <Items data={ele} key={ele.id} fetchItems={fetchItems}/>
+                    <Items data={ele} key={ele.id} fetchItems={fetchItems} />
                   </Box>
                 );
               })}
@@ -73,7 +63,7 @@ const AddCartItems = (props) => {
           </Grid>
           <Grid xs={4} className={classes.rightSideGrid}>
             <Box boxShadow={8}>
-              <ReviewOrderTotal />
+              <ReviewOrderTotal total={grandTotal}/>
             </Box>
           </Grid>
         </Grid>

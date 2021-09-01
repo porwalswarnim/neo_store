@@ -32,7 +32,7 @@ const reducer = (state = initialState, action) => {
     case ADD_TO_CART:
       return {
         ...state,
-        cardData: [...action.payload],
+        cardData: action.payload,
       };
   }
 
