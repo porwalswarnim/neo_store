@@ -7,10 +7,9 @@ import IconButton from "@material-ui/core/IconButton";
 import React from "react";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
+
 const Items = ({ data, fetchItems }) => {
   const classes = useStyles();
-  const [itemCount, setItemCount] = React.useState(data.quantity);
-
   const deleteItemHandler = async () => {
     var config = {
       method: "delete",
@@ -18,20 +17,44 @@ const Items = ({ data, fetchItems }) => {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization : localStorage.getItem("token")
+        Authorization: localStorage.getItem("token"),
       },
     };
     try {
       await axios(config);
       fetchItems();
     } catch (error) {
-        console.log('error', error)
+      console.log("error", error);
     }
-  }
+  };
+
+  const updateCartHandler = async (id, count) => {
+    var data = {
+      quantity: count,
+    };
+    var config = {
+      method: "put",
+      url: `https://neostore-api.herokuapp.com/api/cart/${id}`,
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token"),
+      },
+      data,
+    };
+
+    try {
+      var res = await axios(config);
+      fetchItems();
+    } catch (error) {}
+  };
   return (
     <Grid item container row xs={12} className={classes.MainGridItems}>
       <Grid xs={2}>
-        <CardMedia className={classes.imgCSS} image={data.productId.mainImage} />
+        <CardMedia
+          className={classes.imgCSS}
+          image={data.productId.mainImage}
+        />
       </Grid>
       <Grid xs={4}>
         <Typography variant="h5">{data.productId.name}</Typography>
@@ -44,15 +67,18 @@ const Items = ({ data, fetchItems }) => {
       <Grid xs={2} item container row className={classes.iconGridCSS}>
         <Button
           onClick={() => {
-            setItemCount(Math.max(itemCount - 1, 1));
+            data.quantity === 1
+            ? deleteItemHandler()
+            : updateCartHandler(data._id, data.quantity - 1);
+            
           }}
         >
           <IndeterminateCheckBoxIcon className={classes.iconMinusCSS} />
         </Button>
-          <Typography style={{ margin: "5px" }} >{itemCount}</Typography>
+        <Typography style={{ margin: "5px" }}>{data.quantity}</Typography>
         <Button
           onClick={() => {
-            setItemCount(itemCount + 1);
+            updateCartHandler(data._id, data.quantity + 1);
           }}
         >
           <AddBoxIcon className={classes.iconPlusCSS} />
@@ -62,15 +88,15 @@ const Items = ({ data, fetchItems }) => {
         {data.productId.price}
       </Grid>
       <Grid xs={2} className={classes.totalAmountCSS}>
-        <Typography className={classes.totalTypoCSS}> {data.totalAmount}</Typography>
+        <Typography className={classes.totalTypoCSS}>
+          {" "}
+          {data.totalAmount}
+        </Typography>
       </Grid>
       <Grid xs={1} className={classes.priceCSS}>
-      <IconButton
-            type="submit"
-            onClick={deleteItemHandler}
-          >
-            <DeleteOutlineIcon className={classes.iconPlusCSS} />
-          </IconButton>
+        <IconButton type="submit" onClick={deleteItemHandler}>
+          <DeleteOutlineIcon className={classes.iconPlusCSS} />
+        </IconButton>
       </Grid>
     </Grid>
   );

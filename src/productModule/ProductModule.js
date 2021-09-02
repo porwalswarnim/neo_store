@@ -15,6 +15,7 @@ import { BOX_ALLPRODUCT } from "./productUtils";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { LIST_PRODUCTS } from "../types";
+import { Typography } from "@material-ui/core";
 
 const ProductModule = () => {
   const listProducts = useSelector((state) => state.listProducts);
@@ -141,6 +142,24 @@ const ProductModule = () => {
         <Grid item xs={9}>
           <Grid className={classes.rightProductGrid}>
             <Grid container item xs={12} style={{ marginLeft: "20px" }}>
+              {listProducts?.length === 0 && (
+                <Box
+                  style={{
+                    width: "400px",
+                    height: "400px",
+                    marginLeft:'300px',
+                    backgroundColor: "#f9f9f9",
+                  }}
+                >
+                  <Typography
+                   style={{
+                    fontSize: "80px",
+                    fontWeight: "bold",
+                    backgroundColor: "#f9f9f9",
+                    textAlign:'center',
+                  }}>No Products To Display</Typography>
+                </Box>
+              )}
               {listProducts.map((ele, i) => {
                 return (
                   <Grid item xs={12} sm={4} key={i}>
