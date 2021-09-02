@@ -10,15 +10,15 @@ const HeaderItems = (props) => {
       </Grid>
 
       <Grid xs={2}>
-        <Typography style={{ fontSize: "25px", textAlign:'center' }}>Quantity</Typography>
+        <Typography style={{ fontSize: "25px", marginLeft:'30px' }}>Quantity</Typography>
       </Grid>
 
       <Grid xs={1}>
-        <Typography style={{ fontSize: "25px",textAlign:'center' }}>Price</Typography>
+        <Typography style={{ fontSize: "25px",marginLeft:'00px'  }}>Price</Typography>
       </Grid>
 
       <Grid xs={1}>
-        <Typography style={{ fontSize: "25px",textAlign:'center' }}>Total</Typography>
+        <Typography style={{ fontSize: "25px",marginLeft:'10px'  }}>Total</Typography>
       </Grid>
     </Grid>
   );

@@ -3,6 +3,7 @@ import {
   ADD_TO_CART,
   LIST_PRODUCTS,
   ALL_ADDRESSES,
+  ALL_ORDERS,
 } from "../../src/types";
 
 const initialState = {
@@ -10,6 +11,7 @@ const initialState = {
   isLoggedIn: [],
   listProducts: [],
   addAddress:[],
+  allOrders:[],
 };
 
 const reducer = (state = initialState, action) => {
@@ -33,6 +35,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         cardData: action.payload,
+      };
+      case ALL_ORDERS:
+      return {
+        ...state,
+        allOrders: action.payload,
       };
   }
 

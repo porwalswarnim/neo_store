@@ -3,8 +3,6 @@ import Footer from "../footer/Footer";
 import Header from "../header/Header";
 import { useHistory } from "react-router-dom";
 import LeftSideBar from "./LeftSideBar";
-import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "@material-ui/icons/Close";
 import { useStyles } from "./addAddressStyles";
 import { MYACCOUNT_HEADING, ADDRESS_HEADING } from "./myacountUtils";
 import axios from "axios";

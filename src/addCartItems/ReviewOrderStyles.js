@@ -5,6 +5,7 @@ export const useStyles = makeStyles((theme) => ({
   MainGridItems: {
     width: "100%",
     backgroundColor: "#f9f9f9",
+    marginTop:'20px'
   },
   buttonInvoiceDownload:{ 
     margin: "20px 0px 10px 15px",

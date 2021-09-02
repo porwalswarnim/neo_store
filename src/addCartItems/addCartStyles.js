@@ -12,6 +12,11 @@ export const useStyles = makeStyles((theme) => ({
   rightSideGrid:{
     marginLeft:'60px',
     marginTop:'50px',
-}
+},
+buttonInvoiceDownload:{ 
+  margin: "20px 0px 10px 15px",
+   fontWeight: "bold",
+   width:'95%',
+ },
 }));
 

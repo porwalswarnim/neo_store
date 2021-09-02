@@ -76,13 +76,6 @@ const ReviewOrderTotal = ({ total }) => {
             {total + (total * 5) / 100}
           </Typography>
         </Grid>
-        <Button
-          variant="contained"
-          color="primary"
-          className={classes.buttonInvoiceDownload}
-        >
-          Proceed to buy
-        </Button>
       </Grid>
     </Grid>
   );

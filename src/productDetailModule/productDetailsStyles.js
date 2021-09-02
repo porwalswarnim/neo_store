@@ -24,7 +24,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   footerDescriptionCSS: {
     marginLeft: "40px",
-    marginTop: "20px",
+    marginTop: "40px",
   },
   furnitureNameCSS: {
     fontSize: "40px",

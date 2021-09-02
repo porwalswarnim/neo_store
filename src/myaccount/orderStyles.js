@@ -20,7 +20,6 @@ export const useStyles = makeStyles((theme) => ({
         borderColor: "transparent",
       },
       image: {
-        backgroundImage: "url(/homelandscapeimage.jpg)",
         backgroundColor: "white",
         backgroundSize: "cover",
         backgroundPosition: "bottom",
