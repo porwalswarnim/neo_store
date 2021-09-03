@@ -21,7 +21,6 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import { useStyles } from "./registrationStyles";
 import { REGISTER_HEADING, MAX_100_KEYWORD } from "./registrationUtils";
 import axios from "axios";
-import Snackbar from "../commons/snackbar/SnackBar";
 
 const RegistrationScreen = (props) => {
   const history = useHistory();

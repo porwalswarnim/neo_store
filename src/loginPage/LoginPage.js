@@ -12,7 +12,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import { useStyles } from "./loginPageStyles";
-import {  LOGIN_NEOSOFT_TECHNOLOGIES } from "./Link";
+import { LOGIN_NEOSOFT_TECHNOLOGIES } from "./Link";
 import Link from "@material-ui/core/Link";
 import LeftSideLogin from "./LeftSideLogin";
 import { useDispatch } from "react-redux";
@@ -54,20 +54,28 @@ const LoginPage = (props) => {
         gender,
         createdAt,
       } = res?.data?.data;
+      const message = res?.data?.message;
       localStorage.setItem("token", token);
-      alert("Logged In Succesfully");
+      dispatch({
+        type: "SHOW_SNACKBAR",
+        payload: { type: "success", message, open: true },
+      });
       dispatch({
         type: "LOGGED_IN",
         payload: { id, firstName, lastName, email, mobile, gender, createdAt },
       });
       history.push("/productmodule");
     } catch (error) {
-      alert("Username or password is invalid");
+      const message= "Username or password is invalid";
+      dispatch({
+        type: "SHOW_SNACKBAR",
+        payload: { type: "error", message, open: true },
+      });
     }
   };
   // const forgotPasswordHandler = async (e) => {
   //   e.preventDefault();
-   
+
   //   var data = {
   //     email: loginForm.loginEmail,
   //   };
@@ -86,7 +94,7 @@ const LoginPage = (props) => {
   //   }  catch(error){
   //     alert('Old Password is wrong')
   // }
-   
+
   // };
 
   const handleClickShowPassword = () => {
@@ -173,7 +181,7 @@ const LoginPage = (props) => {
                   Sign In
                 </Button>
                 <Grid item container row>
-                <Grid item style={{ marginTop: "30px" }}>
+                  <Grid item style={{ marginTop: "30px" }}>
                     <Link
                       onClick={() => history.push("/registration")}
                       variant="body2"
@@ -214,7 +222,7 @@ const LoginPage = (props) => {
                       Forgotten?
                     </Link>
                   </Grid>
-                  </Grid>
+                </Grid>
               </form>
             </div>
           </Grid>

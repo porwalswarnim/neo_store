@@ -25,7 +25,7 @@ const Header = (props) => {
   const location = useLocation();
   const { products = [] } = useSelector((state) => state.cardData);
   return (
-    <AppBar position="fixed" className={classes.headerFeedback}>
+    <AppBar position="static" className={classes.headerFeedback}>
       <Toolbar>
         <Grid container>
           <Grid item container row xs>

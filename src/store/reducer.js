@@ -12,6 +12,10 @@ const initialState = {
   listProducts: [],
   addAddress:[],
   allOrders:[],
+  snackbar: {
+    message:'',
+    open:false
+  }
 };
 
 const reducer = (state = initialState, action) => {
@@ -41,6 +45,20 @@ const reducer = (state = initialState, action) => {
         ...state,
         allOrders: action.payload,
       };
+      case ALL_ORDERS:
+        return {
+          ...state,
+          allOrders: action.payload,
+        };
+        case 'SHOW_SNACKBAR':
+          return {
+            ...state,
+            snackbar: {
+              message: action.payload.message,
+              open: action.payload.open,
+              type: action.payload.type
+            }
+          };
   }
 
   return state;
