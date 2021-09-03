@@ -54,7 +54,7 @@ const LoginPage = (props) => {
         gender,
         createdAt,
       } = res?.data?.data;
-      const message = res?.data?.message;
+      const message = "Login Successfully";
       localStorage.setItem("token", token);
       dispatch({
         type: "SHOW_SNACKBAR",

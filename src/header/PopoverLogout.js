@@ -33,7 +33,11 @@ const PopoverPopupStateLogout = (props) => {
     dispatch({type:"LOGGED_OUT",payload:false})
     history.push("/home")
       localStorage.clear();
-
+      const message = "Logout Successfully";
+      dispatch({
+        type: "SHOW_SNACKBAR",
+        payload: { type: "success", message, open: true },
+      });
   };
   return (
     <PopupState variant="popover">

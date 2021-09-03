@@ -55,14 +55,14 @@ const AddCartItems = (props) => {
 
     try {
       var res = await axios(config);
-      const message = 'Ordered Placed Successfully';
+      const message = "Ordered Placed Successfully";
       dispatch({
         type: "SHOW_SNACKBAR",
         payload: { type: "success", message, open: true },
       });
-      history.push("/ordermodule")
+      history.push("/ordermodule");
     } catch (res) {
-      const message= 'Address is required';
+      const message = "Address is required";
       dispatch({
         type: "SHOW_SNACKBAR",
         payload: { type: "error", message, open: true },
@@ -145,6 +145,13 @@ const AddCartItems = (props) => {
                 ))}
               </Select>
             </FormControl>
+            <Button
+              variant="contained"
+              className={classes.addAddressCSS}
+              onClick={() => history.push("/addNewAddress")}
+            >
+              Add New Address
+            </Button>
             <Box boxShadow={8}>
               <ReviewOrderTotal total={grandTotal} />
               <Button

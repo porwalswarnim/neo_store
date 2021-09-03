@@ -73,7 +73,7 @@ const RegistrationScreen = (props) => {
       });
         history.push("/login");
     } catch (error) {
-      const message= "Failed to Register";
+      const message= "Email Already registered";
       dispatch({
         type: "SHOW_SNACKBAR",
         payload: { type: "error", message, open: true },

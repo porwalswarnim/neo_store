@@ -17,7 +17,6 @@ import { useStyles } from "./footerStyles";
 
 export default function Footer(props) {
   const classes = useStyles(props);
-
   return (
     <Grid>
       <AppBar position="static" className={classes.footer}>
@@ -39,11 +38,58 @@ export default function Footer(props) {
               <Typography className={classes.headingFooter}>
                 Information
               </Typography>
-              {FOOTER_INFORMATION_CONSTANTS.map((ele) => (
-                <Typography className={classes.footerTypography}>
-                  {ele.label}
-                </Typography>
-              ))}
+              <Typography
+                onClick={() =>
+                  window.open("https://www.neosofttech.com/terms-use", "_blank")
+                }
+                className={classes.footerTypography}
+              >
+                Terms and Conditions
+              </Typography>
+              <Typography
+                onClick={() =>
+                  window.open(
+                    "https://careers.neosofttech.com/terms-of-use",
+                    "_blank"
+                  )
+                }
+                className={classes.footerTypography}
+              >
+                Guarantee and Return Policy
+              </Typography>
+              <Typography
+                onClick={() =>
+                  window.open(
+                    "https://www.neosofttech.com/contact-us",
+                    "_blank"
+                  )
+                }
+                className={classes.footerTypography}
+              >
+                Contact Us
+              </Typography>
+              <Typography
+                onClick={() =>
+                  window.open(
+                    "https://www.neosofttech.com/privacy-policy",
+                    "_blank"
+                  )
+                }
+                className={classes.footerTypography}
+              >
+                Privacy Policy
+              </Typography>
+              <Typography
+                onClick={() =>
+                  window.open(
+                    "https://www.neosofttech.com/global-presence",
+                    "_blank"
+                  )
+                }
+                className={classes.footerTypography}
+              >
+                Locate Us
+              </Typography>
             </Grid>
             <Grid item xs={12} sm={4}>
               <Typography className={classes.headingFooter}>
