@@ -3,10 +3,12 @@ import { useHistory } from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import { useStyles } from "./addAddressStyles";
+import { useDispatch } from "react-redux";
   import axios from "axios";
 const AddAddressBox = ({ data, fetchAddress }) => {
     const history = useHistory();
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   const deleteAddressHandler = async () => {
     var config = {
@@ -20,9 +22,18 @@ const AddAddressBox = ({ data, fetchAddress }) => {
     };
     try {
       await axios(config);
+      const message = 'Address Deleted successfully';
+      dispatch({
+        type: "SHOW_SNACKBAR",
+        payload: { type: "success", message, open: true },
+      });
       fetchAddress();
     } catch (error) {
-        console.log('error', error)
+      const message= "Something went Wrong";
+      dispatch({
+        type: "SHOW_SNACKBAR",
+        payload: { type: "error", message, open: true },
+      });
     }
   };
     return(

@@ -18,12 +18,14 @@ import OutlinedInput from "@material-ui/core/OutlinedInput";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import { useDispatch } from "react-redux";
 import { useStyles } from "./registrationStyles";
 import { REGISTER_HEADING, MAX_100_KEYWORD } from "./registrationUtils";
 import axios from "axios";
 
 const RegistrationScreen = (props) => {
   const history = useHistory();
+  const dispatch = useDispatch();
   const [registrationFormDetails, setRegistrationFormDetails] = useState({
     firstName: "",
     lastName: "",
@@ -64,10 +66,18 @@ const RegistrationScreen = (props) => {
 
     try {
       var res = await axios(config);
-       alert("Successfully Registered");
+      const message = 'Successfully Registered';
+      dispatch({
+        type: "SHOW_SNACKBAR",
+        payload: { type: "success", message, open: true },
+      });
         history.push("/login");
     } catch (error) {
-      alert("Failed to Register");
+      const message= "Failed to Register";
+      dispatch({
+        type: "SHOW_SNACKBAR",
+        payload: { type: "error", message, open: true },
+      });
     }
   };
 

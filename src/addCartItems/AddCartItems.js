@@ -55,13 +55,18 @@ const AddCartItems = (props) => {
 
     try {
       var res = await axios(config);
-      console.log('res',res)
-      // alert(res?.data?.message);
-      alert('Ordered Placed Successfully')
+      const message = 'Ordered Placed Successfully';
+      dispatch({
+        type: "SHOW_SNACKBAR",
+        payload: { type: "success", message, open: true },
+      });
       history.push("/ordermodule")
     } catch (res) {
-      // alert(res?.data?.message);
-      alert('addressId is required')
+      const message= 'Address is required';
+      dispatch({
+        type: "SHOW_SNACKBAR",
+        payload: { type: "error", message, open: true },
+      });
     }
   };
   var config = {

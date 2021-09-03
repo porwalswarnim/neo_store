@@ -8,11 +8,13 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import { Grid, Typography, Button } from "@material-ui/core";
+import { useDispatch } from "react-redux";
 import LeftSideBar from "./LeftSideBar";
 import { useStyles } from "./changePasswordStyles";
 import { MYACCOUNT_HEADING, CHANGE_PASSWORD_HEADING } from "./myacountUtils";
 import axios from "axios";
 const ChangePassword = (props) => {
+  const dispatch = useDispatch();
   const history = useHistory();
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -24,34 +26,44 @@ const ChangePassword = (props) => {
   const submitRegisterFormHandler = async (e) => {
     e.preventDefault();
     if (newPassword !== confirmPassword) {
-      alert("Passwords don't match");
-  } else {
-    var data = {
-      password: oldPassword,
-      newPassword: newPassword,
-    };
-    var config = {
-      method: "post",
-      url: "https://neostore-api.herokuapp.com/api/user/change-password",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization : localStorage.getItem("token")
-      },
-      data,
+      const message = "Passwords don't match";
+      dispatch({
+        type: "SHOW_SNACKBAR",
+        payload: { type: "success", message, open: true },
+      });
+    } else {
+      var data = {
+        password: oldPassword,
+        newPassword: newPassword,
+      };
+      var config = {
+        method: "post",
+        url: "https://neostore-api.herokuapp.com/api/user/change-password",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: localStorage.getItem("token"),
+        },
+        data,
+      };
 
-    };
-
-    try {
-      var res = await axios(config);
-      alert('Successfully Changed')
-      localStorage.clear();
-       history.push("/login")
-    }  catch(error){
-      alert('Old Password is wrong')
-  }
-  }
-   
+      try {
+        var res = await axios(config);
+        const message = "Password Changed Successfully";
+        dispatch({
+          type: "SHOW_SNACKBAR",
+          payload: { type: "success", message, open: true },
+        });
+        localStorage.clear();
+        history.push("/login");
+      } catch (error) {
+        const message = "Old Password is Wrong";
+        dispatch({
+          type: "SHOW_SNACKBAR",
+          payload: { type: "error", message, open: true },
+        });
+      }
+    }
   };
 
   const handleClickShowPassword = () => {
@@ -145,7 +157,6 @@ const ChangePassword = (props) => {
 
                 <Button
                   type="submit"
-                  
                   style={{
                     margin: "25px",
                     marginLeft: "300px",

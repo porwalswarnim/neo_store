@@ -8,6 +8,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import SaveIcon from "@material-ui/icons/Save";
 import { useHistory } from "react-router-dom";
 import { useStyles } from "./addNewAddressStyle";
+import { useDispatch } from "react-redux";
 import {
   MYACCOUNT_HEADING,
   ADD_NEW_ADDRESS_HEADING,
@@ -17,7 +18,7 @@ import axios from "axios";
 const AddNewAddress = (props) => {
   const classes = useStyles(props);
   const history = useHistory();
-
+  const dispatch = useDispatch();
   const [addNewAddress, setAddNewAddress] = useState({
     address: "",
     pincode: "",
@@ -50,7 +51,17 @@ const AddNewAddress = (props) => {
 
     try {
       var res = await axios(config);
+      const message = 'Address Added successfully';
+      dispatch({
+        type: "SHOW_SNACKBAR",
+        payload: { type: "success", message, open: true },
+      });
     } catch (error) {
+      const message= "Something went Wrong";
+      dispatch({
+        type: "SHOW_SNACKBAR",
+        payload: { type: "error", message, open: true },
+      });
     }
   };
   

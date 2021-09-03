@@ -11,7 +11,6 @@ import React, { useEffect } from "react";
 import { ALL_ADDRESSES } from "../types";
 import { useSelector } from "react-redux";
 import AddAddressBox from "./AddAddressBox";
-
 const AddAddress = (props) => {
   const addAddress = useSelector((state) => state.addAddress);
   const history = useHistory();
@@ -30,7 +29,6 @@ const AddAddress = (props) => {
   const fetchAddress = async () => {
     try {
       const res = await axios(config);
-      console.log(res);
       const data = res?.data?.data.address;
       dispatch({
         type: ALL_ADDRESSES,

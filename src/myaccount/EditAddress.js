@@ -7,6 +7,7 @@ import React, { useState } from "react";
 import CloseIcon from "@material-ui/icons/Close";
 import SaveIcon from "@material-ui/icons/Save";
 import { useStyles } from "./editAddressStyles";
+import { useDispatch } from "react-redux";
 import {
   MYACCOUNT_HEADING,
   EDIT_HEADING,
@@ -16,6 +17,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 
 const EditAddress = (props) => {
+  const dispatch = useDispatch();
   const addAddress = useSelector((state) => state.addAddress);
   const { id } = useParams();
   const address = addAddress.filter(ele => ele._id === id)[0]
@@ -53,7 +55,17 @@ const EditAddress = (props) => {
 
     try {
       var res = await axios(config);
+      const message= "Address Edited Successfully";
+      dispatch({
+        type: "SHOW_SNACKBAR",
+        payload: { type: "success", message, open: true },
+      });
     } catch (error) {
+      const message= "Something went Wrong";
+      dispatch({
+        type: "SHOW_SNACKBAR",
+        payload: { type: "error", message, open: true },
+      });
     }
   };
   

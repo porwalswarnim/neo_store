@@ -37,7 +37,18 @@ const MediaCard = ({ data }) => {
 
     try {
       var res = await axios(config);
-    } catch (error) {}
+      const message = 'Added to Cart';
+      dispatch({
+        type: "SHOW_SNACKBAR",
+        payload: { type: "success", message, open: true },
+      });
+    } catch (error) {
+      const message= "Something went Wrong";
+      dispatch({
+        type: "SHOW_SNACKBAR",
+        payload: { type: "error", message, open: true },
+      });
+    }
   };
   return (
     <Card className={classes.root}>
