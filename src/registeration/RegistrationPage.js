@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import Header from "../header/Header";
 import TextFieldsIcon from "@material-ui/icons/TextFields";
-import Footer from "../footer/Footer";
 import FacebookLoginButton from "../loginPage/FacebookLogin";
 import GoogleLoginButton from "../loginPage/GoogleLogin";
 import CallIcon from "@material-ui/icons/Call";
@@ -90,7 +88,6 @@ const RegistrationScreen = (props) => {
   };
   return (
     <div>
-      <Header />
       <Grid item container row className={classes.mainGrid}>
         <Grid className={classes.facebookCSS}>
           <FacebookLoginButton />
@@ -269,7 +266,6 @@ const RegistrationScreen = (props) => {
           </Grid>
         </form>
       </Grid>
-      <Footer />
     </div>
   );
 };

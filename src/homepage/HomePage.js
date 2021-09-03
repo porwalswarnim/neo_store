@@ -1,5 +1,3 @@
-import Header from "../header/Header";
-import Footer from "../footer/Footer";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import MediaCard from "../card/Card";
@@ -15,7 +13,6 @@ const HomePage = (props) => {
   const history = useHistory();
   return (
     <div>
-      <Header />
       <Grid className={classes.HomeBoxGrid}>
         <Grid container component="main" className={classes.registerBoxGrid}>
           <Grid item xs={12} className={classes.image}></Grid>
@@ -44,7 +41,6 @@ const HomePage = (props) => {
           })}
         </Grid>
       </Grid>
-      <Footer />
     </div>
   );
 };

@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Grid from "@material-ui/core/Grid";
-import Header from "../header/Header";
-import Footer from "../footer/Footer";
 import MediaCard from "../card/Card";
 import Box from "@material-ui/core/Box";
 import TreeView from "@material-ui/lab/TreeView";
@@ -16,7 +14,6 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { LIST_PRODUCTS } from "../types";
 import { Typography } from "@material-ui/core";
-
 const ProductModule = () => {
   const listProducts = useSelector((state) => state.listProducts);
   const { name, id } = useParams();
@@ -62,7 +59,15 @@ const ProductModule = () => {
       url: url,
     };
     try {
+      dispatch({
+        type: "IS_LOADING",
+        payload: true,
+      });
       const res = await axios(config);
+      dispatch({
+        type: "IS_LOADING",
+        payload: false,
+      });
       const docs = res?.data?.data.docs;
       dispatch({
         type: LIST_PRODUCTS,
@@ -85,7 +90,6 @@ const ProductModule = () => {
 
   return (
     <div>
-      <Header />
       <Grid item container className={classes.mainGrid} row xs={12}>
         <Grid item xs={3}>
           <Grid className={classes.leftProductGrid}>
@@ -147,17 +151,20 @@ const ProductModule = () => {
                   style={{
                     width: "400px",
                     height: "400px",
-                    marginLeft:'300px',
+                    marginLeft: "300px",
                     backgroundColor: "#f9f9f9",
                   }}
                 >
                   <Typography
-                   style={{
-                    fontSize: "80px",
-                    fontWeight: "bold",
-                    backgroundColor: "#f9f9f9",
-                    textAlign:'center',
-                  }}>No Products To Display</Typography>
+                    style={{
+                      fontSize: "80px",
+                      fontWeight: "bold",
+                      backgroundColor: "#f9f9f9",
+                      textAlign: "center",
+                    }}
+                  >
+                    No Products To Display
+                  </Typography>
                 </Box>
               )}
               {listProducts.map((ele, i) => {
@@ -171,8 +178,6 @@ const ProductModule = () => {
           </Grid>
         </Grid>
       </Grid>
-
-      <Footer />
     </div>
   );
 };

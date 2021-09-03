@@ -12,6 +12,7 @@ const initialState = {
   listProducts: [],
   addAddress:[],
   allOrders:[],
+  isLoading : false,
   snackbar: {
     message:'',
     open:false
@@ -50,6 +51,11 @@ const reducer = (state = initialState, action) => {
           ...state,
           allOrders: action.payload,
         };
+        case 'IS_LOADING':
+          return {
+            ...state,
+            isLoading: action.payload,
+          };
         case 'SHOW_SNACKBAR':
           return {
             ...state,

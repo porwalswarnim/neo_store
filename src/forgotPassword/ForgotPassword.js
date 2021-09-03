@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import Header from "../header/Header";
-import Footer from "../footer/Footer";
 import { useHistory } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
@@ -38,7 +36,6 @@ const ForgotScreen = (props) => {
   };
   return (
     <div>
-      <Header />
       <Grid item className={classes.registerBoxGrid}>
         <Typography
           component="h1"
@@ -134,7 +131,6 @@ const ForgotScreen = (props) => {
           </Grid>
         </form>
       </Grid>
-      <Footer />
     </div>
   );
 };

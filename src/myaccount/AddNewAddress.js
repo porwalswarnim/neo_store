@@ -1,6 +1,4 @@
 import { Grid, Typography, Button } from "@material-ui/core";
-import Footer from "../footer/Footer";
-import Header from "../header/Header";
 import LeftSideBar from "./LeftSideBar";
 import React, { useState } from "react";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
@@ -67,7 +65,6 @@ const AddNewAddress = (props) => {
   
   return (
     <div>
-      <Header />
       <MYACCOUNT_HEADING />
       <Grid item container className={classes.MainGrid} row xs={12}>
         <Grid xs={3}>
@@ -189,7 +186,6 @@ const AddNewAddress = (props) => {
           </Grid>
         </Grid>
       </Grid>
-      <Footer />
     </div>
   );
 };

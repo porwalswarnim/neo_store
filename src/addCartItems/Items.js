@@ -1,5 +1,5 @@
 import IndeterminateCheckBoxIcon from "@material-ui/icons/IndeterminateCheckBox";
-import { Grid, Typography, Box, CardMedia } from "@material-ui/core";
+import { Grid, Typography, CardMedia } from "@material-ui/core";
 import AddBoxIcon from "@material-ui/icons/AddBox";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import { useStyles } from "./itemsStyles";

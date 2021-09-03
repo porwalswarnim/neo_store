@@ -1,6 +1,4 @@
 import { Grid, Typography, Button, TextField } from "@material-ui/core";
-import Footer from "../footer/Footer";
-import Header from "../header/Header";
 import LeftSideBar from "./LeftSideBar";
 import { useHistory, useParams } from "react-router-dom";
 import React, { useState } from "react";
@@ -76,7 +74,6 @@ const EditAddress = (props) => {
 
   return (
     <div>
-      <Header />
       <MYACCOUNT_HEADING />
       <Grid item container className={classes.MainGrid} row xs={12}>
         <Grid xs={3}>
@@ -173,7 +170,6 @@ const EditAddress = (props) => {
           </Grid>
         </Grid>
       </Grid>
-      <Footer />
     </div>
   );
 };

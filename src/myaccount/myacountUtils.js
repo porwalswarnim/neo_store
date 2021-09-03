@@ -5,7 +5,7 @@ export const MYACCOUNT_HEADING = () => {
   return (
     <Typography
       style={{
-        marginTop: "80px",
+        marginTop: "40px",
         fontSize: "40px",
         marginLeft: "80px",
         fontWeight: "bold",

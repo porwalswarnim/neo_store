@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 export const useStyles = makeStyles((theme) => ({
     MainGrid: {
         borderTop: "1px solid #71606026",
-        marginTop: "30px",
+        marginTop: "10px",
       },
       RightSideBarCSS: {
         display: "flex",

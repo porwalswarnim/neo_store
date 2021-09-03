@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import Header from "../header/Header";
-import Footer from "../footer/Footer";
 import { useHistory } from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
@@ -75,7 +73,6 @@ const ChangePassword = (props) => {
   };
   return (
     <div>
-      <Header />
       <MYACCOUNT_HEADING />
       <Grid item container className={classes.MainGrid} row xs={12}>
         <Grid xs={3}>
@@ -179,7 +176,6 @@ const ChangePassword = (props) => {
           </Grid>
         </Grid>
       </Grid>
-      <Footer />
     </div>
   );
 };

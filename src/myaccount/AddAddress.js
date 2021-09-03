@@ -1,6 +1,4 @@
 import { Box, Grid, Typography, Button } from "@material-ui/core";
-import Footer from "../footer/Footer";
-import Header from "../header/Header";
 import { useHistory } from "react-router-dom";
 import LeftSideBar from "./LeftSideBar";
 import { useStyles } from "./addAddressStyles";
@@ -43,7 +41,6 @@ const AddAddress = (props) => {
 
   return (
     <div>
-      <Header />
       <MYACCOUNT_HEADING />
       <Grid item container className={classes.MainGrid} row xs={12}>
         <Grid xs={3}>
@@ -66,7 +63,6 @@ const AddAddress = (props) => {
           </Box>
         </Grid>
       </Grid>
-      <Footer />
     </div>
   );
 };

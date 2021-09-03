@@ -1,8 +1,6 @@
 import React from "react";
 import Rating from "@material-ui/lab/Rating";
 import { Grid, CardMedia, Box } from "@material-ui/core";
-import Header from "../header/Header";
-import Footer from "../footer/Footer";
 import { useHistory, useParams } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
 import FeatureDetails from "./Feature";
@@ -22,7 +20,6 @@ const ProductDetailModule = (props) => {
   const classes = useStyles();
   return (
     <div>
-      <Header />
       <Grid item container className={classes.mainGrid} row xs={12}>
         <Grid item xs={5}>
           <Grid
@@ -94,7 +91,6 @@ const ProductDetailModule = (props) => {
           </Grid>
         </Grid>
       </Grid>
-      <Footer />
     </div>
   );
 };

@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import Header from "../header/Header";
-import Footer from "../footer/Footer";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import Paper from "@material-ui/core/Paper";
@@ -107,7 +105,6 @@ const LoginPage = (props) => {
 
   return (
     <div>
-      <Header />
       <div>
         <Grid container className={classes.mainLoginPageCSS} component="main">
           <LeftSideLogin />
@@ -228,14 +225,8 @@ const LoginPage = (props) => {
           </Grid>
         </Grid>
       </div>
-      <Footer />
     </div>
   );
 };
 
 export default LoginPage;
-
-// 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
-// git clone porwalswarnim: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@github.com/https://github.com/porwalswarnim/neostore.git
-
-// git clone https://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@github.com/porwalswarnim/neostore.git

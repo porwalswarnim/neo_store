@@ -1,6 +1,4 @@
 import { Grid, Box, Typography } from "@material-ui/core";
-import Footer from "../footer/Footer";
-import Header from "../header/Header";
 import { useStyles } from "./addCartStyles";
 import React, { useState } from "react";
 import Items from "./Items";
@@ -16,6 +14,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import { Button } from "@material-ui/core";
+
 const AddCartItems = (props) => {
   const addAddress = useSelector((state) => state.addAddress);
   const classes = useStyles(props);
@@ -81,7 +80,15 @@ const AddCartItems = (props) => {
 
   const fetchItems = async () => {
     try {
+      dispatch({
+        type: "IS_LOADING",
+        payload: true,
+      });
       const res = await axios(config);
+      dispatch({
+        type: "IS_LOADING",
+        payload: false,
+      });
       const cart = res?.data?.data;
       dispatch({
         type: ADD_TO_CART,
@@ -96,22 +103,40 @@ const AddCartItems = (props) => {
 
   return (
     <Grid>
-      <Header />
       <Grid className={classes.mainGrid}>
         <Grid item container row xs={12}>
-          <Grid xs={7} className={classes.leftSideGrid}>
-            <Box boxShadow={8}>
-              <HeaderItems />
-
-              {products.map((ele, i) => {
-                return (
-                  <Box style={{ marginTop: "10px" }} boxShadow={5}>
-                    <Items data={ele} key={ele.id} fetchItems={fetchItems} />
-                  </Box>
-                );
-              })}
-            </Box>
-          </Grid>
+          {products?.length === 0 && (
+            <Grid
+              xs={7}
+              container
+              className={classes.leftSideGrid}
+              justify="center"
+              alignItems="center"
+            >
+              <Typography
+                style={{
+                  fontSize: "80px",
+                  fontWeight: "bold",
+                }}
+              >
+                No Item is Added In Cart
+              </Typography>
+            </Grid>
+          )}
+          {products?.length !== 0 && (
+            <Grid xs={7} className={classes.leftSideGrid}>
+              <Box boxShadow={8}>
+                <HeaderItems />
+                {products.map((ele, i) => {
+                  return (
+                    <Box style={{ marginTop: "10px" }} boxShadow={5}>
+                      <Items data={ele} key={ele.id} fetchItems={fetchItems} />
+                    </Box>
+                  );
+                })}
+              </Box>
+            </Grid>
+          )}
           <Grid xs={4} className={classes.rightSideGrid}>
             <FormControl
               variant="outlined"
@@ -166,7 +191,6 @@ const AddCartItems = (props) => {
           </Grid>
         </Grid>
       </Grid>
-      <Footer />
     </Grid>
   );
 };
