@@ -18,8 +18,13 @@ const useStyles = makeStyles((theme) => ({
   },
   signInButton: {
     backgroundColor: "rgb(251 180 21)",
-    width: "200px",
-    margin: "20px 40px",
+    width: "100px",
+    margin: "20px 10px",
+  },
+  signOutButton: {
+    // backgroundColor: "rgb(251 180 21)",
+    width: "100px",
+    margin: "20px 10px",
   },
 }));
 const PopoverPopupState = (props) => {
@@ -47,7 +52,7 @@ const PopoverPopupState = (props) => {
               horizontal: "center",
             }}
           >
-            <Box p={2}>
+            <Box>
               <Button
                 variant="contained"
                 className={classes.signInButton}
@@ -55,15 +60,13 @@ const PopoverPopupState = (props) => {
               >
                 Sign In
               </Button>
-              <Typography>
-                New Customer?{" "}
-                <span
-                  style={{ color: "blue" }}
-                  onClick={() => history.push("/registration")}
-                >
-                  Start here.
-                </span>
-              </Typography>
+              <Button
+                variant="contained"
+                className={classes.signOutButton}
+                onClick={() => history.push("/registration")}
+              >
+                Register Now
+              </Button>
             </Box>
           </Popover>
         </div>

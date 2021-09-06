@@ -1,5 +1,5 @@
 import { Box, Grid, Typography, Button, CardMedia } from "@material-ui/core";
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 import LeftSideBar from "./LeftSideBar";
 import { useStyles } from "./orderStyles";
 import { MYACCOUNT_HEADING } from "./myacountUtils";
@@ -7,12 +7,13 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { ALL_ORDERS } from "../types";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 const OrderModule = (props) => {
   const allOrders = useSelector((state) => state.allOrders);
   const dispatch = useDispatch();
   const classes = useStyles(props);
-
+  const history = useHistory();
   var config = {
     method: "get",
     url: "https://neostore-api.herokuapp.com/api/order",
@@ -55,28 +56,70 @@ const OrderModule = (props) => {
         </Grid>
         <Grid xs={9} className={classes.RightSideBarCSS}>
           {allOrders.map((ele, i) => {
+            const totalPrice = ele?.items.reduce(
+              (total, currentValue) =>
+                (total = total + currentValue?.productId?.price),
+              0
+            );
+            const totalQuantity = ele?.items.reduce(
+              (total, currentValue) => (total = total + currentValue.quantity),
+              0
+            );
             return (
               <Box boxShadow={7} className={classes.boxCSS}>
                 <Typography className={classes.transitTypography}>
-                  <span style={{ color: "brown" }}>TRANSIT</span> Order By:
+                  <span style={{ color: "brown" }}>TRANSIT</span> &nbsp; &nbsp;
+                  &nbsp; &nbsp;Order By:
                   {ele._id}
                 </Typography>
-                <Typography style={{ marginTop: "10px", marginLeft: "15px" }}>
+                <Typography
+                  style={{
+                    marginTop: "10px",
+                    marginLeft: "15px",
+                    fontWeight: "bold",
+                  }}
+                >
                   {" "}
-                  Placed on: {ele.updatedAt} &nbsp;/&nbsp; &nbsp;$59999
+                  Placed on: {ele.updatedAt} &nbsp; &nbsp; &nbsp;/&nbsp; &nbsp;
+                  GrandTotal : ${totalPrice}
                 </Typography>
-                <Box className={classes.imageBox}>
-                  <Grid>
-                    <CardMedia
-                      className={classes.image}
-                      image={ele?.items[0]?.productId?.mainImage}
-                    />
-                  </Grid>
-                </Box>
+                <Typography
+                  style={{
+                    marginTop: "0px",
+                    marginLeft: "15px",
+                    fontWeight: "bold",
+                  }}
+                >
+                  {" "}
+                  Total Quantity : {totalQuantity}
+                </Typography>
+                <Typography className={classes.orderTypography}>
+                  <span style={{ color: "brown" }}>Order Details</span>
+                </Typography>
+                {ele.items.map((ele, i) => {
+                  return (
+                    <>
+                      <Grid>
+                        <CardMedia
+                          className={classes.image}
+                          image={ele?.productId?.mainImage}
+                        />
+                      </Grid>
+                      <Box className={classes.imageBox}></Box>
+                      <Typography style={{ marginLeft: "15px" }}>
+                        {" "}
+                        Name : {ele?.productId?.name}
+                        &nbsp; &nbsp; Quantity : {ele?.quantity}
+                        &nbsp; &nbsp; Price : {ele?.productId?.price} rs
+                      </Typography>
+                    </>
+                  );
+                })}
                 <Button
                   variant="contained"
                   color="primary"
                   className={classes.buttonInvoiceDownload}
+                  onClick={() => history.push(`/ordermodule/${ele._id}`)}
                 >
                   Download Invoice as PDF
                 </Button>

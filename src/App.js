@@ -22,6 +22,7 @@ import SuccessSnackbar from "./commons/snackbar/SnackBarComponent";
 import BackdropComponent from "./commons/snackbar/BackdropComponent";
 import Header from "./header/Header";
 import Footer from "./footer/Footer";
+import InvoiceShow from "./InvoicePDF/InvoiceOrderBill";
 function App() {
   return (
     <div>
@@ -29,7 +30,7 @@ function App() {
       <BackdropComponent />
       <Router>
         <Header />
-        <div style={{minHeight:'60vh'}}>
+        <div style={{ minHeight: "60vh" }}>
           <Route exact path="/" component={() => <Redirect to="/home" />} />
           <Link to="/home"></Link>
           <Link to="/login"></Link>
@@ -50,7 +51,7 @@ function App() {
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/registration" component={RegistrationScreen} />
           <Route exact path="/forgotpassword" component={ForgotScreen} />
-          <PrivateRoute exact path="/productmodule" component={ProductModule} />
+          <Route exact path="/productmodule" component={ProductModule} />
           <PrivateRoute
             exact
             path="/productmodule/:name/:id"
@@ -62,6 +63,7 @@ function App() {
             component={ProductDetailModule}
           />
           <PrivateRoute exact path="/ordermodule" component={OrderModule} />
+          <PrivateRoute exact path="/ordermodule/:id" component={InvoiceShow} />
           <PrivateRoute
             exact
             path="/changepassword"

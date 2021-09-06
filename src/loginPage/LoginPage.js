@@ -62,7 +62,7 @@ const LoginPage = (props) => {
         type: "LOGGED_IN",
         payload: { id, firstName, lastName, email, mobile, gender, createdAt },
       });
-      history.push("/productmodule");
+      history.push("/home");
     } catch (error) {
       const message= "Username or password is invalid";
       dispatch({

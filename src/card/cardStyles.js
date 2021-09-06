@@ -23,7 +23,7 @@ export const useStyles = makeStyles((theme) => ({
   FurnitureAmountName: {
     textAlign: "center",
     fontWeight: "bold",
-    marginTop: "40px",
+    marginTop: "10px",
     fontSize: "30px",
   },
   buttonAdd: {

@@ -1,6 +1,7 @@
 import React from "react";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
+import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -19,25 +20,30 @@ const useStyles = makeStyles((theme) => ({
   signInButton: {
     backgroundColor: "rgb(251 180 21)",
     width: "200px",
-    margin: "20px 40px",
+    margin: "10px 40px",
+  },
+  profileButton: {
+    backgroundColor: "rgb(251 180 21)",
+    width: "200px",
+    margin: "10px 40px",
   },
 }));
 const PopoverPopupStateLogout = (props) => {
-  const counter = useSelector((state) => state.isLoggedIn)
+  const counter = useSelector((state) => state.isLoggedIn);
   const dispatch = useDispatch();
   const classes = useStyles(props);
   const history = useHistory();
 
   const OnLogoutHandler = async (e) => {
     e.preventDefault();
-    dispatch({type:"LOGGED_OUT",payload:false})
-    history.push("/home")
-      localStorage.clear();
-      const message = "Logout Successfully";
-      dispatch({
-        type: "SHOW_SNACKBAR",
-        payload: { type: "success", message, open: true },
-      });
+    dispatch({ type: "LOGGED_OUT", payload: false });
+    history.push("/home");
+    localStorage.clear();
+    const message = "Logout Successfully";
+    dispatch({
+      type: "SHOW_SNACKBAR",
+      payload: { type: "success", message, open: true },
+    });
   };
   return (
     <PopupState variant="popover">
@@ -46,7 +52,9 @@ const PopoverPopupStateLogout = (props) => {
           <Button
             variant="contained"
             className={classes.loginBox}
-            startIcon={<SettingsApplicationsSharpIcon style={{ fontSize: "35px" }} />}
+            startIcon={
+              <SettingsApplicationsSharpIcon style={{ fontSize: "35px" }} />
+            }
             endIcon={<ExpandMoreIcon style={{ fontSize: "35px" }} />}
             {...bindTrigger(popupState)}
           ></Button>
@@ -61,15 +69,25 @@ const PopoverPopupStateLogout = (props) => {
               horizontal: "center",
             }}
           >
-            <Box p={2}>
-              <Button
-                variant="contained"
-                className={classes.signInButton}
-                onClick={OnLogoutHandler}
-              >
-                LogOut
-              </Button>
-              
+            <Box>
+              <Grid>
+                <Button
+                  variant="contained"
+                  className={classes.profileButton}
+                  onClick={() => history.push("/profilepage")}
+                >
+                  Profile
+                </Button>
+              </Grid>
+              <Grid>
+                <Button
+                  variant="contained"
+                  className={classes.signInButton}
+                  onClick={OnLogoutHandler}
+                >
+                  LogOut
+                </Button>
+              </Grid>
             </Box>
           </Popover>
         </div>

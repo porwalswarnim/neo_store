@@ -124,7 +124,7 @@ const AddCartItems = (props) => {
             </Grid>
           )}
           {products?.length !== 0 && (
-            <Grid xs={7} className={classes.leftSideGrid}>
+            <Grid item xs={7} className={classes.leftSideGrid}>
               <Box boxShadow={8}>
                 <HeaderItems />
                 {products.map((ele, i) => {
@@ -137,7 +137,7 @@ const AddCartItems = (props) => {
               </Box>
             </Grid>
           )}
-          <Grid xs={4} className={classes.rightSideGrid}>
+          <Grid item xs={4} className={classes.rightSideGrid}>
             <FormControl
               variant="outlined"
               style={{ backgroundColor: "#f9f9f9" }}

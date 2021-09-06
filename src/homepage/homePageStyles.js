@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 export const useStyles = makeStyles((theme) => ({
     HomeBoxGrid: {
         width: "100%",
-        marginTop:"100px"
+        marginTop:"50px"
       },
       registerBoxGrid: {
         margin: "auto",
@@ -18,7 +18,7 @@ export const useStyles = makeStyles((theme) => ({
         height: "50vh",
       },
       heading:{
-        marginTop: "40px",
+        marginTop: "20px",
         textAlign: "center",
         fontWeight: "bold",
         fontSize: "40px",

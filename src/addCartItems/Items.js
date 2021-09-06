@@ -67,11 +67,9 @@ const Items = ({ data, fetchItems }) => {
       <Grid xs={2} item container row className={classes.iconGridCSS}>
         <Button
           onClick={() => {
-            data.quantity === 1
-            ? deleteItemHandler()
-            : updateCartHandler(data._id, data.quantity - 1);
-            
+            updateCartHandler(data._id, data.quantity - 1, 1);
           }}
+          disabled={data.quantity === 1}
         >
           <IndeterminateCheckBoxIcon className={classes.iconMinusCSS} />
         </Button>

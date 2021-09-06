@@ -31,7 +31,7 @@ const HomePage = (props) => {
             </Link>
           </Typography>
         </Grid>
-        <Grid container item xs={12} style={{ marginLeft: "40px" }}>
+        <Grid container  xs={12} style={{ marginLeft: "40px" }}>
           {listProduct.map((ele, i) => {
             return (
               <Grid item xs={12} sm={4} key={i}>
