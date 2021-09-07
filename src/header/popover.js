@@ -22,8 +22,7 @@ const useStyles = makeStyles((theme) => ({
     margin: "20px 10px",
   },
   signOutButton: {
-    // backgroundColor: "rgb(251 180 21)",
-    width: "100px",
+    backgroundColor: "rgb(251 180 21)",
     margin: "20px 10px",
   },
 }));

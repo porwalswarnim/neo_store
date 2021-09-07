@@ -23,11 +23,14 @@ import BackdropComponent from "./commons/snackbar/BackdropComponent";
 import Header from "./header/Header";
 import Footer from "./footer/Footer";
 import InvoiceShow from "./InvoicePDF/InvoiceOrderBill";
+import ConfirmationBox from "./commons/snackbar/ConfirmationBox";
+
 function App() {
   return (
     <div>
       <SuccessSnackbar />
       <BackdropComponent />
+      <ConfirmationBox />
       <Router>
         <Header />
         <div style={{ minHeight: "60vh" }}>

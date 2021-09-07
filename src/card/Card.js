@@ -15,6 +15,12 @@ import { useDispatch } from "react-redux";
 import Rating from "@material-ui/lab/Rating";
 import axios from "axios";
 
+/**
+ * @author Swarnim Porwal
+ * @description 
+ * @param 
+ * @returns 
+ */
 const MediaCard = ({ data }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -43,7 +49,7 @@ const MediaCard = ({ data }) => {
         payload: { type: "success", message, open: true },
       });
     } catch (error) {
-      const message= "Something went Wrong";
+      const message= "Product already exist in cart";
       dispatch({
         type: "SHOW_SNACKBAR",
         payload: { type: "error", message, open: true },
@@ -73,7 +79,7 @@ const MediaCard = ({ data }) => {
             variant="h5"
             className={classes.FurnitureAmountName}
           >
-            {data.price}
+            Rs. {data.price}
           </Typography>
         </CardContent>
       </CardActionArea>

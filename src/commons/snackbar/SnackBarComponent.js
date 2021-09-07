@@ -20,8 +20,6 @@ export default function SuccessSnackbar() {
   const dispatch = useDispatch();
 
   const { message, type, open } = useSelector((state) => state.snackbar);
-  console.log("open", open);
-  console.log("message", message);
 
   function handleClose() {
     dispatch({

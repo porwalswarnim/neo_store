@@ -159,7 +159,7 @@ const AddCartItems = (props) => {
                   id: "outlined-age-native-simple",
                 }}
               >
-                <option aria-label="None" value="" />
+                <option aria-label="None" value={selectAddress.address} />
                 {addAddress.map((ele) => (
                   <option value={ele._id}>
                     {ele.addressLine}, &nbsp;

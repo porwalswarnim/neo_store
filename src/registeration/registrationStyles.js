@@ -13,7 +13,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   registerInputCSS: {
     width: "100%",
-    margin: "15px",
+    margin: "12px",
     "& input::placeholder": {
       fontSize: "20px",
       fontWeight: "bolder",
@@ -21,11 +21,12 @@ export const useStyles = makeStyles((theme) => ({
   },
 
   facebookCSS: {
-    marginLeft: "500px",
+    marginLeft: "550px",
   },
   GoogleCSS: {
     marginLeft: "50px",
     marginTop:'22px',
+    padding:'2px'
   },
   submitButton:{
     margin: "15px",

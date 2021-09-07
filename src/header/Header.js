@@ -20,6 +20,9 @@ import { useStyles } from "./headerStyles";
 import { useSelector } from "react-redux";
 
 const Header = (props) => {
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  const id = isLoggedIn?.id;
+  const loggedIn = isLoggedIn.filter((ele) => ele.length === id)[0];
   const classes = useStyles(props);
   const history = useHistory();
   const location = useLocation();
@@ -84,11 +87,7 @@ const Header = (props) => {
               Cart &nbsp;
               {products.length === 0 ? "" : products.length}
             </Button>
-            {POPOVER_CONSTANTS.includes(location.pathname) ? (
-              <PopoverPopupState />
-            ) : (
-              <PopoverPopupStateLogout />
-            )}
+            {loggedIn ? <PopoverPopupStateLogout /> : <PopoverPopupState />}
           </Grid>
         </Grid>
       </Toolbar>

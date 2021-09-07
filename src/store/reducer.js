@@ -4,19 +4,28 @@ import {
   LIST_PRODUCTS,
   ALL_ADDRESSES,
   ALL_ORDERS,
+  LOGGED_OUT,
 } from "../../src/types";
 
 const initialState = {
   cardData: [],
   isLoggedIn: [],
   listProducts: [],
-  addAddress:[],
-  allOrders:[],
-  isLoading : false,
+  addAddress: [],
+  allOrders: [],
+  isLoading: false,
+  isConfirmation: {
+    snackbarmessage: "",
+    confirmationmessage: "",
+    title: "",
+    path: "",
+    history: "",
+    open: false,
+  },
   snackbar: {
-    message:'',
-    open:false
-  }
+    message: "",
+    open: false,
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -26,6 +35,8 @@ const reducer = (state = initialState, action) => {
         ...state,
         isLoggedIn: [action.payload],
       };
+    case LOGGED_OUT:
+      return initialState;
     case LIST_PRODUCTS:
       return {
         ...state,
@@ -41,30 +52,42 @@ const reducer = (state = initialState, action) => {
         ...state,
         cardData: action.payload,
       };
-      case ALL_ORDERS:
+    case ALL_ORDERS:
       return {
         ...state,
         allOrders: action.payload,
       };
-      case ALL_ORDERS:
-        return {
-          ...state,
-          allOrders: action.payload,
-        };
-        case 'IS_LOADING':
-          return {
-            ...state,
-            isLoading: action.payload,
-          };
-        case 'SHOW_SNACKBAR':
-          return {
-            ...state,
-            snackbar: {
-              message: action.payload.message,
-              open: action.payload.open,
-              type: action.payload.type
-            }
-          };
+    case ALL_ORDERS:
+      return {
+        ...state,
+        allOrders: action.payload,
+      };
+    case "IS_LOADING":
+      return {
+        ...state,
+        isLoading: action.payload,
+      };
+    case "IS_CONFIRMATION":
+      return {
+        ...state,
+        isConfirmation: {
+          confirmationmessage: action.payload.confirmationmessage,
+          open: action.payload.open,
+          title: action.payload.title,
+          snackbarmessage: action.payload.snackbarmessage,
+          path: action.payload.path,
+          history: action.payload.history,
+        },
+      };
+    case "SHOW_SNACKBAR":
+      return {
+        ...state,
+        snackbar: {
+          message: action.payload.message,
+          open: action.payload.open,
+          type: action.payload.type,
+        },
+      };
   }
 
   return state;

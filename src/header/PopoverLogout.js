@@ -19,30 +19,34 @@ const useStyles = makeStyles((theme) => ({
   },
   signInButton: {
     backgroundColor: "rgb(251 180 21)",
-    width: "200px",
-    margin: "10px 40px",
+    margin: "20px 10px",
   },
   profileButton: {
     backgroundColor: "rgb(251 180 21)",
-    width: "200px",
-    margin: "10px 40px",
+    margin: "20px 10px",
   },
 }));
 const PopoverPopupStateLogout = (props) => {
-  const counter = useSelector((state) => state.isLoggedIn);
   const dispatch = useDispatch();
   const classes = useStyles(props);
   const history = useHistory();
 
   const OnLogoutHandler = async (e) => {
     e.preventDefault();
-    dispatch({ type: "LOGGED_OUT", payload: false });
-    history.push("/home");
-    localStorage.clear();
-    const message = "Logout Successfully";
+    const snackbarmessage = "Logout Successfully";
+    const confirmationmessage = "Would you like to logout?";
+    const title = "LOGOUT";
+    const path = "/home";
     dispatch({
-      type: "SHOW_SNACKBAR",
-      payload: { type: "success", message, open: true },
+      type: "IS_CONFIRMATION",
+      payload: {
+        open: true,
+        confirmationmessage,
+        snackbarmessage,
+        title,
+        path,
+        history,
+      },
     });
   };
   return (
@@ -70,24 +74,20 @@ const PopoverPopupStateLogout = (props) => {
             }}
           >
             <Box>
-              <Grid>
-                <Button
-                  variant="contained"
-                  className={classes.profileButton}
-                  onClick={() => history.push("/profilepage")}
-                >
-                  Profile
-                </Button>
-              </Grid>
-              <Grid>
-                <Button
-                  variant="contained"
-                  className={classes.signInButton}
-                  onClick={OnLogoutHandler}
-                >
-                  LogOut
-                </Button>
-              </Grid>
+              <Button
+                variant="contained"
+                className={classes.profileButton}
+                onClick={() => history.push("/profilepage")}
+              >
+                Profile
+              </Button>
+              <Button
+                variant="contained"
+                className={classes.signInButton}
+                onClick={OnLogoutHandler}
+              >
+                LogOut
+              </Button>
             </Box>
           </Popover>
         </div>
