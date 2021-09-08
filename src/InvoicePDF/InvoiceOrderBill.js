@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { ContactSupportOutlined } from "@material-ui/icons";
 const InvoiceShow = () => {
   const allOrders = useSelector((state) => state.allOrders);
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
   const { id } = useParams();
   const allOrder = allOrders.filter((ele) => ele._id === id)[0];
   console.log("allOrder", allOrder);
@@ -18,6 +19,15 @@ const InvoiceShow = () => {
     (total, currentValue) => (total = total + currentValue.quantity),
     0
   );
+
+  const a = allOrder.items.map((ele, i) => ({
+    id: 1,
+    name: ele.productId.name,
+    description: ele.productId.description,
+    price: ele.productId.price,
+    quantity: ele.quantity,
+  }));
+
   return (
     <div>
       <div
@@ -62,31 +72,14 @@ const InvoiceShow = () => {
           <div>Bannerghatt Road,</div>
           <div>Bangalore - 560076</div>
         </Row>
-
-        {allOrder.items.map((ele, i) => {
-          return (
-            <Row style={{ marginTop: 48 }}>
-              <Table
-                dataSource={[
-                  {
-                    id: 1,
-                    name: ele.productId.name,
-                    description: ele.productId.description,
-                    price: ele.productId.price,
-                    quantity: ele.quantity,
-                  },
-                ]}
-                pagination={false}
-              >
-                <Table.Column title="Items" dataIndex="name" />
-                <Table.Column title="Description" dataIndex="description" />
-                <Table.Column title="Quantity" dataIndex="quantity" />
-                <Table.Column title="Price" dataIndex="price" />
-              </Table>
-            </Row>
-          );
-        })}
-
+        <Row style={{ marginTop: 48 }}>
+          <Table dataSource={a}>
+            <Table.Column title="Items" dataIndex="name" />
+            <Table.Column title="Description" dataIndex="description" />
+            <Table.Column title="Quantity" dataIndex="quantity" />
+            <Table.Column title="Price" dataIndex="price" />
+          </Table>
+        </Row>
         <Row style={{ marginTop: 48 }}>
           <Col span={8} offset={16}>
             <table>
@@ -113,15 +106,6 @@ const InvoiceShow = () => {
           </h1>
         </Row>
       </div>
-      {/* <Button
-     variant="contained"
-     color="primary"
-     //  className={classes.buttonInvoiceDownload}   
-     //  onClick={() => history.push(`/ordermodule/${ele._id}`)}
-     onclick="javascript:PrintShortCutKey()"
-   >
-     Download Invoice as PDF
-   </Button> */}
     </div>
   );
 };

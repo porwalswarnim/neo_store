@@ -154,8 +154,8 @@ const AddCartItems = (props) => {
                 Address
               </InputLabel>
               <Select
-                native
-                value={selectAddress.address}
+              native
+                defaultValue={selectAddress.address}
                 onChange={handleChange}
                 label="Address"
                 style={{ width: "570px" }}
@@ -164,7 +164,6 @@ const AddCartItems = (props) => {
                   id: "outlined-age-native-simple",
                 }}
               >
-                <option aria-label="None" value={selectAddress.address} />
                 {addAddress.map((ele) => (
                   <option value={ele._id}>
                     {ele.addressLine}, &nbsp;

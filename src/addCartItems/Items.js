@@ -23,7 +23,7 @@ function PaperComponent(props) {
     </Draggable>
   );
 }
-const Items = ({ data, fetchItems }) => {
+const Items = ({ data, fetchCartData }) => {
   const [open, setOpen] = React.useState(false);
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -51,7 +51,7 @@ const Items = ({ data, fetchItems }) => {
         type: "SHOW_SNACKBAR",
         payload: { type: "success", message, open: true },
       });
-      fetchItems();
+      fetchCartData(dispatch);
     } catch (error) {
       console.log("error", error);
     }
@@ -74,7 +74,7 @@ const Items = ({ data, fetchItems }) => {
 
     try {
       var res = await axios(config);
-      fetchItems();
+      fetchCartData(dispatch);
     } catch (error) {}
   };
   return (
