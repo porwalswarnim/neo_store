@@ -36,7 +36,7 @@ const AddAddress = (props) => {
   };
 
   useEffect(() => {
-    fetchAddress();
+    fetchAddress(dispatch);
   }, []);
 
   return (

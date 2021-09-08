@@ -98,6 +98,9 @@ class ComponentToPrint extends React.Component {
               <Table.Column title="Price" dataIndex="price" />
             </Table>
           </Row>
+          <div style={{marginTop:'20px'}}>
+            Total Quantity: <strong>{totalQuantity}</strong>
+            </div>
           <Row style={{ marginTop: 48 }}>
             <Col span={8} offset={16}>
               <table>

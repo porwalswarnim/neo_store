@@ -121,7 +121,7 @@ const OrderModule = (props) => {
                   className={classes.buttonInvoiceDownload}
                   onClick={() => history.push(`/ordermodule/${ele._id}`)}
                 >
-                  Download Invoice as PDF
+                  Show Invoice Bill
                 </Button>
               </Box>
             );
