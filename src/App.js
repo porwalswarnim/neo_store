@@ -17,7 +17,7 @@ import SuccessSnackbar from "./commons/snackbar/SnackBarComponent";
 import BackdropComponent from "./commons/snackbar/BackdropComponent";
 import Header from "./header/Header";
 import Footer from "./footer/Footer";
-import InvoiceShow from "./InvoicePDF/InvoiceOrderBill";
+import Example from "./InvoicePDF/InvoiceOrderBill";
 import ConfirmationBox from "./commons/snackbar/ConfirmationBox";
 
 function App() {
@@ -46,7 +46,7 @@ function App() {
             component={ProductDetailModule}
           />
           <PrivateRoute exact path="/ordermodule" component={OrderModule} />
-          <PrivateRoute exact path="/ordermodule/:id" component={InvoiceShow} />
+          <PrivateRoute exact path="/ordermodule/:id" component={Example} />
           <PrivateRoute
             exact
             path="/changepassword"
