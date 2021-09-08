@@ -14,8 +14,10 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { LIST_PRODUCTS } from "../types";
 import { Typography } from "@material-ui/core";
+
 const ProductModule = () => {
   const listProducts = useSelector((state) => state.listProducts);
+  const searchTerm = useSelector((state) => state.searchTerm);
   const { name, id } = useParams();
   const [categories, setCategories] = useState([]);
   const [colors, setColors] = useState([]);
@@ -167,13 +169,23 @@ const ProductModule = () => {
                   </Typography>
                 </Box>
               )}
-              {listProducts.map((ele, i) => {
-                return (
-                  <Grid item xs={12} sm={4} key={i}>
-                    <MediaCard data={ele} key={ele.id} />
-                  </Grid>
-                );
-              })}
+              {listProducts
+                .filter((val) => {
+                  if (searchTerm == "") {
+                    return val;
+                  } else if (
+                    val.name.toLowerCase().includes(searchTerm.toLowerCase())
+                  ) {
+                    return val;
+                  }
+                })
+                .map((ele, i) => {
+                  return (
+                    <Grid item xs={12} sm={4} key={i}>
+                      <MediaCard data={ele} key={ele.id} />
+                    </Grid>
+                  );
+                })}
             </Grid>
           </Grid>
         </Grid>

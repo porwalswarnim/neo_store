@@ -50,7 +50,7 @@ const AddAddress = (props) => {
           <Box boxShadow={7} className={classes.boxCSS}>
             <ADDRESS_HEADING />
             {addAddress.map((ele, i) => {
-              return <AddAddressBox fetchAddress={fetchAddress} data={ele} key={ele.id} />;
+              return <AddAddressBox fetchAddress={fetchAddress} data={ele} key={ele._id} />;
             })}
 
             <Button

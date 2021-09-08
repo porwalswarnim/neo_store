@@ -15,6 +15,34 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import { Button } from "@material-ui/core";
 
+export const fetchCartData = async (dispatch) => {
+  const config = {
+    method: "get",
+    url: "https://neostore-api.herokuapp.com/api/cart",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: localStorage.getItem("token"),
+    },
+  };
+  try {
+    dispatch({
+      type: "IS_LOADING",
+      payload: true,
+    });
+    const res = await axios(config);
+    dispatch({
+      type: "IS_LOADING",
+      payload: false,
+    });
+    const cart = res?.data?.data;
+    dispatch({
+      type: ADD_TO_CART,
+      payload: cart,
+    });
+  } catch (err) {}
+};
+
 const AddCartItems = (props) => {
   const addAddress = useSelector((state) => state.addAddress);
   const classes = useStyles(props);
@@ -68,37 +96,9 @@ const AddCartItems = (props) => {
       });
     }
   };
-  var config = {
-    method: "get",
-    url: "https://neostore-api.herokuapp.com/api/cart",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: localStorage.getItem("token"),
-    },
-  };
-
-  const fetchItems = async () => {
-    try {
-      dispatch({
-        type: "IS_LOADING",
-        payload: true,
-      });
-      const res = await axios(config);
-      dispatch({
-        type: "IS_LOADING",
-        payload: false,
-      });
-      const cart = res?.data?.data;
-      dispatch({
-        type: ADD_TO_CART,
-        payload: cart,
-      });
-    } catch (err) {}
-  };
 
   useEffect(() => {
-    fetchItems();
+    fetchCartData(dispatch);
   }, []);
 
   return (
@@ -107,6 +107,7 @@ const AddCartItems = (props) => {
         <Grid item container row xs={12}>
           {products?.length === 0 && (
             <Grid
+              item
               xs={7}
               container
               className={classes.leftSideGrid}
@@ -130,7 +131,11 @@ const AddCartItems = (props) => {
                 {products.map((ele, i) => {
                   return (
                     <Box style={{ marginTop: "10px" }} boxShadow={5}>
-                      <Items data={ele} key={ele.id} fetchItems={fetchItems} />
+                      <Items
+                        data={ele}
+                        key={ele.id}
+                        fetchCartData={fetchCartData}
+                      />
                     </Box>
                   );
                 })}

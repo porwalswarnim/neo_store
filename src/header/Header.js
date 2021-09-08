@@ -8,13 +8,14 @@ import {
   InputBase,
   IconButton,
 } from "@material-ui/core";
-import React from "react";
+import React, {useState} from "react";
 import { useLocation } from "react-router-dom";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import SearchIcon from "@material-ui/icons/Search";
 import PopoverPopupState from "./popover";
 import { useHistory } from "react-router-dom";
 import PopoverPopupStateLogout from "./PopoverLogout";
+import { useDispatch } from "react-redux";
 import { POPOVER_CONSTANTS } from "./headerUtils";
 import { useStyles } from "./headerStyles";
 import { useSelector } from "react-redux";
@@ -26,6 +27,7 @@ const Header = (props) => {
   const classes = useStyles(props);
   const history = useHistory();
   const location = useLocation();
+  const dispatch = useDispatch();
   const { products = [] } = useSelector((state) => state.cardData);
   return (
     <AppBar position="static" className={classes.headerFeedback}>
@@ -75,6 +77,15 @@ const Header = (props) => {
               <InputBase
                 className={classes.inputSearchBox}
                 placeholder="Search.."
+                type="text"
+               
+                onChange={(event) => {
+                  const setSearchTerm = event.target.value;
+                  dispatch({
+                    type: "IS_SEARCHING",
+                    payload: setSearchTerm,
+                  });
+                }}
               />
             </Paper>
             <Button

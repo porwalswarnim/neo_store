@@ -14,6 +14,7 @@ const initialState = {
   addAddress: [],
   allOrders: [],
   isLoading: false,
+  searchTerm: '',
   isConfirmation: {
     snackbarmessage: "",
     confirmationmessage: "",
@@ -66,6 +67,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: action.payload,
+      };
+      case "IS_SEARCHING":
+      return {
+        ...state,
+        searchTerm: action.payload,
       };
     case "IS_CONFIRMATION":
       return {
