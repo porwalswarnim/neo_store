@@ -46,36 +46,46 @@ const RegistrationScreen = (props) => {
   };
   const submitRegisterFormHandler = async (e) => {
     e.preventDefault();
-    var data = {
-      firstName: registrationFormDetails.firstName,
-      lastName: registrationFormDetails.lastName,
-      email: registrationFormDetails.registerEmail,
-      mobile: registrationFormDetails.mobileNumber,
-      gender: registrationFormDetails.radio,
-      password: registrationFormDetails.registerPassword,
-      confirm_password: registrationFormDetails.registerConfirmPassword,
-    };
-
-    var config = {
-      method: "post",
-      url: "https://neostore-api.herokuapp.com/api/auth/register",
-      data,
-    };
-
-    try {
-      var res = await axios(config);
-      const message = 'Successfully Registered';
-      dispatch({
-        type: "SHOW_SNACKBAR",
-        payload: { type: "success", message, open: true },
-      });
-        history.push("/login");
-    } catch (error) {
-      const message= "Email Already registered";
+    if (
+      registrationFormDetails.registerPassword !==
+      registrationFormDetails.registerConfirmPassword
+    ) {
+      const message = "Passwords don't match";
       dispatch({
         type: "SHOW_SNACKBAR",
         payload: { type: "error", message, open: true },
       });
+    } else {
+      var data = {
+        firstName: registrationFormDetails.firstName,
+        lastName: registrationFormDetails.lastName,
+        email: registrationFormDetails.registerEmail,
+        mobile: registrationFormDetails.mobileNumber,
+        gender: registrationFormDetails.radio,
+        password: registrationFormDetails.registerPassword,
+        confirm_password: registrationFormDetails.registerConfirmPassword,
+      };
+
+      var config = {
+        method: "post",
+        url: "https://neostore-api.herokuapp.com/api/auth/register",
+        data,
+      };
+      try {
+        var res = await axios(config);
+        const message = "Successfully Registered";
+        dispatch({
+          type: "SHOW_SNACKBAR",
+          payload: { type: "success", message, open: true },
+        });
+        history.push("/login");
+      } catch (error) {
+        const message = "Email Already registered";
+        dispatch({
+          type: "SHOW_SNACKBAR",
+          payload: { type: "error", message, open: true },
+        });
+      }
     }
   };
 
@@ -113,7 +123,7 @@ const RegistrationScreen = (props) => {
               }
               endAdornment={
                 <InputAdornment position="end">
-                    <TextFieldsIcon style={{ fontSize: "40px" }} />
+                  <TextFieldsIcon style={{ fontSize: "40px" }} />
                 </InputAdornment>
               }
             />
@@ -130,7 +140,7 @@ const RegistrationScreen = (props) => {
               }
               endAdornment={
                 <InputAdornment position="end">
-                    <TextFieldsIcon position="end" style={{ fontSize: "40px" }} />
+                  <TextFieldsIcon position="end" style={{ fontSize: "40px" }} />
                 </InputAdornment>
               }
             />
@@ -147,7 +157,7 @@ const RegistrationScreen = (props) => {
               variant="outlined"
               endAdornment={
                 <InputAdornment position="end">
-                    <EmailIcon style={{ fontSize: "40px" }} />
+                  <EmailIcon style={{ fontSize: "40px" }} />
                 </InputAdornment>
               }
             />
@@ -219,7 +229,7 @@ const RegistrationScreen = (props) => {
               inputProps={{ maxLength: 10 }}
               endAdornment={
                 <InputAdornment position="end">
-                    <CallIcon style={{ fontSize: "40px" }} />
+                  <CallIcon style={{ fontSize: "40px" }} />
                 </InputAdornment>
               }
             />

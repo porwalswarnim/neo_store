@@ -93,7 +93,7 @@ const MediaCard = ({ data }) => {
           Add to Cart
         </Button>
       </CardActions>
-      <Box component="fieldset" borderColor="transparent">
+      <Box component="fieldset" borderColor="transparent" display="flex"  justifyContent="center">
         <Rating name="simple-controlled" value={data.avgRating} />
       </Box>
     </Card>

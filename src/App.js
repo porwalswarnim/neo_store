@@ -10,12 +10,7 @@ import AddAddress from "./myaccount/AddAddress";
 import AddNewAddress from "./myaccount/AddNewAddress";
 import EditAddress from "./myaccount/EditAddress";
 import PrivateRoute from "./PrivateRoute";
-import {
-  BrowserRouter as Router,
-  Redirect,
-  Route,
-  Link,
-} from "react-router-dom";
+import { BrowserRouter as Router, Redirect, Route } from "react-router-dom";
 import ProductDetailModule from "./productDetailModule/ProductDetailModule";
 import AddCartItems from "./addCartItems/AddCartItems";
 import SuccessSnackbar from "./commons/snackbar/SnackBarComponent";
@@ -35,21 +30,6 @@ function App() {
         <Header />
         <div style={{ minHeight: "60vh" }}>
           <Route exact path="/" component={() => <Redirect to="/home" />} />
-          <Link to="/home"></Link>
-          <Link to="/login"></Link>
-          <Link to="/registration"></Link>
-          <Link to="/forgotpassword"></Link>
-          <Link to="/productmodule"></Link>
-          <Link to="/productmodule/:id"></Link>
-          <Link to="/productdetailmodule"></Link>
-          <Link to="/ordermodule"></Link>
-          <Link to="/changepassword"></Link>
-          <Link to="/profilepage"></Link>
-          <Link to="/addAddress"></Link>
-          <Link to="/addNewAddress"></Link>
-          <Link to="/editAddress"></Link>
-          <Link to="/AddCartItems"></Link>
-
           <Route exact path="/home" component={HomePage} />
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/registration" component={RegistrationScreen} />
