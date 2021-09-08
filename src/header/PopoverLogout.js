@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 const useStyles = makeStyles((theme) => ({
   loginBox: {
     paddingBottom: "10px",
-    marginLeft: "10px",
+    // marginLeft: "10px",
     backgroundColor: "white",
     width: "100px",
   },

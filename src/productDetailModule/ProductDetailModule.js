@@ -67,9 +67,9 @@ const ProductDetailModule = (props) => {
             </Box>
             <hr className={classes.hrCSS} />
             <Typography className={classes.priceCSS}>
-              Price:
+              Price: 
               <span className={classes.priceAmountCSS}>
-                {listProduct.price}
+                Rs. {listProduct.price}
               </span>
             </Typography>
             <Typography style={{ fontSize: "30px" }}>

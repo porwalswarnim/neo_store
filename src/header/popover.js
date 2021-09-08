@@ -12,7 +12,6 @@ import PopupState, { bindTrigger, bindPopover } from "material-ui-popup-state";
 const useStyles = makeStyles((theme) => ({
   loginBox: {
     paddingBottom: "10px",
-    marginLeft: "10px",
     backgroundColor: "white",
     width: "100px",
   },

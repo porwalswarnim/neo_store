@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme) => ({
     mainGrid:{
-        marginTop: "120px",
+        marginTop: "30px",
          border: "1px solid #e2cdcd26", 
     },
     leftProductGrid: {
