@@ -11,6 +11,13 @@ import LeftSideBar from "./LeftSideBar";
 import { useStyles } from "./changePasswordStyles";
 import { MYACCOUNT_HEADING, CHANGE_PASSWORD_HEADING } from "./myacountUtils";
 import axios from "axios";
+
+/**
+ * @author Swarnim Porwal
+ * @description this method is reponsible for changing password 
+ * @returns JSX for Change password screen
+ */
+
 const ChangePassword = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();

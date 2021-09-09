@@ -5,6 +5,11 @@ import { connect } from "react-redux";
 import { Button } from "@material-ui/core";
 import "antd/dist/antd.css";
 
+/**
+ * @author Swarnim Porwal
+ * @description this method extract the information from order array, put them in to the pdf document
+ * @returns JSX for Order Invoice Screen
+ */
 const mapStateToProps = state => {
   return {
     allOrders: state.allOrders,

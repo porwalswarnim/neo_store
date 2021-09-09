@@ -21,6 +21,12 @@ import { useStyles } from "./registrationStyles";
 import { REGISTER_HEADING, MAX_100_KEYWORD } from "./registrationUtils";
 import axios from "axios";
 
+/**
+ * @author Swarnim Porwal
+ * @description this method is responsible for registering user by accepting information like firstname, lastname, email, password, mobile no, gender
+ * @returns JSX for Registration Screen
+ */
+
 const RegistrationScreen = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();

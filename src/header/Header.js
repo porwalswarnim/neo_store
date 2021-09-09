@@ -19,6 +19,14 @@ import { useDispatch } from "react-redux";
 import { useStyles } from "./headerStyles";
 import { useSelector } from "react-redux";
 
+
+
+/**
+ * @author Swarnim Porwal
+ * @description this method contains Header for a whole project
+ * @returns JSX for Headers
+ */
+
 const Header = (props) => {
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
   const id = isLoggedIn?.id;

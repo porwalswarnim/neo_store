@@ -9,6 +9,14 @@ import React, { useEffect } from "react";
 import { ALL_ADDRESSES } from "../types";
 import { useSelector } from "react-redux";
 import AddAddressBox from "./AddAddressBox";
+
+/**
+ * @author Swarnim Porwal
+ * @description this function returns a address card
+ * @param {props} props that contains address object
+ * @returns JSX for Address Card Screen
+ */
+
 const AddAddress = (props) => {
   const addAddress = useSelector((state) => state.addAddress);
   const history = useHistory();
@@ -50,7 +58,13 @@ const AddAddress = (props) => {
           <Box boxShadow={7} className={classes.boxCSS}>
             <ADDRESS_HEADING />
             {addAddress.map((ele, i) => {
-              return <AddAddressBox fetchAddress={fetchAddress} data={ele} key={ele._id} />;
+              return (
+                <AddAddressBox
+                  fetchAddress={fetchAddress}
+                  data={ele}
+                  key={ele._id}
+                />
+              );
             })}
 
             <Button

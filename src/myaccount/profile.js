@@ -12,6 +12,11 @@ import {
 } from "./myacountUtils";
 import { useSelector } from "react-redux";
 
+/**
+ * @author Swarnim Porwal
+ * @description this method gets the exsisting profile data and show them in to the profile section
+ * @returns JSX for Profile Screen
+ */
 const ProfilePage = (props) => {
   const isLoggedIn = useSelector(state => state.isLoggedIn['0'])
   const classes = useStyles(props);

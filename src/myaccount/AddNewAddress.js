@@ -13,6 +13,12 @@ import {
   MAX_100_HEADING,
 } from "./myacountUtils";
 import axios from "axios";
+
+/**
+ * @author Swarnim Porwal
+ * @description Add new address for the customer
+ * @returns JSX for Add Address Screen
+ */
 const AddNewAddress = (props) => {
   const classes = useStyles(props);
   const history = useHistory();

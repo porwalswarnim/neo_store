@@ -16,6 +16,11 @@ import LeftSideLogin from "./LeftSideLogin";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 
+/**
+ * @author Swarnim Porwal
+ * @description this method is responsible for logging in a user by email and password
+ * @returns JSX for Login screen
+ */
 const LoginPage = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();

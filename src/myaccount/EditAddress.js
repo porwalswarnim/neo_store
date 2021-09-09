@@ -14,6 +14,12 @@ import {
 import axios from "axios";
 import { useSelector } from "react-redux";
 
+
+/**
+ * @author Swarnim Porwal
+ * @description Edit address for the customer
+ * @returns JSX for Edit Address Screen
+ */
 const EditAddress = (props) => {
   const dispatch = useDispatch();
   const addAddress = useSelector((state) => state.addAddress);

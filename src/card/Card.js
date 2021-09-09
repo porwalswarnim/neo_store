@@ -18,9 +18,8 @@ import { fetchCartData } from "../addCartItems/AddCartItems";
 
 /**
  * @author Swarnim Porwal
- * @description 
- * @param 
- * @returns 
+ * @description this function contains several methods for loading all the added products from the cart, calculating total amount and redirecting to the checkout section
+ * @returns JSX for Add Cart Items
  */
 const MediaCard = ({ data }) => {
   const classes = useStyles();

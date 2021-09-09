@@ -10,7 +10,11 @@ import DescriptionDetails from "./Description";
 import { useStyles } from "./productDetailsStyles";
 import { SHARE_BUTTON_HEADING } from "./productUtils";
 import { useSelector } from "react-redux";
-
+/**
+ * @author Swarnim Porwal
+ * @description this method is responsible for showing the details of a product, it receives data from detail context 
+ * @returns JSX for Product Detail Screen
+ */
 const ProductDetailModule = (props) => {
   const listProducts = useSelector((state) => state.listProducts);
   const history = useHistory();

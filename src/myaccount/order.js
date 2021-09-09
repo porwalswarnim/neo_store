@@ -8,7 +8,11 @@ import { useDispatch } from "react-redux";
 import { ALL_ORDERS } from "../types";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-
+/**
+ * @author Swarnim Porwal
+ * @description this method is responsible for showing the all the orders that has been made using order cards
+ * @returns JSX for Order screen
+ */
 const OrderModule = (props) => {
   const allOrders = useSelector((state) => state.allOrders);
   const dispatch = useDispatch();

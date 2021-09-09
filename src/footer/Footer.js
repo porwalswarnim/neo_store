@@ -15,6 +15,11 @@ import {
 } from "./footerUtils";
 import { useStyles } from "./footerStyles";
 
+/**
+ * @author Swarnim Porwal
+ * @description this method contains Footer for a whole project
+ * @returns JSX for Footer
+ */
 export default function Footer(props) {
   const classes = useStyles(props);
   return (

@@ -7,6 +7,12 @@ import SortOutlinedIcon from "@material-ui/icons/SortOutlined";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import SwapHorizIcon from "@material-ui/icons/SwapHoriz";
 import HomeIcon from "@material-ui/icons/Home";
+
+
+/**
+ * @author Swarnim Porwal
+ * @returns JSX for Left Side grid for myaccount page
+ */
 const useStyles = makeStyles((theme) => ({
     LeftSideBarCSS: {
         display: "flex",

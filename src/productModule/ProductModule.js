@@ -15,6 +15,11 @@ import { useSelector } from "react-redux";
 import { LIST_PRODUCTS } from "../types";
 import { Typography } from "@material-ui/core";
 
+/**
+ * @author Swarnim Porwal
+ * @description this function contains the loadProducts function which will load all the products from the API, three specific methods onCategoryChange, onColorChange and onSortChange will monitor all the filters being applied 
+ * @returns JSX for All Products Screen
+ */
 const ProductModule = (props) => {
   const listProducts = useSelector((state) => state.listProducts);
   const searchTerm = useSelector((state) => state.searchTerm);

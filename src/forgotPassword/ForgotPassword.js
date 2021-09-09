@@ -10,6 +10,12 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import { useStyles } from "./forgotPasswordStyles";
 
+
+/**
+ * @author Swarnim Porwal
+ * @description this method is responsible for taking the user email and sending the verification code to the user
+ * @returns JSX for Forget Password Screen
+ */
 const ForgotScreen = (props) => {
   const history = useHistory();
   const [verificationCode, setVerificationCode] = useState("");
