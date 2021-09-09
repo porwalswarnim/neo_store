@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
-
 /**
  * @author Swarnim Porwal
  * @description this method puts all together different parts of homescreen like carousal, all products section and popular products section

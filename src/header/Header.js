@@ -19,8 +19,6 @@ import { useDispatch } from "react-redux";
 import { useStyles } from "./headerStyles";
 import { useSelector } from "react-redux";
 
-
-
 /**
  * @author Swarnim Porwal
  * @description this method contains Header for a whole project
