@@ -19,6 +19,7 @@ export const useStyles = makeStyles((theme) => ({
         padding: "10px",
         fontSize: "30px",
         borderColor: "transparent",
+        cursor:'pointer',
       },
       treeItemCSS: {
         width: "260px",

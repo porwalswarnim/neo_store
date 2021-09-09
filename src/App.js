@@ -44,11 +44,6 @@ function App() {
             <Route exact path="/productmodule" component={ProductModule} />
             <PrivateRoute
               exact
-              path="/productmodule/:name/:id"
-              component={ProductModule}
-            />
-            <PrivateRoute
-              exact
               path="/productdetailmodule/:id"
               component={ProductDetailModule}
             />

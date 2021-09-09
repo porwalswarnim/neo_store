@@ -15,12 +15,14 @@ import { useSelector } from "react-redux";
 import { LIST_PRODUCTS } from "../types";
 import { Typography } from "@material-ui/core";
 
-const ProductModule = () => {
+const ProductModule = (props) => {
   const listProducts = useSelector((state) => state.listProducts);
   const searchTerm = useSelector((state) => state.searchTerm);
   const { name, id } = useParams();
   const [categories, setCategories] = useState([]);
   const [colors, setColors] = useState([]);
+  const [categoryId, setCategoryId] = useState(null);
+  const [colorId, setColorId] = useState(null);
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -49,13 +51,10 @@ const ProductModule = () => {
       alert("failed");
     }
   };
+
   const getProducts = async () => {
-    let url = "";
-    if (id) {
-      url = `https://neostore-api.herokuapp.com/api/product?${name}=${id}`;
-    } else {
-      url = "https://neostore-api.herokuapp.com/api/product";
-    }
+    const url = `https://neostore-api.herokuapp.com/api/product${props.location.search}`;
+
     const config = {
       method: "get",
       url: url,
@@ -88,14 +87,32 @@ const ProductModule = () => {
 
   useEffect(() => {
     getProducts();
-  }, [id]);
+  }, [id, props.location.search]);
+
+  useEffect(() => {
+    history.push({
+      pathname: "/productmodule",
+      search: `?${categoryId ? `category=${categoryId}&&` : ""}${
+        colorId ? `color=${colorId}` : ""
+      }`,
+    });
+  }, [categoryId, colorId]);
 
   return (
     <div>
       <Grid item container className={classes.mainGrid} row xs={12}>
         <Grid item xs={3}>
           <Grid className={classes.leftProductGrid}>
-            <BOX_ALLPRODUCT />
+            <Box
+              boxShadow={10}
+              className={classes.boxCSS}
+              onClick={() => {
+                setCategoryId(null);
+                setColorId(null);
+              }}
+            >
+              All Products
+            </Box>
             <TreeView
               defaultCollapseIcon={<ExpandMoreIcon />}
               defaultExpandIcon={<ChevronRightIcon />}
@@ -107,16 +124,14 @@ const ProductModule = () => {
                   classes={{ label: classes.label }}
                 >
                   {categories
-                    // .filter((ele) => ele.imageUrl)
-                    .map((ele, i) => {
+                    .filter((ele) => ele.imageUrl)
+                    .map((ele) => {
                       return (
                         <TreeItem
-                          nodeId={i}
+                          nodeId={ele._id}
                           className={classes.treeItemCSS}
                           label={ele.name}
-                          onClick={() =>
-                            history.push(`/productmodule/category/${ele._id}`)
-                          }
+                          onClick={() => setCategoryId(ele._id)}
                         />
                       );
                     })}
@@ -128,15 +143,13 @@ const ProductModule = () => {
                   label="Colors"
                   classes={{ label: classes.label }}
                 >
-                  {colors.map((ele, i) => {
+                  {colors.map((ele) => {
                     return (
                       <TreeItem
-                        nodeId={i}
+                        nodeId={ele._id}
                         className={classes.treeItemCSS}
                         label={ele.name}
-                        onClick={() =>
-                          history.push(`/productmodule/color/${ele._id}`)
-                        }
+                        onClick={() => setColorId(ele._id)}
                       />
                     );
                   })}
@@ -149,25 +162,18 @@ const ProductModule = () => {
           <Grid className={classes.rightProductGrid}>
             <Grid container item xs={12} style={{ marginLeft: "20px" }}>
               {listProducts?.length === 0 && (
-                <Box
-                  style={{
-                    width: "400px",
-                    height: "400px",
-                    marginLeft: "300px",
-                    backgroundColor: "#f9f9f9",
-                  }}
-                >
-                  <Typography
-                    style={{
-                      fontSize: "80px",
-                      fontWeight: "bold",
-                      backgroundColor: "#f9f9f9",
-                      textAlign: "center",
-                    }}
-                  >
-                    No Products To Display
-                  </Typography>
-                </Box>
+               <Grid
+               container
+               justify="center"
+               style={{ marginTop: "30px", cursor: "pointer" }}
+             >
+               <img
+                 style={{ width: "60%" }}
+                 onClick={() => history.push("/home")}
+                 src="/NoDataFound.png"
+                 alt="image"
+               />
+             </Grid>
               )}
               {listProducts
                 .filter((val) => {
