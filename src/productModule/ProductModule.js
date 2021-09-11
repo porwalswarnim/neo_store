@@ -9,11 +9,10 @@ import { useHistory, useParams } from "react-router-dom";
 import TreeItem from "@material-ui/lab/TreeItem";
 import { useStyles } from "./productModuleStyles";
 import { useDispatch } from "react-redux";
-import { BOX_ALLPRODUCT } from "./productUtils";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { LIST_PRODUCTS } from "../types";
-import { Typography } from "@material-ui/core";
+import { IS_LOADING } from "../types";
 
 /**
  * @author Swarnim Porwal
@@ -23,7 +22,7 @@ import { Typography } from "@material-ui/core";
 const ProductModule = (props) => {
   const listProducts = useSelector((state) => state.listProducts);
   const searchTerm = useSelector((state) => state.searchTerm);
-  const { name, id } = useParams();
+  const { id } = useParams();
   const [categories, setCategories] = useState([]);
   const [colors, setColors] = useState([]);
   const [categoryId, setCategoryId] = useState(null);
@@ -66,12 +65,12 @@ const ProductModule = (props) => {
     };
     try {
       dispatch({
-        type: "IS_LOADING",
+        type: IS_LOADING,
         payload: true,
       });
       const res = await axios(config);
       dispatch({
-        type: "IS_LOADING",
+        type: IS_LOADING,
         payload: false,
       });
       const docs = res?.data?.data.docs;
@@ -176,13 +175,13 @@ const ProductModule = (props) => {
                  style={{ width: "60%" }}
                  onClick={() => history.push("/home")}
                  src="/NoDataFound.png"
-                 alt="image"
+                 alt=""
                />
              </Grid>
               )}
               {listProducts
                 .filter((val) => {
-                  if (searchTerm == "") {
+                  if (searchTerm === "") {
                     return val;
                   } else if (
                     val.name.toLowerCase().includes(searchTerm.toLowerCase())

@@ -1,4 +1,4 @@
-import { Grid, Typography, Button } from "@material-ui/core";
+import { Grid, Typography} from "@material-ui/core";
 import { useStyles } from "./ReviewOrderStyles";
 
 const ReviewOrderTotal = ({ total }) => {

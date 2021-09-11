@@ -13,7 +13,7 @@ import {
 } from "./myacountUtils";
 import axios from "axios";
 import { useSelector } from "react-redux";
-
+import { SHOW_SNACKBAR } from "../types";
 
 /**
  * @author Swarnim Porwal
@@ -61,13 +61,13 @@ const EditAddress = (props) => {
       var res = await axios(config);
       const message= "Address Edited Successfully";
       dispatch({
-        type: "SHOW_SNACKBAR",
+        type: SHOW_SNACKBAR,
         payload: { type: "success", message, open: true },
       });
     } catch (error) {
       const message= "Something went Wrong";
       dispatch({
-        type: "SHOW_SNACKBAR",
+        type: SHOW_SNACKBAR,
         payload: { type: "error", message, open: true },
       });
     }

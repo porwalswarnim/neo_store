@@ -20,7 +20,7 @@ import { useDispatch } from "react-redux";
 import { useStyles } from "./registrationStyles";
 import { REGISTER_HEADING, MAX_100_KEYWORD } from "./registrationUtils";
 import axios from "axios";
-
+import { SHOW_SNACKBAR } from "../types";
 /**
  * @author Swarnim Porwal
  * @description this method is responsible for registering user by accepting information like firstname, lastname, email, password, mobile no, gender
@@ -58,7 +58,7 @@ const RegistrationScreen = (props) => {
     ) {
       const message = "Passwords don't match";
       dispatch({
-        type: "SHOW_SNACKBAR",
+        type: SHOW_SNACKBAR,
         payload: { type: "error", message, open: true },
       });
     } else {
@@ -81,14 +81,14 @@ const RegistrationScreen = (props) => {
         var res = await axios(config);
         const message = "Successfully Registered";
         dispatch({
-          type: "SHOW_SNACKBAR",
+          type: SHOW_SNACKBAR,
           payload: { type: "success", message, open: true },
         });
         history.push("/login");
       } catch (error) {
         const message = "Email Already registered";
         dispatch({
-          type: "SHOW_SNACKBAR",
+          type: SHOW_SNACKBAR,
           payload: { type: "error", message, open: true },
         });
       }
@@ -274,6 +274,16 @@ const RegistrationScreen = (props) => {
               className={`${
                 registrationFormDetails ? "btn-primary" : "btn-disable"
               } ${classes.submitButton}`}
+              disabled={
+                !(
+                  registrationFormDetails.firstName &&
+                  registrationFormDetails.lastName &&
+                  registrationFormDetails.registerEmail &&
+                  registrationFormDetails.registerPassword &&
+                  registrationFormDetails.registerConfirmPassword &&
+                  registrationFormDetails.mobileNumber 
+                )
+              }
               variant="contained"
               color="primary"
             >

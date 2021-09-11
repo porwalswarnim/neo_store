@@ -21,12 +21,12 @@ export const useStyles = makeStyles((theme) => ({
   },
 
   facebookCSS: {
-    marginLeft: "550px",
+    marginLeft: "420px",
   },
   GoogleCSS: {
     marginLeft: "50px",
     marginTop:'22px',
-    padding:'2px'
+    // padding:'2px'
   },
   submitButton:{
     margin: "15px",

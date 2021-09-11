@@ -14,10 +14,11 @@ import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import { Button } from "@material-ui/core";
+import { IS_LOADING,SHOW_SNACKBAR } from "../types";
 /**
  * @author Swarnim Porwal
  * @description this function gets all the data and put them into the card
- * this method contains 3 methods : 
+ * this method contains 3 methods :
  * incre() :  increase the quantity
  * decre() : decrease the quantity
  * deleteProduct() : to delete the product from the cart
@@ -37,12 +38,12 @@ export const fetchCartData = async (dispatch) => {
   };
   try {
     dispatch({
-      type: "IS_LOADING",
+      type: IS_LOADING,
       payload: true,
     });
     const res = await axios(config);
     dispatch({
-      type: "IS_LOADING",
+      type: IS_LOADING,
       payload: false,
     });
     const cart = res?.data?.data;
@@ -62,11 +63,9 @@ const AddCartItems = (props) => {
   );
   const dispatch = useDispatch();
   const [selectAddress, setSelectAddress] = useState({
-    address: "",
+    address: addAddress[0],
     name: "",
   });
-  console.log("selectAddress", selectAddress);
-
   const handleChange = (e) => {
     const name = e.target.name;
     setSelectAddress({
@@ -94,14 +93,14 @@ const AddCartItems = (props) => {
       var res = await axios(config);
       const message = "Ordered Placed Successfully";
       dispatch({
-        type: "SHOW_SNACKBAR",
+        type: SHOW_SNACKBAR,
         payload: { type: "success", message, open: true },
       });
       history.push("/ordermodule");
     } catch (res) {
       const message = "Address is required";
       dispatch({
-        type: "SHOW_SNACKBAR",
+        type: SHOW_SNACKBAR,
         payload: { type: "error", message, open: true },
       });
     }
@@ -135,7 +134,7 @@ const AddCartItems = (props) => {
             </Grid>
           )}
           {products?.length !== 0 && (
-            <Grid item xs={7} className={classes.leftSideGrid}>
+            <Grid item  xs={7} className={classes.leftSideGrid}>
               <Box boxShadow={8}>
                 <HeaderItems />
                 {products.map((ele, i) => {
@@ -156,6 +155,7 @@ const AddCartItems = (props) => {
             <FormControl
               variant="outlined"
               style={{ backgroundColor: "#f9f9f9" }}
+              autoComplete="off"
             >
               <InputLabel
                 // htmlFor="outlined-address-native-simple"
@@ -164,8 +164,8 @@ const AddCartItems = (props) => {
                 Address
               </InputLabel>
               <Select
-              native
-                defaultValue={selectAddress.address}
+                native
+                value={selectAddress.address}
                 onChange={handleChange}
                 label="Address"
                 style={{ width: "570px" }}

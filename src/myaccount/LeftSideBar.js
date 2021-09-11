@@ -1,4 +1,4 @@
-import { Grid, AppBar, Typography, Button } from "@material-ui/core";
+import { Grid, Typography, Button } from "@material-ui/core";
 import React from "react";
 import { useHistory } from "react-router-dom";
 import SettingsApplicationsSharpIcon from "@material-ui/icons/SettingsApplicationsSharp";

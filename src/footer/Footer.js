@@ -11,7 +11,6 @@ import React from "react";
 import {
   FOOTER_ABOUT_CONSTANTS,
   COPY_RIGHT_TEXT,
-  FOOTER_INFORMATION_CONSTANTS,
 } from "./footerUtils";
 import { useStyles } from "./footerStyles";
 

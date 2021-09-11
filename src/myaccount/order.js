@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { ALL_ORDERS } from "../types";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { IS_LOADING } from "../types";
 /**
  * @author Swarnim Porwal
  * @description this method is responsible for showing the all the orders that has been made using order cards
@@ -31,12 +32,12 @@ const OrderModule = (props) => {
   const fetchOrder = async () => {
     try {
       dispatch({
-        type: "IS_LOADING",
+        type: IS_LOADING,
         payload: true,
       });
       const res = await axios(config);
       dispatch({
-        type: "IS_LOADING",
+        type: IS_LOADING,
         payload: false,
       });
       const body = res?.data?.data?.orders;

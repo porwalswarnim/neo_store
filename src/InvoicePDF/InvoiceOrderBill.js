@@ -10,7 +10,7 @@ import "antd/dist/antd.css";
  * @description this method extract the information from order array, put them in to the pdf document
  * @returns JSX for Order Invoice Screen
  */
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     allOrders: state.allOrders,
     addAddress: state.addAddress,
@@ -25,12 +25,10 @@ class ComponentToPrint extends React.Component {
     const allOrder = this.props.allOrders.filter(
       (ele) => ele._id === this.props.id
     )[0];
-    const addressId = allOrder.addressId
+    const addressId = allOrder.addressId;
     const address = this.props.addAddress.filter(
       (ele) => ele._id === addressId
     )[0];
-    console.log('address',address)
-    console.log("allOrder", allOrder);
     const totalPrice = allOrder?.items.reduce(
       (total, currentValue) => (total = total + currentValue?.productId?.price),
       0
@@ -88,13 +86,17 @@ class ComponentToPrint extends React.Component {
             </Col>
           </Row>
 
-            <div style={{marginTop:'48px'}}>
-              Bill To: <strong>Swarnim Porwal</strong>
-            </div>
-            <div>Address :</div>
-            <div>{address.addressLine}</div>
-            <div>{address.city} - {address.pincode}</div>
-            <div>{address.state} , {address.country}</div>
+          <div style={{ marginTop: "48px" }}>
+            Bill To: <strong>Swarnim Porwal</strong>
+          </div>
+          <div>Address :</div>
+          <div>{address.addressLine}</div>
+          <div>
+            {address.city} - {address.pincode}
+          </div>
+          <div>
+            {address.state} , {address.country}
+          </div>
           <Row style={{ marginTop: 48 }}>
             <Table dataSource={a} pagination={false}>
               <Table.Column title="Items" dataIndex="name" />
@@ -103,9 +105,9 @@ class ComponentToPrint extends React.Component {
               <Table.Column title="Price" dataIndex="price" />
             </Table>
           </Row>
-          <div style={{marginTop:'20px'}}>
+          <div style={{ marginTop: "20px" }}>
             Total Quantity: <strong>{totalQuantity}</strong>
-            </div>
+          </div>
           <Row style={{ marginTop: 48 }}>
             <Col span={8} offset={16}>
               <table>

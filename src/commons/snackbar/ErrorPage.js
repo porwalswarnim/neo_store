@@ -13,7 +13,7 @@ const ErrorPage = () => {
         style={{ width: "60%" }}
         onClick={() => history.push("/home")}
         src="/ErrorImage.jpg"
-        alt="image"
+        alt=""
       />
     </Grid>
   );
@@ -21,9 +21,4 @@ const ErrorPage = () => {
 
 export default ErrorPage;
 
-// body {
-//     background: #dedede;
-// }
-// .page-wrap {
-//     min-height: 100vh;
-// }
+

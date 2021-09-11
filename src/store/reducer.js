@@ -1,10 +1,14 @@
 import {
   LOGGED_IN,
+  LOGGED_OUT,
   ADD_TO_CART,
   LIST_PRODUCTS,
   ALL_ADDRESSES,
   ALL_ORDERS,
-  LOGGED_OUT,
+  IS_LOADING,
+  IS_SEARCHING,
+  IS_CONFIRMATION,
+  SHOW_SNACKBAR
 } from "../../src/types";
 
 const initialState = {
@@ -63,17 +67,17 @@ const reducer = (state = initialState, action) => {
         ...state,
         allOrders: action.payload,
       };
-    case "IS_LOADING":
+    case IS_LOADING:
       return {
         ...state,
         isLoading: action.payload,
       };
-      case "IS_SEARCHING":
+      case IS_SEARCHING:
       return {
         ...state,
         searchTerm: action.payload,
       };
-    case "IS_CONFIRMATION":
+    case IS_CONFIRMATION:
       return {
         ...state,
         isConfirmation: {
@@ -85,7 +89,7 @@ const reducer = (state = initialState, action) => {
           history: action.payload.history,
         },
       };
-    case "SHOW_SNACKBAR":
+    case SHOW_SNACKBAR:
       return {
         ...state,
         snackbar: {

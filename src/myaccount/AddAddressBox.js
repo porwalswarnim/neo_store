@@ -13,7 +13,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Paper from "@material-ui/core/Paper";
 import Draggable from "react-draggable";
-
+import { SHOW_SNACKBAR } from "../types";
 /**
  * @author Swarnim Porwal
  * @description  this function redirect to the add address screen
@@ -55,13 +55,13 @@ const AddAddressBox = ({ data, fetchAddress }) => {
       fetchAddress();
       const message = "Address Deleted successfully";
       dispatch({
-        type: "SHOW_SNACKBAR",
+        type: SHOW_SNACKBAR,
         payload: { type: "success", message, open: true },
       });
     } catch (error) {
       const message = "Something went Wrong";
       dispatch({
-        type: "SHOW_SNACKBAR",
+        type: SHOW_SNACKBAR,
         payload: { type: "error", message, open: true },
       });
     }

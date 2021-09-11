@@ -1,19 +1,17 @@
 import React from "react";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
-import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Popover from "@material-ui/core/Popover";
 import PopupState, { bindTrigger, bindPopover } from "material-ui-popup-state";
 import SettingsApplicationsSharpIcon from "@material-ui/icons/SettingsApplicationsSharp";
-import { useDispatch, useSelector } from "react-redux";
-
+import { useDispatch } from "react-redux";
+import { IS_CONFIRMATION } from "../types";
 const useStyles = makeStyles((theme) => ({
   loginBox: {
     paddingBottom: "10px",
-    // marginLeft: "10px",
     backgroundColor: "white",
     width: "100px",
   },
@@ -38,7 +36,7 @@ const PopoverPopupStateLogout = (props) => {
     const title = "LOGOUT";
     const path = "/home";
     dispatch({
-      type: "IS_CONFIRMATION",
+      type: IS_CONFIRMATION,
       payload: {
         open: true,
         confirmationmessage,

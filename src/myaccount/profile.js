@@ -37,7 +37,6 @@ const ProfilePage = (props) => {
   const SaveHandler = (e) => {
     e.preventDefault();
     setIsEdit(false);
-    console.log("formdata", formData);
   };
 
   return (

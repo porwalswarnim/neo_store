@@ -9,7 +9,6 @@ import {
   IconButton,
 } from "@material-ui/core";
 import React from "react";
-import { useLocation } from "react-router-dom";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import SearchIcon from "@material-ui/icons/Search";
 import PopoverPopupState from "./popover";
@@ -18,6 +17,7 @@ import PopoverPopupStateLogout from "./PopoverLogout";
 import { useDispatch } from "react-redux";
 import { useStyles } from "./headerStyles";
 import { useSelector } from "react-redux";
+import { IS_SEARCHING } from "../types";
 
 /**
  * @author Swarnim Porwal
@@ -95,7 +95,7 @@ const Header = (props) => {
                   onChange={(event) => {
                     const setSearchTerm = event.target.value;
                     dispatch({
-                      type: "IS_SEARCHING",
+                      type: IS_SEARCHING,
                       payload: setSearchTerm,
                     });
                   }}

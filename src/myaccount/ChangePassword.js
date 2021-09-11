@@ -5,16 +5,16 @@ import OutlinedInput from "@material-ui/core/OutlinedInput";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import { Grid, Typography, Button } from "@material-ui/core";
+import { Grid, Button } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import LeftSideBar from "./LeftSideBar";
 import { useStyles } from "./changePasswordStyles";
 import { MYACCOUNT_HEADING, CHANGE_PASSWORD_HEADING } from "./myacountUtils";
 import axios from "axios";
-
+import { SHOW_SNACKBAR } from "../types";
 /**
  * @author Swarnim Porwal
- * @description this method is reponsible for changing password 
+ * @description this method is reponsible for changing password
  * @returns JSX for Change password screen
  */
 
@@ -33,7 +33,7 @@ const ChangePassword = (props) => {
     if (newPassword !== confirmPassword) {
       const message = "Passwords don't match";
       dispatch({
-        type: "SHOW_SNACKBAR",
+        type: SHOW_SNACKBAR,
         payload: { type: "success", message, open: true },
       });
     } else {
@@ -56,7 +56,7 @@ const ChangePassword = (props) => {
         var res = await axios(config);
         const message = "Password Changed Successfully";
         dispatch({
-          type: "SHOW_SNACKBAR",
+          type: SHOW_SNACKBAR,
           payload: { type: "success", message, open: true },
         });
         localStorage.clear();
@@ -64,7 +64,7 @@ const ChangePassword = (props) => {
       } catch (error) {
         const message = "Old Password is Wrong";
         dispatch({
-          type: "SHOW_SNACKBAR",
+          type: SHOW_SNACKBAR,
           payload: { type: "error", message, open: true },
         });
       }

@@ -14,7 +14,8 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Paper from '@material-ui/core/Paper';
 import Draggable from 'react-draggable';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
+import { SHOW_SNACKBAR } from "../types";
 
 function PaperComponent(props) {
   return (
@@ -48,12 +49,11 @@ const Items = ({ data, fetchCartData }) => {
       await axios(config);
       const message = 'Deleted Item Successfully';
       dispatch({
-        type: "SHOW_SNACKBAR",
+        type: SHOW_SNACKBAR,
         payload: { type: "success", message, open: true },
       });
       fetchCartData(dispatch);
     } catch (error) {
-      console.log("error", error);
     }
   };
 

@@ -28,9 +28,6 @@ const ForgotScreen = (props) => {
 
   const submitRegisterFormHandler = (e) => {
     e.preventDefault();
-    console.log(verificationCode);
-    console.log(registerPassword);
-    console.log(registerConfirmPassword);
   };
 
   const handleClickShowPassword = () => {

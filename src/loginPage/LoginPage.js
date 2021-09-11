@@ -15,7 +15,7 @@ import Link from "@material-ui/core/Link";
 import LeftSideLogin from "./LeftSideLogin";
 import { useDispatch } from "react-redux";
 import axios from "axios";
-
+import { LOGGED_IN,SHOW_SNACKBAR } from "../types";
 /**
  * @author Swarnim Porwal
  * @description this method is responsible for logging in a user by email and password
@@ -60,18 +60,18 @@ const LoginPage = (props) => {
       const message = "Login Successfully";
       localStorage.setItem("token", token);
       dispatch({
-        type: "SHOW_SNACKBAR",
+        type: SHOW_SNACKBAR,
         payload: { type: "success", message, open: true },
       });
       dispatch({
-        type: "LOGGED_IN",
+        type: LOGGED_IN,
         payload: { id, firstName, lastName, email, mobile, gender, createdAt },
       });
       history.push("/home");
     } catch (error) {
       const message= "Username or password is invalid";
       dispatch({
-        type: "SHOW_SNACKBAR",
+        type: SHOW_SNACKBAR,
         payload: { type: "error", message, open: true },
       });
     }
@@ -90,7 +90,6 @@ const LoginPage = (props) => {
 
   //   try {
   //     var res = await axios(config);
-  //     console.log(res)
   //     alert('Successfully Changed')
   //     localStorage.clear();
   //     history.push("/forgotpassword")

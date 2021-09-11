@@ -12,6 +12,7 @@ import {
   ADD_NEW_ADDRESS_HEADING,
   MAX_100_HEADING,
 } from "./myacountUtils";
+import { SHOW_SNACKBAR } from "../types";
 import axios from "axios";
 
 /**
@@ -57,13 +58,13 @@ const AddNewAddress = (props) => {
       var res = await axios(config);
       const message = 'Address Added successfully';
       dispatch({
-        type: "SHOW_SNACKBAR",
+        type: SHOW_SNACKBAR,
         payload: { type: "success", message, open: true },
       });
     } catch (error) {
       const message= "Something went Wrong";
       dispatch({
-        type: "SHOW_SNACKBAR",
+        type: SHOW_SNACKBAR,
         payload: { type: "error", message, open: true },
       });
     }
