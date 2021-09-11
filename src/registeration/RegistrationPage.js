@@ -175,6 +175,7 @@ const RegistrationScreen = (props) => {
                   registerPassword: e.target.value,
                 })
               }
+              inputProps={{ minLength: 6 }}
               placeholder="Password"
               type={values.showPassword ? "text" : "password"}
               endAdornment={

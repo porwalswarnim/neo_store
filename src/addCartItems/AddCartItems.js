@@ -98,7 +98,7 @@ const AddCartItems = (props) => {
       });
       history.push("/ordermodule");
     } catch (res) {
-      const message = "Address is required";
+      const message = "No item in cart";
       dispatch({
         type: SHOW_SNACKBAR,
         payload: { type: "error", message, open: true },

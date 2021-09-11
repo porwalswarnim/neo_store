@@ -38,7 +38,6 @@ const EditAddress = (props) => {
 
   const updateAddressHandler = async (e) => {
     e.preventDefault();
-    history.push("/addAddress");
     var data = {
       addressLine: addressData.address,
       pincode: addressData.pincode,
@@ -56,7 +55,7 @@ const EditAddress = (props) => {
       },
       data,
     };
-
+    
     try {
       var res = await axios(config);
       const message= "Address Edited Successfully";
@@ -64,8 +63,9 @@ const EditAddress = (props) => {
         type: SHOW_SNACKBAR,
         payload: { type: "success", message, open: true },
       });
+      history.push("/addAddress");
     } catch (error) {
-      const message= "Something went Wrong";
+      const message= "Please type correct pincode";
       dispatch({
         type: SHOW_SNACKBAR,
         payload: { type: "error", message, open: true },

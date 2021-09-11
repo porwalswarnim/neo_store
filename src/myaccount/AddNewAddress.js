@@ -34,13 +34,12 @@ const AddNewAddress = (props) => {
 
   const SaveAddressHandler = async (e) => {
     e.preventDefault();
-    history.push("/addAddress");
     var data = {
       addressLine: addNewAddress.address,
-    pincode: addNewAddress.pincode,
-    city: addNewAddress.city,
-    state: addNewAddress.state,
-    country: addNewAddress.country
+      pincode: addNewAddress.pincode,
+      city: addNewAddress.city,
+      state: addNewAddress.state,
+      country: addNewAddress.country
     };
     var config = {
       method: "post",
@@ -51,9 +50,8 @@ const AddNewAddress = (props) => {
         Authorization : localStorage.getItem("token")
       },
       data,
-
+      
     };
-
     try {
       var res = await axios(config);
       const message = 'Address Added successfully';
@@ -61,6 +59,7 @@ const AddNewAddress = (props) => {
         type: SHOW_SNACKBAR,
         payload: { type: "success", message, open: true },
       });
+      history.push("/addAddress");
     } catch (error) {
       const message= "Something went Wrong";
       dispatch({

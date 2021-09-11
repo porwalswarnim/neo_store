@@ -14,14 +14,15 @@ const mapStateToProps = (state) => {
   return {
     allOrders: state.allOrders,
     addAddress: state.addAddress,
+    isLoggedIn: state.isLoggedIn,
   };
 };
-
 class ComponentToPrint extends React.Component {
   constructor(props) {
     super(props);
   }
   render() {
+    const loggedin = this.props.isLoggedIn[0] 
     const allOrder = this.props.allOrders.filter(
       (ele) => ele._id === this.props.id
     )[0];
@@ -87,7 +88,7 @@ class ComponentToPrint extends React.Component {
           </Row>
 
           <div style={{ marginTop: "48px" }}>
-            Bill To: <strong>Swarnim Porwal</strong>
+            Bill To: <strong>{loggedin.firstName} &nbsp;{loggedin.lastName}</strong>
           </div>
           <div>Address :</div>
           <div>{address.addressLine}</div>
@@ -143,6 +144,7 @@ class Example extends React.Component {
           id={id}
           allOrders={this.props.allOrders}
           addAddress={this.props.addAddress}
+          isLoggedIn={this.props.isLoggedIn}
         />
         <ReactToPrint
           trigger={() => (
