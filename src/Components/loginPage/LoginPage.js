@@ -59,6 +59,12 @@ const LoginPage = (props) => {
       } = res?.data?.data;
       const message = "Login Successfully";
       localStorage.setItem("token", token);
+      localStorage.setItem("firstName", firstName);
+      localStorage.setItem("lastName", lastName);
+      localStorage.setItem("email", email);
+      localStorage.setItem("mobile", mobile);
+      localStorage.setItem("gender", gender);
+      localStorage.setItem("createdAt", createdAt);
       dispatch({
         type: SHOW_SNACKBAR,
         payload: { type: "success", message, open: true },

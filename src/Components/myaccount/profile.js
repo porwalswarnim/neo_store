@@ -21,12 +21,12 @@ const ProfilePage = (props) => {
   const isLoggedIn = useSelector(state => state.isLoggedIn['0'])
   const classes = useStyles(props);
   const [formData, setFormData] = useState({
-    firstname: isLoggedIn.firstName,
-    lastname: isLoggedIn.lastName,
-    gender: isLoggedIn.gender,
-    dateofbirth: isLoggedIn.createdAt,
-    mobilenumber: isLoggedIn.mobile,
-    Email: isLoggedIn.email,
+    firstname: localStorage.getItem("firstName"),
+    lastname: localStorage.getItem("lastName"),
+    gender: localStorage.getItem("gender"),
+    dateofbirth: localStorage.getItem("createdAt"),
+    mobilenumber: localStorage.getItem("mobile"),
+    Email: localStorage.getItem("email"),
   });
   const [isEdit, setIsEdit] = useState(false);
 
