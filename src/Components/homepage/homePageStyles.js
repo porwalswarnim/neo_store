@@ -19,7 +19,7 @@ export const useStyles = makeStyles((theme) => ({
     //     height: "50vh",
     // alignItems:'right',
     height: 0,
-    paddingTop: "56.25%", // 16:9
+    paddingTop: "30.25%", // 16:9
   },
   heading: {
     marginTop: "20px",

@@ -17,6 +17,7 @@ export const useStyles = makeStyles((theme) => ({
   FurnitureName: {
     textAlign: "center",
     fontWeight: "bold",
+    height:'60px',
     fontSize: "30px",
     color: "#078fbb",
   },

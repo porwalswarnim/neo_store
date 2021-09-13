@@ -11,11 +11,14 @@ import { useStyles } from "./productModuleStyles";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { LIST_PRODUCTS, IS_LOADING  } from "../../assets/types";
-
+import { LIST_PRODUCTS, IS_LOADING } from "../../assets/types";
+import StarIcon from "@material-ui/icons/Star";
+import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
+import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
+import { IconButton } from "@material-ui/core";
 /**
  * @author Swarnim Porwal
- * @description this function contains the loadProducts function which will load all the products from the API, three specific methods onCategoryChange, onColorChange and onSortChange will monitor all the filters being applied 
+ * @description this function contains the loadProducts function which will load all the products from the API, three specific methods onCategoryChange, onColorChange and onSortChange will monitor all the filters being applied
  * @returns JSX for All Products Screen
  */
 const ProductModule = (props) => {
@@ -25,10 +28,36 @@ const ProductModule = (props) => {
   const [categories, setCategories] = useState([]);
   const [colors, setColors] = useState([]);
   const [categoryId, setCategoryId] = useState(null);
+  // const [categoryId, setCategoryId] = useState(
+  //   props.location.search ? props.location.search.substring(1) : null
+  // );
   const [colorId, setColorId] = useState(null);
+  const [sortRatingArray, setSortRatingArray] = useState([]);
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const sortProductsStarUPHandler = () => {
+    setSortRatingArray(
+      listProducts.sort(function (x, y) {
+        return y.avgRating - x.avgRating;
+      })
+    );
+  };
+  const sortProductsPriceUPHandler = () => {
+    setSortRatingArray(
+      listProducts.sort(function (x, y) {
+        return y.price - x.price;
+      })
+    );
+  };
+  const sortProductsPriceDOWNHandler = () => {
+    setSortRatingArray(
+      listProducts.sort(function (x, y) {
+        return x.price - y.price;
+      })
+    );
+  };
 
   const getCategories = async () => {
     const config = {
@@ -112,6 +141,7 @@ const ProductModule = (props) => {
               onClick={() => {
                 setCategoryId(null);
                 setColorId(null);
+                setSortRatingArray([]);
               }}
             >
               All Products
@@ -163,38 +193,63 @@ const ProductModule = (props) => {
         </Grid>
         <Grid item xs={9}>
           <Grid className={classes.rightProductGrid}>
+            <Grid style={{ fontSize: "30px" }}>
+              Sort By:
+              <IconButton style={{ color: "blue", fontSize: "40px" }}>
+                &nbsp; &nbsp; <StarIcon onClick={sortProductsStarUPHandler} />
+              </IconButton>
+              <IconButton style={{ color: "blue", fontSize: "40px" }}>
+                &nbsp;&nbsp; &#8377;{" "}
+                <ArrowUpwardIcon onClick={sortProductsPriceUPHandler} />
+              </IconButton>
+              <IconButton
+                style={{ color: "blue", fontSize: "40px", marginRight: "20px" }}
+              >
+                &nbsp; &nbsp; &#8377;
+                <ArrowDownwardIcon onClick={sortProductsPriceDOWNHandler} />
+              </IconButton>
+            </Grid>
             <Grid container item xs={12} style={{ marginLeft: "20px" }}>
               {listProducts?.length === 0 && (
-               <Grid
-               container
-               justify="center"
-               style={{ marginTop: "30px", cursor: "pointer" }}
-             >
-               <img
-                 style={{ width: "60%" }}
-                 onClick={() => history.push("/home")}
-                 src="/NoDataFound.png"
-                 alt=""
-               />
-             </Grid>
+                <Grid
+                  container
+                  justify="center"
+                  style={{ marginTop: "30px", cursor: "pointer" }}
+                >
+                  <img
+                    style={{ width: "60%" }}
+                    onClick={() => history.push("/home")}
+                    src="/NoDataFound.png"
+                    alt=""
+                  />
+                </Grid>
               )}
-              {listProducts
-                .filter((val) => {
-                  if (searchTerm === "") {
-                    return val;
-                  } else if (
-                    val.name.toLowerCase().includes(searchTerm.toLowerCase())
-                  ) {
-                    return val;
-                  }
-                })
-                .map((ele, i) => {
-                  return (
-                    <Grid item xs={12} sm={4} key={i}>
-                      <MediaCard data={ele} key={ele.id} />
-                    </Grid>
-                  );
-                })}
+
+              {sortRatingArray.map((ele, i) => {
+                return (
+                  <Grid item xs={12} sm={4} key={i}>
+                    <MediaCard data={ele} key={ele.id} />
+                  </Grid>
+                );
+              })}
+              {sortRatingArray?.length === 0 &&
+                listProducts
+                  .filter((val) => {
+                    if (searchTerm === "") {
+                      return val;
+                    } else if (
+                      val.name.toLowerCase().includes(searchTerm.toLowerCase())
+                    ) {
+                      return val;
+                    }
+                  })
+                  .map((ele, i) => {
+                    return (
+                      <Grid item xs={12} sm={4} key={i}>
+                        <MediaCard data={ele} key={ele.id} />
+                      </Grid>
+                    );
+                  })}
             </Grid>
           </Grid>
         </Grid>

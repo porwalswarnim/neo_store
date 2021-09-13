@@ -9,7 +9,7 @@ export const useStyles = makeStyles((theme) => ({
         textAlign: "center",
       },
       rightProductGrid: {
-        textAlign: "center",
+        textAlign: "right",
       },
       boxCSS: {
         borderRadius: "5px",

@@ -33,7 +33,15 @@ const HomePage = (props) => {
               {listProducts.map((ele, i) => {
                 console.log("ele", ele);
                 return (
-                  <CardMedia className={classes.image} image={ele?.mainImage} />
+                  <CardMedia
+                    className={classes.image}
+                    image={ele?.mainImage}
+                    // onClick={() =>
+                    //   history.push(
+                    //     `/productmodule?${ele?.category?._id}`
+                    //   )
+                    // }
+                  />
                 );
               })}
             </Carousel>
