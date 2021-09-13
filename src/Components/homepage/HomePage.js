@@ -5,6 +5,10 @@ import { useStyles } from "./homePageStyles";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+import Carousel from "react-material-ui-carousel";
+import { CardMedia } from "@material-ui/core";
+import NavigateNextIcon from "@material-ui/icons/NavigateNext";
+import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 
 /**
  * @author Swarnim Porwal
@@ -21,7 +25,19 @@ const HomePage = (props) => {
     <div>
       <Grid className={classes.HomeBoxGrid}>
         <Grid container component="main" className={classes.registerBoxGrid}>
-          <Grid item xs={12} className={classes.image}></Grid>
+          <Grid item xs={12}>
+            <Carousel
+              NextIcon={<NavigateNextIcon />}
+              PrevIcon={<NavigateBeforeIcon />}
+            >
+              {listProducts.map((ele, i) => {
+                console.log("ele", ele);
+                return (
+                  <CardMedia className={classes.image} image={ele?.mainImage} />
+                );
+              })}
+            </Carousel>
+          </Grid>
         </Grid>
         <Grid>
           <Typography className={classes.heading}>Popular Products</Typography>
@@ -37,7 +53,7 @@ const HomePage = (props) => {
             </Link>
           </Typography>
         </Grid>
-        <Grid container  xs={12} style={{ marginLeft: "40px" }}>
+        <Grid container xs={12} style={{ marginLeft: "40px" }}>
           {listProduct.map((ele, i) => {
             return (
               <Grid item xs={12} sm={4} key={i}>

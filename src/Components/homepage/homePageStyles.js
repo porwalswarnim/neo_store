@@ -1,32 +1,36 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme) => ({
-    HomeBoxGrid: {
-        width: "100%",
-        marginTop:"50px"
-      },
-      registerBoxGrid: {
-        margin: "auto",
-        marginTop: "30px",
-      },
-      image: {
-        backgroundImage: "url(/homelandscapeimage.jpg)",
-        backgroundColor: "white",
-        backgroundSize: "cover",
-        backgroundPosition: "bottom",
-        width: "100%",
-        height: "50vh",
-      },
-      heading:{
-        marginTop: "20px",
-        textAlign: "center",
-        fontWeight: "bold",
-        fontSize: "40px",
-      },
-      viewAllCSS:{
-        marginTop: "10px",
-        textAlign: "center",
-        fontWeight: "bold",
-        fontSize: "20px",
-      },
+  HomeBoxGrid: {
+    width: "100%",
+    marginTop: "50px",
+  },
+  registerBoxGrid: {
+    margin: "auto",
+    marginTop: "30px",
+  },
+  image: {
+    // backgroundImage: "url(/homelandscapeimage.jpg)",
+    // backgroundColor: "white",
+    // backgroundSize: "cover",
+    // backgroundPosition: "center",
+    // objectFit: "cover",
+    //     width: "50%",
+    //     height: "50vh",
+    // alignItems:'right',
+    height: 0,
+    paddingTop: "56.25%", // 16:9
+  },
+  heading: {
+    marginTop: "20px",
+    textAlign: "center",
+    fontWeight: "bold",
+    fontSize: "40px",
+  },
+  viewAllCSS: {
+    marginTop: "10px",
+    textAlign: "center",
+    fontWeight: "bold",
+    fontSize: "20px",
+  },
 }));
