@@ -8,7 +8,8 @@ import Popover from "@material-ui/core/Popover";
 import PopupState, { bindTrigger, bindPopover } from "material-ui-popup-state";
 import SettingsApplicationsSharpIcon from "@material-ui/icons/SettingsApplicationsSharp";
 import { useDispatch } from "react-redux";
-import { IS_CONFIRMATION } from "../types";
+import { IS_CONFIRMATION } from "../../assets/types";
+
 const useStyles = makeStyles((theme) => ({
   loginBox: {
     paddingBottom: "10px",

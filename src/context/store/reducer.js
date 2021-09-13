@@ -9,7 +9,7 @@ import {
   IS_SEARCHING,
   IS_CONFIRMATION,
   SHOW_SNACKBAR
-} from "../../src/types";
+} from "../../assets/types";
 
 const initialState = {
   cardData: [],

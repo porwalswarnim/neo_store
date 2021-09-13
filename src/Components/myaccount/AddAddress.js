@@ -6,7 +6,7 @@ import { MYACCOUNT_HEADING, ADDRESS_HEADING } from "./myacountUtils";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import React, { useEffect } from "react";
-import { ALL_ADDRESSES } from "../types";
+import { ALL_ADDRESSES } from "../../assets/types";
 import { useSelector } from "react-redux";
 import AddAddressBox from "./AddAddressBox";
 

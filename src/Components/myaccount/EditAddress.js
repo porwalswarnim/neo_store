@@ -13,7 +13,7 @@ import {
 } from "./myacountUtils";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { SHOW_SNACKBAR } from "../types";
+import { SHOW_SNACKBAR } from "../../assets/types";
 
 /**
  * @author Swarnim Porwal

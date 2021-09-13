@@ -1,30 +1,30 @@
-import HomePage from "./homepage/HomePage";
-import LoginPage from "./loginPage/LoginPage";
-import RegistrationScreen from "./registeration/RegistrationPage";
-import ForgotScreen from "./forgotPassword/ForgotPassword";
-import ProductModule from "./productModule/ProductModule";
-import OrderModule from "./myaccount/order";
-import ChangePassword from "./myaccount/ChangePassword";
-import ProfilePage from "./myaccount/profile";
-import AddAddress from "./myaccount/AddAddress";
-import AddNewAddress from "./myaccount/AddNewAddress";
-import EditAddress from "./myaccount/EditAddress";
-import PrivateRoute from "./PrivateRoute";
+import HomePage from './Components/homepage/HomePage'
+import LoginPage from './Components/loginPage/LoginPage'
+import RegistrationScreen from "./Components/registeration/RegistrationPage";
+import ForgotScreen from "./Components/forgotPassword/ForgotPassword";
+import ProductModule from './Components/productModule/ProductModule';
+import OrderModule from './Components/myaccount/order'
+import ChangePassword from "./Components/myaccount/ChangePassword";
+import ProfilePage from "./Components/myaccount/profile";
+import AddAddress from "./Components/myaccount/AddAddress";
+import AddNewAddress from "./Components/myaccount/AddNewAddress";
+import EditAddress from "./Components/myaccount/EditAddress";
+import PrivateRoute from "./assets/PrivateRoute";
 import {
   BrowserRouter as Router,
   Redirect,
   Route,
   Switch,
 } from "react-router-dom";
-import ProductDetailModule from "./productDetailModule/ProductDetailModule";
-import AddCartItems from "./addCartItems/AddCartItems";
-import SuccessSnackbar from "./commons/snackbar/SnackBarComponent";
-import BackdropComponent from "./commons/snackbar/BackdropComponent";
-import Header from "./header/Header";
-import Footer from "./footer/Footer";
-import Example from "./InvoicePDF/InvoiceOrderBill";
-import ConfirmationBox from "./commons/snackbar/ConfirmationBox";
-import ErrorPage from "./commons/snackbar/ErrorPage";
+import ProductDetailModule from "./Components/productDetailModule/ProductDetailModule";
+import AddCartItems from './Components/addCartItems/AddCartItems'
+import SuccessSnackbar from './assets/SnackBarComponent';
+import BackdropComponent from "./assets/BackdropComponent";
+import Header from './Components/header/Header'
+import Footer from "./Components/footer/Footer";
+import Example from "./Components/InvoicePDF/InvoiceOrderBill";
+import ConfirmationBox from './assets/ConfirmationBox';
+import ErrorPage from "./assets/ErrorPage";
 
 function App() {
   return (

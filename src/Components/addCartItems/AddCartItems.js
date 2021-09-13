@@ -9,12 +9,12 @@ import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { ADD_TO_CART } from "../types";
+import { ADD_TO_CART } from "../../assets/types";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import { Button } from "@material-ui/core";
-import { IS_LOADING,SHOW_SNACKBAR } from "../types";
+import { IS_LOADING,SHOW_SNACKBAR } from "../../assets/types";
 /**
  * @author Swarnim Porwal
  * @description this function gets all the data and put them into the card

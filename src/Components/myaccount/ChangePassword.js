@@ -11,7 +11,7 @@ import LeftSideBar from "./LeftSideBar";
 import { useStyles } from "./changePasswordStyles";
 import { MYACCOUNT_HEADING, CHANGE_PASSWORD_HEADING } from "./myacountUtils";
 import axios from "axios";
-import { SHOW_SNACKBAR } from "../types";
+import { SHOW_SNACKBAR } from "../../assets/types";
 /**
  * @author Swarnim Porwal
  * @description this method is reponsible for changing password

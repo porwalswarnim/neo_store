@@ -15,7 +15,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Paper from '@material-ui/core/Paper';
 import Draggable from 'react-draggable';
 import { useDispatch} from "react-redux";
-import { SHOW_SNACKBAR } from "../types";
+import { SHOW_SNACKBAR } from "../../assets/types";
 
 function PaperComponent(props) {
   return (

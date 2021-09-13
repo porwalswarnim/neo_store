@@ -11,8 +11,7 @@ import { useStyles } from "./productModuleStyles";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { LIST_PRODUCTS } from "../types";
-import { IS_LOADING } from "../types";
+import { LIST_PRODUCTS, IS_LOADING  } from "../../assets/types";
 
 /**
  * @author Swarnim Porwal

@@ -14,11 +14,11 @@ import SearchIcon from "@material-ui/icons/Search";
 import PopoverPopupState from "./popover";
 import { useHistory } from "react-router-dom";
 import PopoverPopupStateLogout from "./PopoverLogout";
+// import PopoverPopupStateLogout from "../../header/PopoverLogout";
 import { useDispatch } from "react-redux";
 import { useStyles } from "./headerStyles";
 import { useSelector } from "react-redux";
-import { IS_SEARCHING } from "../types";
-
+import { IS_SEARCHING } from "../../assets/types";
 /**
  * @author Swarnim Porwal
  * @description this method contains Header for a whole project

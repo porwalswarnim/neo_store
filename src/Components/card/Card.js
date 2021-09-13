@@ -15,7 +15,7 @@ import { useDispatch } from "react-redux";
 import Rating from "@material-ui/lab/Rating";
 import axios from "axios";
 import { fetchCartData } from "../addCartItems/AddCartItems";
-import { SHOW_SNACKBAR } from "../types";
+import { SHOW_SNACKBAR } from "../../assets/types";
 
 /**
  * @author Swarnim Porwal
@@ -44,14 +44,14 @@ const MediaCard = ({ data }) => {
 
     try {
       var res = await axios(config);
-      const message = 'Added to Cart';
+      const message = "Added to Cart";
       dispatch({
         type: SHOW_SNACKBAR,
         payload: { type: "success", message, open: true },
       });
-      fetchCartData(dispatch)
+      fetchCartData(dispatch);
     } catch (error) {
-      const message= "Product already exist in cart";
+      const message = "Product already exist in cart";
       dispatch({
         type: SHOW_SNACKBAR,
         payload: { type: "error", message, open: true },
@@ -95,7 +95,12 @@ const MediaCard = ({ data }) => {
           Add to Cart
         </Button>
       </CardActions>
-      <Box component="fieldset" borderColor="transparent" display="flex"  justifyContent="center">
+      <Box
+        component="fieldset"
+        borderColor="transparent"
+        display="flex"
+        justifyContent="center"
+      >
         <Rating name="simple-controlled" value={data.avgRating} />
       </Box>
     </Card>

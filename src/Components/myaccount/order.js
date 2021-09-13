@@ -5,10 +5,10 @@ import { useStyles } from "./orderStyles";
 import { MYACCOUNT_HEADING } from "./myacountUtils";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { ALL_ORDERS } from "../types";
+import { ALL_ORDERS } from "../../assets/types";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { IS_LOADING } from "../types";
+import { IS_LOADING } from "../../assets/types";
 /**
  * @author Swarnim Porwal
  * @description this method is responsible for showing the all the orders that has been made using order cards
@@ -86,7 +86,8 @@ const OrderModule = (props) => {
                 >
                   {" "}
                   Placed on: {ele.updatedAt} &nbsp; &nbsp; &nbsp;/&nbsp; &nbsp;
-                  GrandTotal : ${totalPrice}
+                  GrandTotal :{" "}
+                  <span style={{ fontSize: "20px" }}>Rs.{totalPrice}</span>
                 </Typography>
                 <Typography
                   style={{

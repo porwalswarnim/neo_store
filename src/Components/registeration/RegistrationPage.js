@@ -20,7 +20,7 @@ import { useDispatch } from "react-redux";
 import { useStyles } from "./registrationStyles";
 import { REGISTER_HEADING, MAX_100_KEYWORD } from "./registrationUtils";
 import axios from "axios";
-import { SHOW_SNACKBAR } from "../types";
+import { SHOW_SNACKBAR } from "../../assets/types";
 /**
  * @author Swarnim Porwal
  * @description this method is responsible for registering user by accepting information like firstname, lastname, email, password, mobile no, gender

@@ -12,7 +12,7 @@ import {
   ADD_NEW_ADDRESS_HEADING,
   MAX_100_HEADING,
 } from "./myacountUtils";
-import { SHOW_SNACKBAR } from "../types";
+import { SHOW_SNACKBAR } from "../../assets/types";
 import axios from "axios";
 
 /**

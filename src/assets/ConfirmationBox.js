@@ -8,8 +8,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Paper from "@material-ui/core/Paper";
 import Draggable from "react-draggable";
 import { useDispatch, useSelector } from "react-redux";
-import { LOGGED_OUT,LOGGED_IN,IS_CONFIRMATION,SHOW_SNACKBAR } from "../../types";
-
+import { LOGGED_OUT,LOGGED_IN,IS_CONFIRMATION,SHOW_SNACKBAR } from "./types";
 function PaperComponent(props) {
   return (
     <Draggable
