@@ -55,12 +55,15 @@ export const fetchCartData = async (dispatch) => {
 };
 
 const AddCartItems = (props) => {
-  const addAddress = useSelector((state) => state.addAddress);
   const classes = useStyles(props);
   const history = useHistory();
   const { products = [], grandTotal = 0 } = useSelector(
     (state) => state.cardData
   );
+ 
+var retrievedData = localStorage.getItem("address");
+const addAddress = JSON.parse(retrievedData);
+
   const dispatch = useDispatch();
   const [selectAddress, setSelectAddress] = useState({
     address: addAddress[0],

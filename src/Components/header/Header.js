@@ -14,7 +14,6 @@ import SearchIcon from "@material-ui/icons/Search";
 import PopoverPopupState from "./popover";
 import { useHistory } from "react-router-dom";
 import PopoverPopupStateLogout from "./PopoverLogout";
-// import PopoverPopupStateLogout from "../../header/PopoverLogout";
 import { useDispatch } from "react-redux";
 import { useStyles } from "./headerStyles";
 import { useSelector } from "react-redux";
@@ -36,7 +35,7 @@ const Header = (props) => {
   return (
     <div>
       <AppBar position="static" className={classes.headerFeedback}>
-      <Toolbar>
+        <Toolbar>
           <Grid container>
             <Grid item xs={12} lg={3} md={2} sm={3}>
               <Typography
@@ -106,7 +105,7 @@ const Header = (props) => {
               <Button
                 variant="contained"
                 className={classes.cartBox}
-                startIcon={<ShoppingCartIcon style={{fontSize:'40px'}} />}
+                startIcon={<ShoppingCartIcon style={{ fontSize: "40px" }} />}
                 onClick={() => history.push("/AddCartItems")}
               >
                 {" "}
@@ -115,10 +114,14 @@ const Header = (props) => {
               </Button>
             </Grid>
             <Grid item xs={6} lg={1} md={1} sm={4}>
-              {loggedIn ? <PopoverPopupStateLogout /> : <PopoverPopupState />}
+              {localStorage.getItem("token") ? (
+                <PopoverPopupStateLogout />
+              ) : (
+                <PopoverPopupState />
+              )}
             </Grid>
           </Grid>
-          </Toolbar>
+        </Toolbar>
       </AppBar>
     </div>
   );

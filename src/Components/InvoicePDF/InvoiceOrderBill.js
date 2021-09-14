@@ -22,7 +22,7 @@ class ComponentToPrint extends React.Component {
     super(props);
   }
   render() {
-    const loggedin = this.props.isLoggedIn[0] 
+    const loggedin = this.props.isLoggedIn[0];
     const allOrder = this.props.allOrders.filter(
       (ele) => ele._id === this.props.id
     )[0];
@@ -88,7 +88,11 @@ class ComponentToPrint extends React.Component {
           </Row>
 
           <div style={{ marginTop: "48px" }}>
-            Bill To: <strong>{loggedin.firstName} &nbsp;{loggedin.lastName}</strong>
+            Bill To:{" "}
+            <strong>
+              {localStorage.getItem("firstName")} &nbsp;
+              {localStorage.getItem("lastName")}
+            </strong>
           </div>
           <div>Address :</div>
           <div>{address.addressLine}</div>

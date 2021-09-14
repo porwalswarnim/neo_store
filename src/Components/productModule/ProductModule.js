@@ -192,23 +192,37 @@ const ProductModule = (props) => {
           </Grid>
         </Grid>
         <Grid item xs={9}>
-          <Grid className={classes.rightProductGrid}>
-            <Grid style={{ fontSize: "30px" }}>
-              Sort By:
-              <IconButton style={{ color: "blue", fontSize: "40px" }}>
-                &nbsp; &nbsp; <StarIcon onClick={sortProductsStarUPHandler} />
-              </IconButton>
-              <IconButton style={{ color: "blue", fontSize: "40px" }}>
-                &nbsp;&nbsp; &#8377;{" "}
-                <ArrowUpwardIcon onClick={sortProductsPriceUPHandler} />
-              </IconButton>
-              <IconButton
-                style={{ color: "blue", fontSize: "40px", marginRight: "20px" }}
-              >
-                &nbsp; &nbsp; &#8377;
-                <ArrowDownwardIcon onClick={sortProductsPriceDOWNHandler} />
-              </IconButton>
-            </Grid>
+          <Grid
+            className={classes.rightProductGrid}
+            style={{ fontSize: "30px" }}
+          >
+            Sort By:
+            <IconButton
+              onClick={() => {
+                setSortRatingArray([]);
+              }}
+              style={{ color: "blue", fontSize: "40px" }}
+            >
+              &nbsp; &nbsp; <StarIcon onClick={sortProductsStarUPHandler} />
+            </IconButton>
+            <IconButton
+              onClick={() => {
+                setSortRatingArray([]);
+              }}
+              style={{ color: "blue", fontSize: "40px" }}
+            >
+              &nbsp;&nbsp; &#8377;{" "}
+              <ArrowUpwardIcon onClick={sortProductsPriceUPHandler} />
+            </IconButton>
+            <IconButton
+              onClick={() => {
+                setSortRatingArray([]);
+              }}
+              style={{ color: "blue", fontSize: "40px", marginRight: "20px" }}
+            >
+              &nbsp; &nbsp; &#8377;
+              <ArrowDownwardIcon onClick={sortProductsPriceDOWNHandler} />
+            </IconButton>
             <Grid container item xs={12} style={{ marginLeft: "20px" }}>
               {listProducts?.length === 0 && (
                 <Grid

@@ -31,10 +31,16 @@ const AddAddress = (props) => {
       Authorization: localStorage.getItem("token"),
     },
   };
-
+  
   const fetchAddress = async () => {
     try {
       const res = await axios(config);
+      const 
+       address
+       = res?.data?.data?.address;
+       localStorage.setItem("address", JSON.stringify(address));
+       console.log('address',address)
+      const message = "Login Successfully";
       const data = res?.data?.data.address;
       dispatch({
         type: ALL_ADDRESSES,
