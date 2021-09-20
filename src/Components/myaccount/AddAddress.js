@@ -3,12 +3,11 @@ import { useHistory } from "react-router-dom";
 import LeftSideBar from "./LeftSideBar";
 import { useStyles } from "./addAddressStyles";
 import { MYACCOUNT_HEADING, ADDRESS_HEADING } from "./myacountUtils";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import React, { useEffect } from "react";
-import { ALL_ADDRESSES } from "../../assets/types";
 import { useSelector } from "react-redux";
 import AddAddressBox from "./AddAddressBox";
+import { getAddress } from "../../context/store/userReducer";
 
 /**
  * @author Swarnim Porwal
@@ -18,40 +17,14 @@ import AddAddressBox from "./AddAddressBox";
  */
 
 const AddAddress = (props) => {
-  const addAddress = useSelector((state) => state.addAddress);
+  const address = useSelector((state) => state.app.address);
   const history = useHistory();
   const classes = useStyles(props);
   const dispatch = useDispatch();
-  var config = {
-    method: "get",
-    url: "https://neostore-api.herokuapp.com/api/user/address",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: localStorage.getItem("token"),
-    },
-  };
-  
-  const fetchAddress = async () => {
-    try {
-      const res = await axios(config);
-      const 
-       address
-       = res?.data?.data?.address;
-       localStorage.setItem("address", JSON.stringify(address));
-       console.log('address',address)
-      const message = "Login Successfully";
-      const data = res?.data?.data.address;
-      dispatch({
-        type: ALL_ADDRESSES,
-        payload: data,
-      });
-    } catch (err) {}
-  };
 
   useEffect(() => {
-    fetchAddress(dispatch);
-  }, []);
+    dispatch(getAddress())
+  }, [])
 
   return (
     <div>
@@ -63,10 +36,9 @@ const AddAddress = (props) => {
         <Grid xs={9} className={classes.RightSideBarCSS}>
           <Box boxShadow={7} className={classes.boxCSS}>
             <ADDRESS_HEADING />
-            {addAddress.map((ele, i) => {
+            {address?.map((ele, i) => {
               return (
                 <AddAddressBox
-                  fetchAddress={fetchAddress}
                   data={ele}
                   key={ele._id}
                 />

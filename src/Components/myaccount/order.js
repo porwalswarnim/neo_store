@@ -15,7 +15,7 @@ import { IS_LOADING } from "../../assets/types";
  * @returns JSX for Order screen
  */
 const OrderModule = (props) => {
-  const allOrders = useSelector((state) => state.allOrders);
+  const allOrders = useSelector((state) => state.rootReducer.allOrders);
   const dispatch = useDispatch();
   const classes = useStyles(props);
   const history = useHistory();

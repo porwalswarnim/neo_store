@@ -1,9 +1,9 @@
-import HomePage from './Components/homepage/HomePage'
-import LoginPage from './Components/loginPage/LoginPage'
+import HomePage from "./Components/homepage/HomePage";
+import LoginPage from "./Components/loginPage/LoginPage";
 import RegistrationScreen from "./Components/registeration/RegistrationPage";
 import ForgotScreen from "./Components/forgotPassword/ForgotPassword";
-import ProductModule from './Components/productModule/ProductModule';
-import OrderModule from './Components/myaccount/order'
+import ProductModule from "./Components/productModule/ProductModule";
+import OrderModule from "./Components/myaccount/order";
 import ChangePassword from "./Components/myaccount/ChangePassword";
 import ProfilePage from "./Components/myaccount/profile";
 import AddAddress from "./Components/myaccount/AddAddress";
@@ -17,16 +17,25 @@ import {
   Switch,
 } from "react-router-dom";
 import ProductDetailModule from "./Components/productDetailModule/ProductDetailModule";
-import AddCartItems from './Components/addCartItems/AddCartItems'
-import SuccessSnackbar from './assets/SnackBarComponent';
+import AddCartItems from "./Components/addCartItems/AddCartItems";
+import SuccessSnackbar from "./assets/SnackBarComponent";
 import BackdropComponent from "./assets/BackdropComponent";
-import Header from './Components/header/Header'
+import Header from "./Components/header/Header";
 import Footer from "./Components/footer/Footer";
 import Example from "./Components/InvoicePDF/InvoiceOrderBill";
-import ConfirmationBox from './assets/ConfirmationBox';
+import ConfirmationBox from "./assets/ConfirmationBox";
 import ErrorPage from "./assets/ErrorPage";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getAddress } from "./context/store/userReducer";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAddress());
+  }, [dispatch]);
+
   return (
     <div>
       <SuccessSnackbar />

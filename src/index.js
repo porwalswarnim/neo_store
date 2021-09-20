@@ -3,17 +3,25 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import reducer from "./context/store/reducer";
+import rootReducer from "./context/store/rootReducer";
 import { Provider } from "react-redux";
-import { createStore, applyMiddleware } from "redux";
+import { createStore, applyMiddleware, combineReducers } from "redux";
 import createSagaMiddleware from "redux-saga";
-import { watchAgeUp } from "./context/saga/Saga";
-import { composeWithDevTools } from 'redux-devtools-extension';
+import { watcherSaga } from "./context/saga/Saga";
+import { composeWithDevTools } from "redux-devtools-extension";
+import userReducer from "./context/store/userReducer";
 
+const reducer = combineReducers({
+  app: userReducer,
+  rootReducer: rootReducer,
+});
 const sagaMiddleware = createSagaMiddleware();
-const store = createStore(reducer, composeWithDevTools( applyMiddleware(sagaMiddleware)));
-// const store = createStore(reducer, applyMiddleware(sagaMiddleware));
-sagaMiddleware.run(watchAgeUp);
+const store = createStore(
+  reducer,
+  composeWithDevTools(applyMiddleware(sagaMiddleware))
+);
+// const store = createStore(rootReducer, applyMiddleware(...middleware));
+sagaMiddleware.run(watcherSaga);
 
 ReactDOM.render(
   <Provider store={store}>

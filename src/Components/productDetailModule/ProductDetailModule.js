@@ -16,7 +16,7 @@ import { useSelector } from "react-redux";
  * @returns JSX for Product Detail Screen
  */
 const ProductDetailModule = (props) => {
-  const listProducts = useSelector((state) => state.listProducts);
+  const listProducts = useSelector((state) => state.rootReducer.listProducts);
   const history = useHistory();
   const { id } = useParams();
   const listProduct = listProducts.filter((ele) => ele._id === id)[0];

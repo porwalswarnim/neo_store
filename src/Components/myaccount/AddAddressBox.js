@@ -4,8 +4,7 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import { useStyles } from "./addAddressStyles";
 import { useDispatch } from "react-redux";
-import axios from "axios";
-import React from "react";
+import React, { useEffect } from "react";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -14,6 +13,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Paper from "@material-ui/core/Paper";
 import Draggable from "react-draggable";
 import { SHOW_SNACKBAR } from "../../assets/types";
+import { getAddress, deleteAddress } from "../../context/store/userReducer";
 /**
  * @author Swarnim Porwal
  * @description  this function redirect to the add address screen
@@ -28,7 +28,7 @@ function PaperComponent(props) {
     </Draggable>
   );
 }
-const AddAddressBox = ({ data, fetchAddress }) => {
+const AddAddressBox = ({ data }) => {
   const [open, setOpen] = React.useState(false);
   const history = useHistory();
   const classes = useStyles();
@@ -40,32 +40,27 @@ const AddAddressBox = ({ data, fetchAddress }) => {
   const handleClose = () => {
     setOpen(false);
   };
-  const deleteAddressHandler = async () => {
-    var config = {
-      method: "delete",
-      url: `https://neostore-api.herokuapp.com/api/user/address/${data._id}`,
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: localStorage.getItem("token"),
-      },
-    };
+  const deleteAddressHandler = () => {
+    dispatch(deleteAddress(data._id));
     try {
-      await axios(config);
-      fetchAddress();
-      const message = "Address Deleted successfully";
+      handleClose();
       dispatch({
         type: SHOW_SNACKBAR,
-        payload: { type: "success", message, open: true },
+        payload: {
+          type: "success",
+          message: "Address Deleted successfully",
+          open: true,
+        },
       });
+      dispatch(getAddress());
     } catch (error) {
-      const message = "Something went Wrong";
       dispatch({
         type: SHOW_SNACKBAR,
-        payload: { type: "error", message, open: true },
+        payload: { type: "error", message: "Something went Wrong", open: true },
       });
     }
   };
+
   return (
     <Box display="flex" p={1} boxShadow={7} className={classes.boxCSS}>
       <Box p={1} flexGrow={1}>

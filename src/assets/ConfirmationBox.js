@@ -22,7 +22,7 @@ function PaperComponent(props) {
 
 const ConfirmationBox = () => {
   const { confirmationmessage, snackbarmessage, title, open, history, path } =
-    useSelector((state) => state.isConfirmation);
+    useSelector((state) => state.rootReducer.isConfirmation);
   const dispatch = useDispatch();
   const message = snackbarmessage;
   const handleClose = () => {

@@ -11,7 +11,7 @@ function Alert(props) {
 export default function SuccessSnackbar() {
   const dispatch = useDispatch();
 
-  const { message, type, open } = useSelector((state) => state.snackbar);
+  const { message, type, open } = useSelector((state) => state.rootReducer.snackbar);
 
   function handleClose() {
     dispatch({

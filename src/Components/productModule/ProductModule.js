@@ -9,21 +9,21 @@ import { useHistory, useParams } from "react-router-dom";
 import TreeItem from "@material-ui/lab/TreeItem";
 import { useStyles } from "./productModuleStyles";
 import { useDispatch } from "react-redux";
-import axios from "axios";
 import { useSelector } from "react-redux";
 import { LIST_PRODUCTS, IS_LOADING } from "../../assets/types";
 import StarIcon from "@material-ui/icons/Star";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 import { IconButton } from "@material-ui/core";
+import { getConfig } from "../../assets/utils";
 /**
  * @author Swarnim Porwal
  * @description this function contains the loadProducts function which will load all the products from the API, three specific methods onCategoryChange, onColorChange and onSortChange will monitor all the filters being applied
  * @returns JSX for All Products Screen
  */
 const ProductModule = (props) => {
-  const listProducts = useSelector((state) => state.listProducts);
-  const searchTerm = useSelector((state) => state.searchTerm);
+  const listProducts = useSelector((state) => state.rootReducer.listProducts);
+  const searchTerm = useSelector((state) => state.rootReducer.searchTerm);
   const { id } = useParams();
   const [categories, setCategories] = useState([]);
   const [colors, setColors] = useState([]);
@@ -60,24 +60,22 @@ const ProductModule = (props) => {
   };
 
   const getCategories = async () => {
-    const config = {
-      method: "get",
-      url: "https://neostore-api.herokuapp.com/api/category",
-    };
     try {
-      const res = await axios(config);
+      const res = await getConfig(
+        "get",
+        "https://neostore-api.herokuapp.com/api/category"
+      );
       setCategories(res?.data?.data);
     } catch (error) {
       alert("failed");
     }
   };
   const getColors = async () => {
-    const config = {
-      method: "get",
-      url: "https://neostore-api.herokuapp.com/api/color",
-    };
     try {
-      const res = await axios(config);
+      const res = await getConfig(
+        "get",
+        "https://neostore-api.herokuapp.com/api/color"
+      );
       setColors(res?.data?.data);
     } catch (error) {
       alert("failed");
@@ -87,16 +85,12 @@ const ProductModule = (props) => {
   const getProducts = async () => {
     const url = `https://neostore-api.herokuapp.com/api/product${props.location.search}`;
 
-    const config = {
-      method: "get",
-      url: url,
-    };
     try {
       dispatch({
         type: IS_LOADING,
         payload: true,
       });
-      const res = await axios(config);
+      const res = await getConfig("get", url);
       dispatch({
         type: IS_LOADING,
         payload: false,

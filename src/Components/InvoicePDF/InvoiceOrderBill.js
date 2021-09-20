@@ -12,8 +12,8 @@ import "antd/dist/antd.css";
  */
 const mapStateToProps = (state) => {
   return {
-    allOrders: state.allOrders,
-    addAddress: state.addAddress,
+    allOrders: state.rootReducer.allOrders,
+    address: state.app.address,
     isLoggedIn: state.isLoggedIn,
   };
 };
@@ -22,12 +22,11 @@ class ComponentToPrint extends React.Component {
     super(props);
   }
   render() {
-    const loggedin = this.props.isLoggedIn[0];
     const allOrder = this.props.allOrders.filter(
       (ele) => ele._id === this.props.id
     )[0];
     const addressId = allOrder.addressId;
-    const address = this.props.addAddress.filter(
+    const address = this.props.address.filter(
       (ele) => ele._id === addressId
     )[0];
     const totalPrice = allOrder?.items.reduce(
@@ -147,7 +146,7 @@ class Example extends React.Component {
           ref={(el) => (this.componentRef = el)}
           id={id}
           allOrders={this.props.allOrders}
-          addAddress={this.props.addAddress}
+          address={this.props.address}
           isLoggedIn={this.props.isLoggedIn}
         />
         <ReactToPrint

@@ -53,7 +53,7 @@ const AddNewAddress = (props) => {
       
     };
     try {
-      var res = await axios(config);
+      await axios(config);
       const message = 'Address Added successfully';
       dispatch({
         type: SHOW_SNACKBAR,

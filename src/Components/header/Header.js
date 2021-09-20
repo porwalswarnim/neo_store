@@ -25,13 +25,13 @@ import { IS_SEARCHING } from "../../assets/types";
  */
 
 const Header = (props) => {
-  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  const isLoggedIn = useSelector((state) => state.rootReducer.isLoggedIn);
   const id = isLoggedIn?.id;
   const loggedIn = isLoggedIn.filter((ele) => ele.length === id)[0];
   const classes = useStyles(props);
   const history = useHistory();
   const dispatch = useDispatch();
-  const { products = [] } = useSelector((state) => state.cardData);
+  const { products = [] } = useSelector((state) => state.rootReducer.cardData);
   return (
     <div>
       <AppBar position="static" className={classes.headerFeedback}>

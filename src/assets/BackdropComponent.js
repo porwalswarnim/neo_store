@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 const BackdropComponent = (props) => {
   const classes = useStyles(props);
-  const isLoading = useSelector((state) => state.isLoading);
+  const isLoading = useSelector((state) => state.rootReducer.isLoading);
   return (
     <Backdrop className={classes.backdrop} open={isLoading}>
       <CircularProgress color="inherit" />

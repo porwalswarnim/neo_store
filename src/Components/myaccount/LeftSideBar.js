@@ -8,30 +8,30 @@ import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import SwapHorizIcon from "@material-ui/icons/SwapHoriz";
 import HomeIcon from "@material-ui/icons/Home";
 
-
 /**
  * @author Swarnim Porwal
  * @returns JSX for Left Side grid for myaccount page
  */
+
 const useStyles = makeStyles((theme) => ({
-    LeftSideBarCSS: {
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-    },
-    orderButton: {
-        width: "400px",
-        backgroundColor: "white",
-        color: "#2a51bf",
-        fontSize: "20px",
-        border: "1px solid #71606026",
-    },
+  LeftSideBarCSS: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  orderButton: {
+    width: "400px",
+    backgroundColor: "white",
+    color: "#2a51bf",
+    fontSize: "20px",
+    border: "1px solid #71606026",
+  },
 }));
 const LeftSideBar = (props) => {
-    const classes = useStyles(props);
-    const history = useHistory();
-    return (
-    <Grid  className={classes.LeftSideBarCSS}>
+  const classes = useStyles(props);
+  const history = useHistory();
+  return (
+    <Grid className={classes.LeftSideBarCSS}>
       <SettingsApplicationsSharpIcon
         style={{ fontSize: "300px", marginTop: "-20px" }}
       />
@@ -49,7 +49,7 @@ const LeftSideBar = (props) => {
       <Button
         style={{ marginTop: "10px" }}
         className={classes.orderButton}
-         onClick={() => history.push("/ordermodule")}
+        onClick={() => history.push("/ordermodule")}
         startIcon={<SortOutlinedIcon style={{ fontSize: "30px" }} />}
       >
         Order

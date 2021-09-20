@@ -1,11 +1,8 @@
-import {delay} from "redux-saga/effects";
-import { takeLatest, put } from "redux-saga/effects";
+import { takeEvery, takeLatest } from "redux-saga/effects";
+import { GET_ADDRESS, DELETE_ADDRESS } from "../store/userReducer";
+import { handleGetAddress, handleDeleteAddress } from "./handler";
 
-function* ageUpAsync() {
-  yield delay(4000);
-  yield put({ type: "AGE_UP_ASYNC", value: 1 });
-}
-
-export function* watchAgeUp() {
-  yield takeLatest("AGE_UP", ageUpAsync);
+export function* watcherSaga() {
+  yield takeEvery(GET_ADDRESS, handleGetAddress);
+  yield takeEvery(DELETE_ADDRESS, handleDeleteAddress);
 }

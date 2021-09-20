@@ -22,7 +22,7 @@ import { SHOW_SNACKBAR } from "../../assets/types";
  */
 const EditAddress = (props) => {
   const dispatch = useDispatch();
-  const addAddress = useSelector((state) => state.addAddress);
+  const addAddress = useSelector((state) => state.app.address);
   const { id } = useParams();
   const address = addAddress.filter(ele => ele._id === id)[0]
 
@@ -74,7 +74,7 @@ const EditAddress = (props) => {
   };
   
 
-  if (addAddress.length === 0) {
+  if (address.length === 0) {
     history.push("/addAddress");
   }
 

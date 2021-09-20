@@ -17,7 +17,7 @@ import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
  */
 
 const HomePage = (props) => {
-  const listProducts = useSelector((state) => state.listProducts);
+  const listProducts = useSelector((state) => state.rootReducer.listProducts);
   const listProduct = listProducts.filter((ele) => ele.avgRating >= 4);
   const classes = useStyles(props);
   const history = useHistory();
@@ -31,7 +31,6 @@ const HomePage = (props) => {
               PrevIcon={<NavigateBeforeIcon />}
             >
               {listProducts.map((ele, i) => {
-                console.log("ele", ele);
                 return (
                   <CardMedia
                     className={classes.image}

@@ -18,7 +18,7 @@ import { useSelector } from "react-redux";
  * @returns JSX for Profile Screen
  */
 const ProfilePage = (props) => {
-  const isLoggedIn = useSelector(state => state.isLoggedIn['0'])
+  const isLoggedIn = useSelector(state => state.rootReducer.isLoggedIn['0'])
   const classes = useStyles(props);
   const [formData, setFormData] = useState({
     firstname: localStorage.getItem("firstName"),

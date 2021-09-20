@@ -3,22 +3,20 @@ import {
   LOGGED_OUT,
   ADD_TO_CART,
   LIST_PRODUCTS,
-  ALL_ADDRESSES,
   ALL_ORDERS,
   IS_LOADING,
   IS_SEARCHING,
   IS_CONFIRMATION,
-  SHOW_SNACKBAR
+  SHOW_SNACKBAR,
 } from "../../assets/types";
 
 const initialState = {
   cardData: [],
   isLoggedIn: [],
   listProducts: [],
-  addAddress: [],
   allOrders: [],
   isLoading: false,
-  searchTerm: '',
+  searchTerm: "",
   isConfirmation: {
     snackbarmessage: "",
     confirmationmessage: "",
@@ -33,7 +31,7 @@ const initialState = {
   },
 };
 
-const reducer = (state = initialState, action) => {
+const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGGED_IN:
       return {
@@ -47,20 +45,10 @@ const reducer = (state = initialState, action) => {
         ...state,
         listProducts: [...action.payload],
       };
-    case ALL_ADDRESSES:
-      return {
-        ...state,
-        addAddress: [...action.payload],
-      };
     case ADD_TO_CART:
       return {
         ...state,
         cardData: action.payload,
-      };
-    case ALL_ORDERS:
-      return {
-        ...state,
-        allOrders: action.payload,
       };
     case ALL_ORDERS:
       return {
@@ -72,7 +60,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         isLoading: action.payload,
       };
-      case IS_SEARCHING:
+    case IS_SEARCHING:
       return {
         ...state,
         searchTerm: action.payload,
@@ -103,4 +91,4 @@ const reducer = (state = initialState, action) => {
   return state;
 };
 
-export default reducer;
+export default rootReducer;

@@ -7,14 +7,14 @@ import HeaderItems from "./HeaderItems";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { ADD_TO_CART } from "../../assets/types";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import { Button } from "@material-ui/core";
-import { IS_LOADING,SHOW_SNACKBAR } from "../../assets/types";
+import { IS_LOADING, SHOW_SNACKBAR } from "../../assets/types";
+import { getConfig } from "../../assets/utils";
 /**
  * @author Swarnim Porwal
  * @description this function gets all the data and put them into the card
@@ -27,21 +27,15 @@ import { IS_LOADING,SHOW_SNACKBAR } from "../../assets/types";
  */
 
 export const fetchCartData = async (dispatch) => {
-  const config = {
-    method: "get",
-    url: "https://neostore-api.herokuapp.com/api/cart",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      Authorization: localStorage.getItem("token"),
-    },
-  };
   try {
     dispatch({
       type: IS_LOADING,
       payload: true,
     });
-    const res = await axios(config);
+    const res = await getConfig(
+      "get",
+      "https://neostore-api.herokuapp.com/api/cart"
+    );
     dispatch({
       type: IS_LOADING,
       payload: false,
@@ -58,15 +52,14 @@ const AddCartItems = (props) => {
   const classes = useStyles(props);
   const history = useHistory();
   const { products = [], grandTotal = 0 } = useSelector(
-    (state) => state.cardData
+    (state) => state.rootReducer.cardData
   );
- 
-var retrievedData = localStorage.getItem("address");
-const addAddress = JSON.parse(retrievedData);
+
+  const address = useSelector((state) => state.app.address);
 
   const dispatch = useDispatch();
   const [selectAddress, setSelectAddress] = useState({
-    address: addAddress[0],
+    address: address?.[0],
     name: "",
   });
   const handleChange = (e) => {
@@ -81,19 +74,13 @@ const addAddress = JSON.parse(retrievedData);
       addressId: selectAddress.address,
     };
 
-    var config = {
-      method: "post",
-      url: "https://neostore-api.herokuapp.com/api/order/place",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: localStorage.getItem("token"),
-      },
-      data,
-    };
-
     try {
-      var res = await axios(config);
+      await getConfig(
+        "post",
+        "https://neostore-api.herokuapp.com/api/order/place",
+        data
+      );
+
       const message = "Ordered Placed Successfully";
       dispatch({
         type: SHOW_SNACKBAR,
@@ -137,7 +124,7 @@ const addAddress = JSON.parse(retrievedData);
             </Grid>
           )}
           {products?.length !== 0 && (
-            <Grid item  xs={7} className={classes.leftSideGrid}>
+            <Grid item xs={7} className={classes.leftSideGrid}>
               <Box boxShadow={8}>
                 <HeaderItems />
                 {products.map((ele, i) => {
@@ -155,38 +142,43 @@ const addAddress = JSON.parse(retrievedData);
             </Grid>
           )}
           <Grid item xs={4} className={classes.rightSideGrid}>
-            <FormControl
-              variant="outlined"
-              style={{ backgroundColor: "#f9f9f9" }}
-              autoComplete="off"
-            >
-              <InputLabel
-                // htmlFor="outlined-address-native-simple"
-                style={{ fontSize: "20px", color: "black", fontWeight: "bold" }}
+            {address.length !== 0 && (
+              <FormControl
+                variant="outlined"
+                style={{ backgroundColor: "#f9f9f9" }}
+                autoComplete="off"
               >
-                Address
-              </InputLabel>
-              <Select
-                native
-                value={selectAddress.address}
-                onChange={handleChange}
-                label="Address"
-                style={{ width: "570px" }}
-                inputProps={{
-                  name: "address",
-                  id: "outlined-age-native-simple",
-                }}
-              >
-                {addAddress.map((ele) => (
-                  <option value={ele._id}>
-                    {ele.addressLine}, &nbsp;
-                    {ele.city} - &nbsp;
-                    {ele.pincode} &nbsp;
-                    {ele.state}&nbsp; ({ele.country})
-                  </option>
-                ))}
-              </Select>
-            </FormControl>
+                <InputLabel
+                  style={{
+                    fontSize: "20px",
+                    color: "black",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Address
+                </InputLabel>
+                <Select
+                  native
+                  value={selectAddress.address}
+                  onChange={handleChange}
+                  label="Address"
+                  style={{ width: "570px" }}
+                  inputProps={{
+                    name: "address",
+                    id: "outlined-age-native-simple",
+                  }}
+                >
+                  {address?.map((ele) => (
+                    <option value={ele._id}>
+                      {ele.addressLine}, &nbsp;
+                      {ele.city} - &nbsp;
+                      {ele.pincode} &nbsp;
+                      {ele.state}&nbsp; ({ele.country})
+                    </option>
+                  ))}
+                </Select>
+              </FormControl>
+            )}
             <Button
               variant="contained"
               className={classes.addAddressCSS}
